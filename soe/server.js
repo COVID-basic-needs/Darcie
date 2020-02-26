@@ -57,14 +57,14 @@ app.post('/event', (req, res) => {
 // Nexmo Websocket Handler
 app.ws('/socket', (ws, req) => {
 
-  let request = {
-    config: {
-      encoding: 'LINEAR16',
-      sampleRateHertz: 16000,
-      languageCode: process.env.LANG_CODE || 'en-US'
-    },
-    interimResults: false
-  };
+  // let request = {
+  //   config: {
+  //     encoding: 'LINEAR16',
+  //     sampleRateHertz: 16000,
+  //     languageCode: process.env.LANG_CODE || 'en-US'
+  //   },
+  //   interimResults: false
+  // };
 
   // const recognizeStream = client
   //   .streamingRecognize(request)
@@ -76,20 +76,17 @@ app.ws('/socket', (ws, req) => {
   //   });
 
   var params = {
-    objectMode: true,
-    contentType: 'audio/l16;rate=16000',
-    model: 'en-US_BroadbandModel'
+    contentType: 'audio/l16;rate=16000'
   };
 
   const recognizeStream = speechToText.recognizeUsingWebSocket(params);
-  recognizeStream.on('data', data => console.log(`Transcription: ${data.results[0].alternatives[0].transcript}`));
-  recognizeStream.on('error', console.error);
+  recognizeStream.setEncoding('utf8');
 
   ws.on('message', (msg) => {
     if (typeof msg === "string") {
       let config = JSON.parse(msg);
     } else {
-      recognizeStream.write(msg);
+      msg.stream().on('error', console.error).pipe(recognizeStream);
     }
   });
 
