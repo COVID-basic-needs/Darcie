@@ -8,25 +8,29 @@ const app = express();
 const expressWs = require('express-ws')(app);
 
 const Nexmo = require('nexmo');
-const { Readable } = require('stream');
+const { Readable } = require('stream').Readable;
 
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY,
+    apikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY
   }),
-  url: process.env.SPEECH_TO_TEXT_URL,
+  url: process.env.SPEECH_TO_TEXT_URL
 });
 
 // const speech = require('@google-cloud/speech');
 // // use GOOGLE_APPLICATION_CREDENTIALS to point to the info google-cloud/speech needs
 // const client = new speech.SpeechClient(null);
 
+const inStream = new Readable({
+  read () {}
+});
+
 const nexmo = new Nexmo({
-  apiKey: "dummy",
-  apiSecret: "dummy",
+  apiKey: 'dummy',
+  apiSecret: 'dummy',
   applicationId: process.env.APP_ID,
   privateKey: process.env.PRIVATE_KEY || './private.key'
 });
@@ -34,14 +38,13 @@ const nexmo = new Nexmo({
 app.use(bodyParser.json());
 
 app.get('/ncco', (req, res) => {
-
-  let nccoResponse = [
+  const nccoResponse = [
     {
-      "action": "connect",
-      "endpoint": [{
-        "type": "websocket",
-        "content-type": "audio/l16;rate=16000",
-        "uri": `ws://${req.hostname}/socket`
+      action: 'connect',
+      endpoint: [{
+        type: 'websocket',
+        'content-type': 'audio/l16;rate=16000',
+        uri: `ws://${req.hostname}/socket`
       }]
     }
   ];
@@ -56,43 +59,25 @@ app.post('/event', (req, res) => {
 
 // Nexmo Websocket Handler
 app.ws('/socket', (ws, req) => {
+  if (typeof msg === 'string') {
+    const config = JSON.parse(msg);
+  } else {
+    ws.pipe(speechToText.recognizeUsingWebSocket({
+      contentType: 'audio/l16;rate=16000',
+      interimResults: true,
+      inactivityTimeout: -1
+    })).setEncoding('utf8');
+  }
+  // on('message', (msg) => {
+  //     console.log('Hi from within on(message).');
+  //     inStream.push(msg);
+  //     inStream.
+  //   }
+  // });
 
-  // let request = {
-  //   config: {
-  //     encoding: 'LINEAR16',
-  //     sampleRateHertz: 16000,
-  //     languageCode: process.env.LANG_CODE || 'en-US'
-  //   },
-  //   interimResults: false
-  // };
-
-  // const recognizeStream = client
-  //   .streamingRecognize(request)
-  //   .on('error', console.error)
-  //   .on('data', data => {
-  //     console.log(
-  //       `Transcription: ${data.results[0].alternatives[0].transcript}`
-  //     );
-  //   });
-
-  var params = {
-    contentType: 'audio/l16;rate=16000'
-  };
-
-  const recognizeStream = speechToText.recognizeUsingWebSocket(params);
-  recognizeStream.setEncoding('utf8');
-
-  ws.on('message', (msg) => {
-    if (typeof msg === "string") {
-      let config = JSON.parse(msg);
-    } else {
-      msg.stream().on('error', console.error).pipe(recognizeStream);
-    }
-  });
-
-  ws.on('close', () => {
-    recognizeStream.destroy();
-  });
+  // ws.on('close', () => {
+  //   inStream.end();
+  // });
 });
 
 const port = process.env.PORT || 8000;
