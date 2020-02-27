@@ -6,10 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const expressWs = require('express-ws')(app);
-
-const Nexmo = require('nexmo');
-const { Readable } = require('stream').Readable;
-
+// const Nexmo = require('nexmo');
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 
@@ -19,22 +16,12 @@ const speechToText = new SpeechToTextV1({
   }),
   url: process.env.SPEECH_TO_TEXT_URL
 });
-
-// const speech = require('@google-cloud/speech');
-// // use GOOGLE_APPLICATION_CREDENTIALS to point to the info google-cloud/speech needs
-// const client = new speech.SpeechClient(null);
-
-const inStream = new Readable({
-  read () {}
-});
-
-const nexmo = new Nexmo({
-  apiKey: 'dummy',
-  apiSecret: 'dummy',
-  applicationId: process.env.APP_ID,
-  privateKey: process.env.PRIVATE_KEY || './private.key'
-});
-
+// const nexmo = new Nexmo({
+//   apiKey: 'dummy',
+//   apiSecret: 'dummy',
+//   applicationId: process.env.APP_ID,
+//   privateKey: process.env.PRIVATE_KEY || './private.key'
+// });
 app.use(bodyParser.json());
 
 app.get('/ncco', (req, res) => {
@@ -59,25 +46,23 @@ app.post('/event', (req, res) => {
 
 // Nexmo Websocket Handler
 app.ws('/socket', (ws, req) => {
-  if (typeof msg === 'string') {
-    const config = JSON.parse(msg);
-  } else {
-    ws.pipe(speechToText.recognizeUsingWebSocket({
-      contentType: 'audio/l16;rate=16000',
-      interimResults: true,
-      inactivityTimeout: -1
-    })).setEncoding('utf8');
-  }
-  // on('message', (msg) => {
-  //     console.log('Hi from within on(message).');
-  //     inStream.push(msg);
-  //     inStream.
-  //   }
-  // });
+  const stt = speechToText.recognizeUsingWebSocket({
+    contentType: 'audio/l16;rate=16000',
+    interimResults: true,
+    inactivityTimeout: -1
+  }).setDefaultEncoding('utf8');
 
-  // ws.on('close', () => {
-  //   inStream.end();
-  // });
+  ws.on('message', (msg) => {
+    if (typeof msg === 'string') {
+      const config = JSON.parse(msg);
+    } else {
+      stt.write(msg);
+    }
+  });
+
+  ws.on('close', () => {
+    stt.destroy();
+  });
 });
 
 const port = process.env.PORT || 8000;
