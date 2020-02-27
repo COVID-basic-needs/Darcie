@@ -46,18 +46,25 @@ app.post('/event', (req, res) => {
 
 // Nexmo Websocket Handler
 app.ws('/socket', (ws, req) => {
-  const stt = speechToText.recognizeUsingWebSocket({
+  // ws.on('message', (msg) => {
+  //   if (typeof msg === 'string') {
+  //     const config = JSON.parse(msg);
+  //   } else {
+  //     speechToText.recognize({
+  //       audio: msg,
+  //       contentType: 'audio/l16;rate=16000'
+  //     }).then(text => console.log('text:', text)).catch(err => console.log('error:', err));
+  //   }
+  // });
+  var stt = speechToText.recognizeUsingWebSocket({
+    objectMode: false,
     contentType: 'audio/l16;rate=16000',
-    interimResults: true,
-    inactivityTimeout: -1
-  }).setDefaultEncoding('utf8');
+    model: 'en-US_BroadbandModel'
+  });
 
-  ws.on('message', (msg) => {
-    if (typeof msg === 'string') {
-      const config = JSON.parse(msg);
-    } else {
-      stt.write(msg);
-    }
+  ws.on('open', function () {
+    ws.pipe(stt);
+    stt.setEncoding('utf8');
   });
 
   ws.on('close', () => {
