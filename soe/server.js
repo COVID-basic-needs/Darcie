@@ -2,10 +2,12 @@
 // load environment properties from a .env file for local development
 require('dotenv').load();
 
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const expressWs = require('express-ws')(app);
+const WebSock = require('ws');
 // const Nexmo = require('nexmo');
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
@@ -16,6 +18,7 @@ const speechToText = new SpeechToTextV1({
   }),
   url: process.env.SPEECH_TO_TEXT_URL
 });
+// console.log("STT Object: ", speechToText)
 // const nexmo = new Nexmo({
 //   apiKey: 'dummy',
 //   apiSecret: 'dummy',
@@ -40,7 +43,7 @@ app.get('/ncco', (req, res) => {
 });
 
 app.post('/event', (req, res) => {
-  console.log('EVENT LOG::', req.body);
+  // console.log('EVENT LOG::', req.body);
   res.status(204).end();
 });
 
@@ -56,20 +59,42 @@ app.ws('/socket', (ws, req) => {
   //     }).then(text => console.log('text:', text)).catch(err => console.log('error:', err));
   //   }
   // });
-  var stt = speechToText.recognizeUsingWebSocket({
-    objectMode: false,
+  let stt = speechToText.recognizeUsingWebSocket({
+    objectMode: true,
     contentType: 'audio/l16;rate=16000',
     model: 'en-US_BroadbandModel'
   });
+  //console.log("STT:", stt);
+  //console.log("WS:", ws);
+  // ws.on('connect', function () {
+  //   console.log("Hello connect");
+  // });
+  // ws.on('open', function () {
+  //   console.log("Hello open");
+  // });
 
-  ws.on('open', function () {
-    ws.pipe(stt);
-    stt.setEncoding('utf8');
-  });
+  stt.on('data', function(event) { onEvent('Data:', event); });
+  stt.on('error', function(event) { onEvent('Error:', event); });
+  stt.on('close', function(event) { onEvent('Close:', event); });
+  function onEvent(name, event) {
+    console.log(name, JSON.stringify(event, null, 2));
+  };
+  const dupleStream = WebSock.createWebSocketStream(ws, { encoding: 'BASE64' });
+  dupleStream.pipe(stt);
+    // ws.on('message', function () {
+    // stt.pipe(fs.createWriteStream('test.out'));
+    // fs.writeSync(1, 'TESTOUT-DATA');
+    // fs.writeSync(1, fs.readFileSync('test.out'));
+    
+    // Displays events on the console.
+  // });
 
-  ws.on('close', () => {
-    stt.destroy();
-  });
+
+  // ws.on('close', () => {
+  //   // fs.writeSync(1, 'TESTOUT-close');
+  //   // fs.writeSync(1, fs.readFileSync('test.out'));
+  //   stt.destroy();
+  // });
 });
 
 const port = process.env.PORT || 8000;
