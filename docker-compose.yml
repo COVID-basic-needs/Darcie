@@ -6,8 +6,12 @@ services:
     command:
       - "--api.insecure=true" # Enables the web UI, Traefik will listen on port 8080 by default for API request.
       - "--providers.docker=true" # tells Traefik to listen to docker
-      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.exposedbydefault=true"
       - "--entrypoints.web.address=:80" # Traefik will listen to incoming request on the port 80 (HTTP)
+    # depends_on:
+    #   - landingpage
+    #   - soe
+    #   - watson_webhook
     ports:
       - "80:80" # The HTTP port
       - "443:443"
@@ -18,36 +22,35 @@ services:
     image: vacs-soe
     build: ./soe
     labels:
-      - "traefik.enable=true" # Explicitly tell Traefik to expose this container
-      - "traefik.http.routers.soe.rule=Host(`soe.localhost`)" # The domain the service will respond to
       - "traefik.http.routers.seo.entrypoints=web" # Allow request only from the predefined entry point named "web"
+      # - traefik.http.routers.soe.rule=Host(`localhost:8000`) # The domain the service will respond to
+      - "traefik.http.routers.soe.rule=Path(`/soe`)"
+      # - "traefik.enable=true" # Explicitly tell Traefik to expose this container
     depends_on:
       - landingpage
       # - redis
     environment:
       NODE_ENV: production
-    ports:
-      - "8000:8000"
   watson_webhook:
     image: watson_webhook
     build: ./watson_webhook
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.watson_webhook.rule=Host(`watson_webhook.localhost`)"
       - "traefik.http.routers.watson_webhook.entrypoints=web"
+      # - traefik.http.routers.watson_webhook.rule=Host(`localhost`)
+      - "traefik.http.routers.watson_webhook.rule=Path(`/api/watson_webhook`)"
+      # - "traefik.enable=true"
     environment:
       NODE_ENV: production
-    ports:
-      - "5000:5000"
   landingpage:
     image: vacs-landingpage
     build: ./landingpage
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.landingpage.rule=Host(`landingpage.localhost`)"
       - "traefik.http.routers.landingpage.entrypoints=web"
-    ports:
-      - "8181:8181"
-      - "9191:9191/udp"
+      - "traefik.http.routers.landingpage.rule=Host(`localhost`)"
+      - "traefik.http.routers.landingpage.rule=Path(`/`)"
+      - "traefik.http.routers.landingpage.middlewares=auth,prefix,cb,landingpagemw"
+      - "traefik.http.middlewares.landingpagemw.headers.accesscontrolalloworigin=*"
+      - "traefik.http.services.landingpage.loadbalancer.server.port=8181"
+      # - "traefik.enable=true"
   # redis:
   #   image: redis:6.0-rc1-alpine3.11
