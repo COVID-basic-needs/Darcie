@@ -1,9 +1,13 @@
-version: '3.7'
+version: '3.3'
 
 services:
-  reverse-proxy:
+  traefik:
     image: traefik:v2.1 # The official v2 Traefik docker image
-    command: --api.insecure=true --providers.docker # Enables the web UI and tells Traefik to listen to docker
+    command:
+      - "--api.insecure=true" # Enables the web UI, Traefik will listen on port 8080 by default for API request.
+      - "--providers.docker=true" # tells Traefik to listen to docker
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80" # Traefik will listen to incoming request on the port 80 (HTTP)
     ports:
       - "80:80" # The HTTP port
       - "443:443"
@@ -13,6 +17,10 @@ services:
   soe:
     image: vacs-soe
     build: ./soe
+    labels:
+      - "traefik.enable=true" # Explicitly tell Traefik to expose this container
+      - "traefik.http.routers.soe.rule=Host(`soe.localhost`)" # The domain the service will respond to
+      - "traefik.http.routers.seo.entrypoints=web" # Allow request only from the predefined entry point named "web"
     depends_on:
       - landingpage
       # - redis
@@ -23,6 +31,10 @@ services:
   watson_webhook:
     image: watson_webhook
     build: ./watson_webhook
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.watson_webhook.rule=Host(`watson_webhook.localhost`)"
+      - "traefik.http.routers.watson_webhook.entrypoints=web"
     environment:
       NODE_ENV: production
     ports:
@@ -30,6 +42,10 @@ services:
   landingpage:
     image: vacs-landingpage
     build: ./landingpage
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.landingpage.rule=Host(`landingpage.localhost`)"
+      - "traefik.http.routers.landingpage.entrypoints=web"
     ports:
       - "8181:8181"
       - "9191:9191/udp"
