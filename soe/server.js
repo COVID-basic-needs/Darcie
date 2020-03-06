@@ -19,7 +19,7 @@ const index = algoliasearch(
 ).initIndex(process.env.ALGOLIA_INDEX);
 const assistant = new AssistantV2({
   version: '2020-02-05',
-  authenticator: new IamAuthenticator({ apikey: process.env.ASSISTANT_APIKEY })
+  authenticator: new IamAuthenticator({ apikey: process.env.WA_APIKEY })
 });
 const gSTTclient = new gSpeech.SpeechClient(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 const nexmo = new Nexmo({
@@ -55,7 +55,7 @@ app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data n
   res.status(200).json(nccoResponse);
 });
 
-app.post('/event', (req, res) => {   // whenever something happends on the Nexmo side of the call it uses this to update us.
+app.post('/event', (req, res) => { // whenever something happends on the Nexmo side of the call it uses this to update us.
   if (req.body.from !== 'Unknown') {
     caller = req.body.from;
     callUUID = req.body.uuid;
@@ -65,90 +65,17 @@ app.post('/event', (req, res) => {   // whenever something happends on the Nexmo
   res.status(204).end();
 });
 
-app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
-
-  let wSessionID = null;
-
-  assistant.createSession({
-    assistantId: process.env.ASSISTANT_ID
-  }).then(res => {
-    wSessionID = res.result.session_id;
-    // get watson assistant to play welcome message to caller, sync callUUID, & provide caller phone number.
-    assistant.message({
-      assistantId: process.env.ASSISTANT_ID,
-      sessionId: wSessionID,
-      input: { 'text': 'Hello' },
-      context: {
-        'global': {
-          'system': {
-            'user_id': callUUID
-          }
-        },
-        'skills': {
-          'main skill': {
-            'user_defined': {
-              'caller_phone': caller,
-              'callUUID': callUUID
-            }
-          }
-        }
-      }
-    }).then(res => {
-      console.log(JSON.stringify(res, null, 2));
-      console.log('Darcel:', res.result.output.generic[0].text);
-      // talk.start is a Nexmo function that takes text & plays it into the call as audio
-      talk.start(callUUID, {
-        text: res.result.output.generic[0].text
-      }, (err => { console.log(err); }));
-    }).catch(err => { console.log(err); });
-  }).catch(err => { console.log(err); });
-
-  // Static definition for code to call when audio is heard
-  const recognizeStream = gSTTclient
-    .streamingRecognize(gSTTparams) // googleSTT function
-    .on('error', console.error)
-    .on('data', data => { // data is text returned from google
-      console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`); // log for rTail
-      // and send to watson assistant
-      assistant.message({
-        assistantId: process.env.ASSISTANT_ID,
-        sessionId: wSessionID,
-        input: { 'text': data.results[0].alternatives[0].transcript }
-      }).then(res => { // res is result from Watson.
-        console.log('Darcel:', res.result.output.generic[0].text);
-        talk.start(callUUID, { // and send to Nexmo TTS
-          text: res.result.output.generic[0].text
-        }, (err => { console.log(err); }));
-      }).catch(err => { console.log(err); });
-    });
-
-  ws.on('message', (msg) => {
-    if (typeof msg === "string") {
-      let config = JSON.parse(msg);
-    } else {
-      recognizeStream.write(msg);
-    }
-  });
-
-  ws.on('close', () => {
-    console.log('CALLER HUNG UP');
-    recognizeStream.destroy();
-  });
-});
-
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
-  console.log(req.body);
+  console.log(req.body); // debug statement to see what params Watson is sending
   switch (req.body.intent) {
-    case 'neighborhood':
+    case 'search': // takes a SF neighborhood & a category and does a search in the Algolia index
       const body = await got(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.neighborhood}%20San%20Francisco&key=${process.env.GOOGLE_API_KEY}`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.neighborhood}%20San%20Francisco&key=${process.env.GOOGLE_APPLICATION_CREDENTIALS}`
       ).json();
-      res.json(body.results[0].geometry.location);
-      break;
-    case 'search':
-      index.search(req.body.category, {
-        aroundLatLng: `${req.body.lat_lng.lat}, ${req.body.lat_lng.lng}`,
+      const lat_lng = body.results[0].geometry.location;
+      index.search(req.body.category, { // Algolia search
+        aroundLatLng: `${lat_lng.lat}, ${lat_lng.lng}`,
         hitsPerPage: 6,
         attributesToHighlight: [],
         attributesToRetrieve: ['name', '_geoloc', 'schedule', 'resource_schedule']
@@ -160,7 +87,7 @@ app.post('/api/watson_webhook', async (req, res) => {
         res.json({ hits });
       });
       break;
-    case 'read_list':
+    case 'read_list': // formats the service names in the algolia_results for reading to the caller
       let algoliaResults = await req.body.hits.hits;
       let formattedNameList = '';
       let i = 1;
@@ -170,7 +97,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       });
       res.json({ string: formattedNameList });
       break;
-    case 'get_details':
+    case 'get_details': // takes a result_number and the algolia_results, then gets and formats more details on the numbered Service
       let num = await req.body.result_number;
       let chosenResult = await req.body.algolia_results.hits[num - 1];
       let todayRaw = new Date();
@@ -206,7 +133,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       // OPTIONALLY, INSTEAD, PULL THE FULL ADDRESS FROM ALGOLIA OR ASKDARCEL - it might be more accurate
       if (chosenResult._geoloc.lat) {
         const body = await got(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_APPLICATION_CREDENTIALS}`
         ).json();
         formattedDetails += `Their address is ${body.results[0].formatted_address}`;
       }
@@ -218,6 +145,76 @@ app.post('/api/watson_webhook', async (req, res) => {
       res.status(404).json({ error: e });
       break;
   }
+});
+
+app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
+
+  let wSessionID = null;
+
+  assistant.createSession({
+    assistantId: process.env.WA_ID
+  }).then(res => {
+    wSessionID = res.result.session_id;
+    // get watson assistant to play welcome message to caller, sync callUUID, & provide caller phone number.
+    assistant.message({
+      assistantId: process.env.WA_ID,
+      sessionId: wSessionID,
+      input: { 'text': 'Hello' },
+      context: {
+        'global': {
+          'system': {
+            'user_id': callUUID
+          }
+        },
+        'skills': {
+          'main skill': {
+            'user_defined': {
+              'caller_phone': caller,
+              'callUUID': callUUID
+            }
+          }
+        }
+      }
+    }).then(res => {
+      console.log(JSON.stringify(res, null, 2));
+      console.log('Darcel:', res.result.output.generic[0].text);
+      // talk.start is a Nexmo function that takes text & plays it into the call as audio
+      talk.start(callUUID, {
+        text: res.result.output.generic[0].text
+      }, (err => { console.log(err); }));
+    }).catch(err => { console.log(err); });
+  }).catch(err => { console.log(err); });
+
+  // Definition for code to call when audio is heard - static but based on sessionId.
+  const recognizeStream = gSTTclient
+    .streamingRecognize(gSTTparams) // googleSTT function
+    .on('error', console.error)
+    .on('data', data => { // data is text returned from google
+      console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`); // log for rTail
+      assistant.message({ // and send to watson assistant
+        assistantId: process.env.WA_ID,
+        sessionId: wSessionID,
+        input: { 'text': data.results[0].alternatives[0].transcript }
+      }).then(res => { // res is result from Watson.
+        console.log('Darcel:', res.result.output.generic[0].text);
+        talk.start(callUUID, { // and send to Nexmo TTS
+          text: res.result.output.generic[0].text
+        }, (err => { console.log(err); }));
+      }).catch(err => { console.log(err); });
+    });
+
+  ws.on('message', (msg) => {
+    if (typeof msg === "string") {
+      let config = JSON.parse(msg);
+    } else {
+      recognizeStream.write(msg);
+    }
+  });
+
+  ws.on('close', () => {
+    console.log('CALLER HUNG UP');
+    recognizeStream.destroy();
+  });
 });
 
 const port = process.env.PORT || 8000;
