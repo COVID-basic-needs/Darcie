@@ -40,6 +40,7 @@ let gSTTparams = { // static parameters google speech-to-text needs.
 };
 let caller = null;   // caller's phone number.
 let callUUID = null; // unique ID of this phone call session.
+let voiceName = 'Eric';
 
 app.use(bodyParser.json());
 
@@ -71,7 +72,7 @@ app.post('/api/watson_webhook', async (req, res) => {
   switch (req.body.intent) {
     case 'search': // takes a SF neighborhood & a category and does a search in the Algolia index
       const body = await got(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.neighborhood}%20San%20Francisco&key=${process.env.GOOGLE_APPLICATION_CREDENTIALS}`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.neighborhood}%20San%20Francisco&key=${process.env.GOOGLE_API_KEY}`
       ).json();
       const lat_lng = body.results[0].geometry.location;
       index.search(req.body.category, { // Algolia search
@@ -133,7 +134,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       // OPTIONALLY, INSTEAD, PULL THE FULL ADDRESS FROM ALGOLIA OR ASKDARCEL - it might be more accurate
       if (chosenResult._geoloc.lat) {
         const body = await got(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_APPLICATION_CREDENTIALS}`
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`
         ).json();
         formattedDetails += `Their address is ${body.results[0].formatted_address}`;
       }
@@ -180,7 +181,8 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
       console.log('Darcel:', res.result.output.generic[0].text);
       // talk.start is a Nexmo function that takes text & plays it into the call as audio
       talk.start(callUUID, {
-        text: res.result.output.generic[0].text
+        text: res.result.output.generic[0].text,
+        voice_name: voiceName
       }, (err => { console.log(err); }));
     }).catch(err => { console.log(err); });
   }).catch(err => { console.log(err); });
@@ -198,7 +200,8 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
       }).then(res => { // res is result from Watson.
         console.log('Darcel:', res.result.output.generic[0].text);
         talk.start(callUUID, { // and send to Nexmo TTS
-          text: res.result.output.generic[0].text
+          text: res.result.output.generic[0].text,
+          voice_name: voiceName
         }, (err => { console.log(err); }));
       }).catch(err => { console.log(err); });
     });
