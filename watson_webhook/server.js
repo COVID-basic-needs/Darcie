@@ -100,8 +100,9 @@ const startServer = () => {
                 }
                 res.json({ string: formattedDetails });
                 break;
-            case 'retrieve':
-                // retrieve more details about a certain result from AskDarcel for texting the user
+            case 'retrieve_current_num':
+                // retrieve the user number to confirm for texting the user
+                
                 break;
             case 'text':
                 // text the user at the phone number they gave

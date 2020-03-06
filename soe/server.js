@@ -52,7 +52,9 @@ app.post('/event', (req, res) => {
   // console.log('EVENT LOG::', req.body);
   res.status(204).end();
 });
-
+app.post('/watson', (req, res) => {
+  if (req.body. )
+})
 // Nexmo Websocket Handler
 app.ws('/socket', (ws, req) => {
 
@@ -84,18 +86,18 @@ app.ws('/socket', (ws, req) => {
     },
     interimResults: false
   };
-
+// Static definition for code to call when audio is heard
   const recognizeStream = gSTTclient
-    .streamingRecognize(gSTTparams)
+    .streamingRecognize(gSTTparams) // googleSTT function
     .on('error', console.error)
-    .on('data', data => {
-      console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`);
+    .on('data', data => { //data is text returned from google
+      console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`); //log for rTail
       // and send to watson assistant
       assistant.message({
         assistantId: process.env.WATSON_ASSISTANT_ID,
         sessionId: wSessionID,
         input: { 'text': data.results[0].alternatives[0].transcript }
-      }).then(res => {
+      }).then(res => { //res is result from Watson.
         console.log('Darcel:', res.result.output.generic[0].text);
         // and send to Nexmo TTS
         talk.start(callUUID, {
