@@ -107,17 +107,16 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
   const recognizeStream = gSTTclient
     .streamingRecognize(gSTTparams) // googleSTT function
     .on('error', console.error)
-    .on('data', data => { //data is text returned from google
-      console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`); //log for rTail
+    .on('data', data => { // data is text returned from google
+      console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`); // log for rTail
       // and send to watson assistant
       assistant.message({
         assistantId: process.env.ASSISTANT_ID,
         sessionId: wSessionID,
         input: { 'text': data.results[0].alternatives[0].transcript }
-      }).then(res => { //res is result from Watson.
+      }).then(res => { // res is result from Watson.
         console.log('Darcel:', res.result.output.generic[0].text);
-        // and send to Nexmo TTS
-        talk.start(callUUID, {
+        talk.start(callUUID, { // and send to Nexmo TTS
           text: res.result.output.generic[0].text
         }, (err => { console.log(err); }));
       }).catch(err => { console.log(err); });
@@ -137,7 +136,7 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
   });
 });
 
-// api for watson to call via webhook for retrieving results from Algolia, Google Maps, and AskDarcel
+// api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
   console.log(req.body);
   switch (req.body.intent) {
@@ -179,8 +178,8 @@ app.post('/api/watson_webhook', async (req, res) => {
       let today = weekday[todayRaw.getDay()];
       let tmrw = weekday[addDays(todayRaw, 1).getDay()];
       let formattedDetails = '';
-      // find if has schedule
-      if (chosenResult.schedule.length === 0) { // no open hours
+      // find if has schedule, i.e. check if there's any open hours on any schedule
+      if (chosenResult.schedule.length === 0) {
         formattedDetails = `${num}. ${chosenResult.name} does not have any in-person hours. `;
       } else {
         // find if open today & tomorrow
@@ -200,10 +199,10 @@ app.post('/api/watson_webhook', async (req, res) => {
         } else {
           formattedDetails += `has hours, but is closed today and tomorrow. `;
         } // Optionally, add later:
-        // } else if ( open today but not open tomorrow so list 2nd day as after skipped ones )
-        // } else if ( no hours today or tomorrow, next open after weekend or other skipped day )
+        // } else if ( open today but not open tomorrow ) so list 2nd day as after skipped ones
+        // } else if ( no hours today or tomorrow ) so say next open after weekend or other skipped day
       }
-      // query google API for address from lat_lng and add to string if exists.
+      // query google API for address from lat_lng & add to string if exists.
       // OPTIONALLY, INSTEAD, PULL THE FULL ADDRESS FROM ALGOLIA OR ASKDARCEL - it might be more accurate
       if (chosenResult._geoloc.lat) {
         const body = await got(
