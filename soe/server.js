@@ -30,10 +30,20 @@ const nexmo = new Nexmo({
 });
 let calls = nexmo.calls; // this is because nexmo wasn't returning nexmo.calls.talk.start immedietely,
 let talk = calls.talk;   // was throwing async error.
+let gSTTparams = { // static parameters google speech-to-text needs
+  config: {
+    encoding: 'LINEAR16',
+    sampleRateHertz: 16000,
+    languageCode: process.env.LANG_CODE || 'en-US'
+  },
+  interimResults: false
+};
+let caller = null;   // caller's phone number
+let callUUID = null; // unique ID of this phone call session
 
 app.use(bodyParser.json());
 
-app.get('/ncco', (req, res) => {
+app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data needed to forward the call
   let nccoResponse = [{
     "action": "connect",
     "endpoint": [{
@@ -45,9 +55,7 @@ app.get('/ncco', (req, res) => {
   res.status(200).json(nccoResponse);
 });
 
-let caller = null;
-let callUUID = null;
-app.post('/event', (req, res) => {
+app.post('/event', (req, res) => {   // whenever something happends on the Nexmo side of the call it uses this to update us
   if (req.body.from !== 'Unknown') {
     caller = req.body.from;
     callUUID = req.body.uuid;
@@ -57,8 +65,7 @@ app.post('/event', (req, res) => {
   res.status(204).end();
 });
 
-// Nexmo Websocket Handler
-app.ws('/socket', (ws, req) => {
+app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler
 
   let wSessionID = null;
 
@@ -96,14 +103,6 @@ app.ws('/socket', (ws, req) => {
     }).catch(err => { console.log(err); });
   }).catch(err => { console.log(err); });
 
-  let gSTTparams = {
-    config: {
-      encoding: 'LINEAR16',
-      sampleRateHertz: 16000,
-      languageCode: process.env.LANG_CODE || 'en-US'
-    },
-    interimResults: false
-  };
   // Static definition for code to call when audio is heard
   const recognizeStream = gSTTclient
     .streamingRecognize(gSTTparams) // googleSTT function
