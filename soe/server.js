@@ -89,7 +89,8 @@ app.ws('/socket', (ws, req) => {
     }).then(res => {
       console.log(JSON.stringify(res, null, 2));
       console.log('Darcel:', res.result.output.generic[0].text);
-      talk.start(callUUID, { //talk is Nexmo function for playing text to call
+      // talk.start is a Nexmo function that takes text & plays it into the call as audio
+      talk.start(callUUID, {
         text: res.result.output.generic[0].text
       }, (err => { console.log(err); }));
     }).catch(err => { console.log(err); });
