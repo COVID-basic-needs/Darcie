@@ -30,7 +30,7 @@ const nexmo = new Nexmo({
 });
 let calls = nexmo.calls; // this is because nexmo wasn't returning nexmo.calls.talk.start immedietely,
 let talk = calls.talk;   // was throwing async error.
-let gSTTparams = { // static parameters google speech-to-text needs
+let gSTTparams = { // static parameters google speech-to-text needs.
   config: {
     encoding: 'LINEAR16',
     sampleRateHertz: 16000,
@@ -38,12 +38,12 @@ let gSTTparams = { // static parameters google speech-to-text needs
   },
   interimResults: false
 };
-let caller = null;   // caller's phone number
-let callUUID = null; // unique ID of this phone call session
+let caller = null;   // caller's phone number.
+let callUUID = null; // unique ID of this phone call session.
 
 app.use(bodyParser.json());
 
-app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data needed to forward the call
+app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data needed to forward the call.
   let nccoResponse = [{
     "action": "connect",
     "endpoint": [{
@@ -55,7 +55,7 @@ app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data n
   res.status(200).json(nccoResponse);
 });
 
-app.post('/event', (req, res) => {   // whenever something happends on the Nexmo side of the call it uses this to update us
+app.post('/event', (req, res) => {   // whenever something happends on the Nexmo side of the call it uses this to update us.
   if (req.body.from !== 'Unknown') {
     caller = req.body.from;
     callUUID = req.body.uuid;
@@ -65,7 +65,7 @@ app.post('/event', (req, res) => {   // whenever something happends on the Nexmo
   res.status(204).end();
 });
 
-app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler
+app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
 
   let wSessionID = null;
 
@@ -73,7 +73,7 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler
     assistantId: process.env.ASSISTANT_ID
   }).then(res => {
     wSessionID = res.result.session_id;
-    // get watson to play welcome message to caller
+    // get watson assistant to play welcome message to caller, sync callUUID, & provide caller phone number.
     assistant.message({
       assistantId: process.env.ASSISTANT_ID,
       sessionId: wSessionID,
