@@ -100,13 +100,13 @@ const startServer = () => {
                 }
                 res.json({ string: formattedDetails });
                 break;
-            case 'retrieve_current_num':
-                // retrieve the user number to confirm for texting the user
-                
-                break;
-            case 'text':
-                // text the user at the phone number they gave
-                break;
+            // case 'retrieve_current_num':
+            //     // retrieve the user number to confirm for texting the user
+
+            //     break;
+            // case 'text':
+            //     // text the user at the phone number they gave
+            //     break;
             default:
                 let e = "case not found, please include a valid value for the 'intent' key in the json parameters";
                 console.error(e);

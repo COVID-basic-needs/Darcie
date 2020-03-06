@@ -52,9 +52,7 @@ app.post('/event', (req, res) => {
   // console.log('EVENT LOG::', req.body);
   res.status(204).end();
 });
-app.post('/watson', (req, res) => {
-  if (req.body. )
-})
+
 // Nexmo Websocket Handler
 app.ws('/socket', (ws, req) => {
 
@@ -68,11 +66,26 @@ app.ws('/socket', (ws, req) => {
     assistant.message({
       assistantId: process.env.WATSON_ASSISTANT_ID,
       sessionId: wSessionID,
-      input: { 'text': 'Hello' }
+      input: { 'text': 'Hello' },
+      context: {
+        'global':{
+          'system':{
+            'user_id': callUUID
+          }
+        },
+        'skills': {
+          'main skill': {
+            'user_defined': {
+              'caller_phone': caller,
+              'callUUID': callUUID
+            }
+          }
+        }
+      }
     }).then(res => {
-      // console.log(JSON.stringify(res, null, 2));
+      console.log(JSON.stringify(res, null, 2));
       console.log('Darcel:', res.result.output.generic[0].text);
-      talk.start(callUUID, {
+      talk.start(callUUID, { //talk is Nexmo function for playing text to call
         text: res.result.output.generic[0].text
       }, (err => { console.log(err); }));
     }).catch(err => { console.log(err); });
