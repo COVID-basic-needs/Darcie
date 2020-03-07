@@ -166,7 +166,7 @@ ${tmrw}: closed`;
       console.log(req.body); // debugger
       num = await req.body.result_number;
       chosenResult = await req.body.algolia_results.hits[num - 1];
-      let phoneToText = await req.body.phone_to_text.toString();
+      let phoneToText = await req.body.phone_to_text.toString().replace(/\D/g, '');
       let sender = process.env.NEXMO_PHONE;
       let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
       let options = { type: 'unicode' };
