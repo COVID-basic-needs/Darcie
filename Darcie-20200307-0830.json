@@ -1,0 +1,3049 @@
+{
+  "intents": [
+    {
+      "intent": "General_Negative_Feedback",
+      "examples": [
+        {
+          "text": "I do not like you"
+        },
+        {
+          "text": "You are having delusions"
+        },
+        {
+          "text": "You are on my nerves"
+        },
+        {
+          "text": "You are very frustrating"
+        },
+        {
+          "text": "You do not seem smart"
+        },
+        {
+          "text": "You're really frustrating"
+        },
+        {
+          "text": "You're really irritating"
+        },
+        {
+          "text": "You're too stupid"
+        },
+        {
+          "text": "Why are you stupid?"
+        },
+        {
+          "text": "Why are you so annoying?"
+        },
+        {
+          "text": "Stupid"
+        },
+        {
+          "text": "Robots are stupid"
+        },
+        {
+          "text": "Robots are boring"
+        },
+        {
+          "text": "Quit annoying me"
+        },
+        {
+          "text": "It is annoying"
+        },
+        {
+          "text": "I hate you"
+        },
+        {
+          "text": "I hate this!"
+        },
+        {
+          "text": "Do not like you?"
+        },
+        {
+          "text": "Everyone hates you"
+        },
+        {
+          "text": "Hate you"
+        }
+      ],
+      "description": "Express unfavorable feedback."
+    },
+    {
+      "intent": "General_Greetings",
+      "examples": [
+        {
+          "text": "Good evening"
+        },
+        {
+          "text": "How have you been?"
+        },
+        {
+          "text": "How are you today?"
+        },
+        {
+          "text": "How are things going?"
+        },
+        {
+          "text": "Hi there"
+        },
+        {
+          "text": "Hi advisor"
+        },
+        {
+          "text": "Hey you"
+        },
+        {
+          "text": "Hey twin"
+        },
+        {
+          "text": "Hey there"
+        },
+        {
+          "text": "Hey there all"
+        },
+        {
+          "text": "Hey how are you doing"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hello I am looking for some help here"
+        },
+        {
+          "text": "Hello Agent"
+        },
+        {
+          "text": "Have you been well?"
+        },
+        {
+          "text": "Greetings"
+        },
+        {
+          "text": "Good to see you"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "Good day"
+        },
+        {
+          "text": "You there"
+        },
+        {
+          "text": "Who is this?"
+        },
+        {
+          "text": "What's up?"
+        },
+        {
+          "text": "What's new?"
+        },
+        {
+          "text": "Ok take me back"
+        },
+        {
+          "text": "Looking good eve"
+        },
+        {
+          "text": "How r u?"
+        },
+        {
+          "text": "How is it going?"
+        }
+      ],
+      "description": "Greet the bot."
+    },
+    {
+      "intent": "text_results",
+      "examples": [
+        {
+          "text": "tex me"
+        },
+        {
+          "text": "tell me with text"
+        },
+        {
+          "text": "texted"
+        },
+        {
+          "text": "Text me"
+        },
+        {
+          "text": "write me"
+        },
+        {
+          "text": "send me"
+        },
+        {
+          "text": "I wanted it texted"
+        },
+        {
+          "text": "shoot me a text"
+        },
+        {
+          "text": "text us"
+        },
+        {
+          "text": "you text me"
+        },
+        {
+          "text": "message me"
+        }
+      ],
+      "description": "User choice to have the result texted to them."
+    },
+    {
+      "intent": "services_search",
+      "examples": [
+        {
+          "text": "I want to ask Darcel"
+        },
+        {
+          "text": "Find services"
+        },
+        {
+          "text": "I want to search"
+        },
+        {
+          "text": "I'm looking for a service"
+        },
+        {
+          "text": "new search"
+        },
+        {
+          "text": "Find a service"
+        },
+        {
+          "text": "I want to find a service"
+        }
+      ],
+      "description": "User wants to search the AskDarcel directory of human services"
+    },
+    {
+      "intent": "Bot_Control_Confirm_Presence",
+      "examples": [
+        {
+          "text": "Anyone there?"
+        },
+        {
+          "text": "Is anybody home?"
+        },
+        {
+          "text": "Is anybody here?"
+        },
+        {
+          "text": "I am still holding"
+        },
+        {
+          "text": "Have I lost you?"
+        },
+        {
+          "text": "Did you hear what I said?"
+        },
+        {
+          "text": "Did you go somewhere?"
+        },
+        {
+          "text": "Are you there?"
+        },
+        {
+          "text": "Are you still here with me?"
+        },
+        {
+          "text": "Are you still around?"
+        },
+        {
+          "text": "Are you on?"
+        },
+        {
+          "text": "Are you leaving me?"
+        },
+        {
+          "text": "Am I talking to someone?"
+        },
+        {
+          "text": "You around?"
+        },
+        {
+          "text": "Where'd you go?"
+        },
+        {
+          "text": "Speak to me if you are there."
+        }
+      ],
+      "description": "Ask the bot to indicate that it is available."
+    },
+    {
+      "intent": "Bot_Control_Unsure",
+      "examples": [
+        {
+          "text": "You got me"
+        },
+        {
+          "text": "To be honest, I m really not sure"
+        },
+        {
+          "text": "No idea"
+        },
+        {
+          "text": "No clue"
+        },
+        {
+          "text": "I m not yet convinced"
+        },
+        {
+          "text": "I m not sure what will make you happy"
+        },
+        {
+          "text": "I m not certain I get what you re saying"
+        },
+        {
+          "text": "I haven't got a clue"
+        },
+        {
+          "text": "I have no idea what you are looking for"
+        },
+        {
+          "text": "I have no idea, actually"
+        },
+        {
+          "text": "I don t know what you want"
+        },
+        {
+          "text": "I don t know what you need"
+        }
+      ],
+      "description": "Indicate no definite answer to a question."
+    },
+    {
+      "intent": "General_Agent_Capabilities",
+      "examples": [
+        {
+          "text": "Tell me something"
+        },
+        {
+          "text": "Can you please give me a list of the types of things you can help me with?"
+        },
+        {
+          "text": "Can you tell me what services you are able to help me with?"
+        },
+        {
+          "text": "Do you have a list of things I can talk to you about?"
+        },
+        {
+          "text": "Help now"
+        },
+        {
+          "text": "Hi, what do you do?"
+        },
+        {
+          "text": "How can I use you?"
+        },
+        {
+          "text": "How can you help me?"
+        },
+        {
+          "text": "How can you solve my problems?"
+        },
+        {
+          "text": "How do I use you?"
+        },
+        {
+          "text": "I do not know what to ask"
+        },
+        {
+          "text": "I'd like to know what type of questions you can answer for me."
+        },
+        {
+          "text": "Is there anything you can help me with?"
+        },
+        {
+          "text": "Tell me about what kind of things you do?"
+        },
+        {
+          "text": "What are my options that you can help with?"
+        },
+        {
+          "text": "What are my options?"
+        },
+        {
+          "text": "What are you able to deal with?"
+        },
+        {
+          "text": "What are you able to understand?"
+        },
+        {
+          "text": "What are you capable of?"
+        },
+        {
+          "text": "What are you good at?"
+        },
+        {
+          "text": "What are you used for?"
+        },
+        {
+          "text": "What are your skills?"
+        },
+        {
+          "text": "What can I ask you to do?"
+        },
+        {
+          "text": "What do you do?"
+        },
+        {
+          "text": "What do you handle?"
+        },
+        {
+          "text": "What else can you help me with?"
+        },
+        {
+          "text": "What features are in here?"
+        },
+        {
+          "text": "What is this 4?"
+        },
+        {
+          "text": "What kinds of things can you do?"
+        },
+        {
+          "text": "Where can I find the frequently asked questions?"
+        }
+      ],
+      "description": "Request capabilities of the bot."
+    },
+    {
+      "intent": "text_current_number",
+      "examples": [
+        {
+          "text": "current"
+        },
+        {
+          "text": "what about this one"
+        },
+        {
+          "text": "maybe this one"
+        },
+        {
+          "text": "this one"
+        },
+        {
+          "text": "shoot me a text here"
+        },
+        {
+          "text": "text me here"
+        },
+        {
+          "text": "text me at the current number"
+        },
+        {
+          "text": "current number"
+        },
+        {
+          "text": "how about this number"
+        },
+        {
+          "text": "this number"
+        },
+        {
+          "text": "text this number"
+        }
+      ],
+      "description": "text this number"
+    },
+    {
+      "intent": "Bot_Control_Clarification",
+      "examples": [
+        {
+          "text": "I don't understand"
+        },
+        {
+          "text": "I need more information"
+        },
+        {
+          "text": "Let's try to say that again more clearly, shall we?"
+        },
+        {
+          "text": "What are you referring to?"
+        },
+        {
+          "text": "What are you saying?"
+        },
+        {
+          "text": "What are you talking about?"
+        },
+        {
+          "text": "I did not quite understand what you gave me"
+        },
+        {
+          "text": "What do you mean by that?"
+        },
+        {
+          "text": "What do you mean?"
+        },
+        {
+          "text": "Explains"
+        },
+        {
+          "text": "Come again?"
+        },
+        {
+          "text": "Can you say that again please?"
+        },
+        {
+          "text": "I didn't catch that"
+        },
+        {
+          "text": "I didn't quite understand what you said"
+        },
+        {
+          "text": "I didn't understand that properly"
+        },
+        {
+          "text": "I don't get it"
+        },
+        {
+          "text": "I don't understand what you're saying"
+        }
+      ],
+      "description": "Repeat or clarify last statement."
+    },
+    {
+      "intent": "General_Connect_to_Agent",
+      "examples": [
+        {
+          "text": "Can you connect me with a real person?"
+        },
+        {
+          "text": "Can you assist me to connect to an agent?"
+        },
+        {
+          "text": "Can I talk to someone?"
+        },
+        {
+          "text": "Can I speak with somebody?"
+        },
+        {
+          "text": "Can I speak to an advisor?"
+        },
+        {
+          "text": "Can I speak to a live person?"
+        },
+        {
+          "text": "Can I speak to a human please?"
+        },
+        {
+          "text": "Can I connect to an agent?"
+        },
+        {
+          "text": "Call agent"
+        },
+        {
+          "text": "Agent help"
+        },
+        {
+          "text": "A real agent, please."
+        },
+        {
+          "text": "Yes, take me to a real person"
+        },
+        {
+          "text": "Where is the closest agent?"
+        },
+        {
+          "text": "Send me to an agent"
+        },
+        {
+          "text": "Put me through to someone"
+        },
+        {
+          "text": "Pls connect"
+        },
+        {
+          "text": "Please let me talk to a human being."
+        },
+        {
+          "text": "Please connect me to a live agent"
+        },
+        {
+          "text": "Please assist me to get to an agent"
+        },
+        {
+          "text": "Operator please"
+        },
+        {
+          "text": "Need help from human"
+        },
+        {
+          "text": "Is there anyone there I can actually talk to for real?"
+        },
+        {
+          "text": "I would like to speak to someone"
+        },
+        {
+          "text": "I would like to speak to a human"
+        },
+        {
+          "text": "I want to talk to a person"
+        },
+        {
+          "text": "I want an agent to help me"
+        },
+        {
+          "text": "I want agent"
+        },
+        {
+          "text": "I want a manager"
+        },
+        {
+          "text": "I need to speak to a representative. How would I go about doing so?"
+        },
+        {
+          "text": "I don't want to talk to you"
+        },
+        {
+          "text": "I don't want to talk to a bot."
+        },
+        {
+          "text": "How can I skip the recorded menu and go straight to a live person?"
+        },
+        {
+          "text": "Hi can you transfer me"
+        },
+        {
+          "text": "Do not want a robot?"
+        },
+        {
+          "text": "Customer service representative please."
+        },
+        {
+          "text": "Could you please transfer me to your master?"
+        },
+        {
+          "text": "Contact person"
+        },
+        {
+          "text": "Connect me to a live operator please."
+        }
+      ],
+      "description": "Request a human agent."
+    },
+    {
+      "intent": "General_Positive_Feedback",
+      "examples": [
+        {
+          "text": "I like what you did there! :)"
+        },
+        {
+          "text": "Brilliant!"
+        },
+        {
+          "text": "Can't believe you are that good"
+        },
+        {
+          "text": "How cool is this?"
+        },
+        {
+          "text": "I'm looking forward to working with you again! :)"
+        },
+        {
+          "text": "Love your work"
+        },
+        {
+          "text": "Ok thank you"
+        },
+        {
+          "text": "Thank you"
+        },
+        {
+          "text": "This is good"
+        },
+        {
+          "text": "This is great"
+        },
+        {
+          "text": "This is so cool"
+        },
+        {
+          "text": "You are awesome"
+        },
+        {
+          "text": "You are great"
+        },
+        {
+          "text": "You are the best"
+        },
+        {
+          "text": "You are wonderful"
+        },
+        {
+          "text": "You gave me exactly what I need!"
+        },
+        {
+          "text": "You the man"
+        },
+        {
+          "text": "You're a genius!"
+        },
+        {
+          "text": "You've been so helpful :)"
+        }
+      ],
+      "description": "Express positive sentiment or gratitude."
+    },
+    {
+      "intent": "General_Human_or_Bot",
+      "examples": [
+        {
+          "text": "Am I talking to a Bot?"
+        },
+        {
+          "text": "Am I talking to Watson?"
+        },
+        {
+          "text": "Am I chatting with a human?"
+        },
+        {
+          "text": "Are you human?"
+        },
+        {
+          "text": "Are you real?"
+        },
+        {
+          "text": "Are you a human or a bot?"
+        },
+        {
+          "text": "Am I talking to a person or am I talking to an AI?"
+        },
+        {
+          "text": "Are you a robot?"
+        },
+        {
+          "text": "How can you prove you are a human?"
+        },
+        {
+          "text": "Is this a computer?"
+        },
+        {
+          "text": "Tell me, are you a human or no?"
+        },
+        {
+          "text": "Are you even real?"
+        }
+      ],
+      "description": "Ask if speaking to a human or a bot."
+    },
+    {
+      "intent": "General_Security_Assurance",
+      "examples": [
+        {
+          "text": "Is this a trusted chat site?"
+        },
+        {
+          "text": "Is this an official chat?"
+        },
+        {
+          "text": "Is this conversation secure?"
+        },
+        {
+          "text": "Precautions hackers?"
+        },
+        {
+          "text": "I'd like proof of a secure chat"
+        },
+        {
+          "text": "How safe is my data?"
+        },
+        {
+          "text": "How is my credit card info secured?"
+        },
+        {
+          "text": "How do I know this chat is not a scam?"
+        },
+        {
+          "text": "Protection hacks?"
+        },
+        {
+          "text": "Will my conversation remain secured?"
+        },
+        {
+          "text": "Why would I trust this chat?"
+        },
+        {
+          "text": "What safety measures are used to ensure that chat is secure?"
+        },
+        {
+          "text": "What makes this chat trustworthy?"
+        },
+        {
+          "text": "What guards do you have in place to protect your customer's data?"
+        },
+        {
+          "text": "Secure conversation?"
+        },
+        {
+          "text": "In what way can I tell if my plastic is safe?"
+        },
+        {
+          "text": "Is my card info secure?"
+        },
+        {
+          "text": "Is my payment information secure?"
+        },
+        {
+          "text": "Is there a reason to distrust this chat?"
+        },
+        {
+          "text": "How do I know if my card info is kept safe?"
+        },
+        {
+          "text": "Do you have protection against hacks?"
+        },
+        {
+          "text": "Customer info secured?"
+        },
+        {
+          "text": "Conversation secure?"
+        },
+        {
+          "text": "Can I be sure that my stored card details are held securely?"
+        },
+        {
+          "text": "Are you safe?"
+        },
+        {
+          "text": "Are you safe on hackers?"
+        }
+      ],
+      "description": "Express concerns about the security of the bot."
+    },
+    {
+      "intent": "Bot_Control_Change_Subject",
+      "examples": [
+        {
+          "text": "Can we talk about something else?"
+        },
+        {
+          "text": "Let us talk about something else"
+        },
+        {
+          "text": "Let us change the topic"
+        },
+        {
+          "text": "I have one more question"
+        },
+        {
+          "text": "Here is another issue"
+        },
+        {
+          "text": "Talk about something else"
+        },
+        {
+          "text": "Help me with this other question"
+        },
+        {
+          "text": "Discuss something else"
+        },
+        {
+          "text": "Chat about something else"
+        },
+        {
+          "text": "Change topic"
+        },
+        {
+          "text": "A different matter"
+        },
+        {
+          "text": "Another thing"
+        }
+      ],
+      "description": "Change to a different topic."
+    },
+    {
+      "intent": "General_Ending",
+      "examples": [
+        {
+          "text": "Shut up"
+        },
+        {
+          "text": "Bye bye"
+        },
+        {
+          "text": "Bye now"
+        },
+        {
+          "text": "Catch you later"
+        },
+        {
+          "text": "Cya later"
+        },
+        {
+          "text": "End trial"
+        },
+        {
+          "text": "Ending this session"
+        },
+        {
+          "text": "Finished now, good bye"
+        },
+        {
+          "text": "Get lost"
+        },
+        {
+          "text": "Go away"
+        },
+        {
+          "text": "Go off"
+        },
+        {
+          "text": "Going now"
+        },
+        {
+          "text": "Good. bye."
+        },
+        {
+          "text": "Goodbye"
+        },
+        {
+          "text": "Have a nice day?"
+        },
+        {
+          "text": "Hey bot go away"
+        },
+        {
+          "text": "I am leaving"
+        },
+        {
+          "text": "I am out of here"
+        },
+        {
+          "text": "I d like to stop doing this"
+        },
+        {
+          "text": "I have got to go"
+        },
+        {
+          "text": "I want to quit"
+        },
+        {
+          "text": "I'm done"
+        },
+        {
+          "text": "Im done"
+        },
+        {
+          "text": "Im good thank you"
+        },
+        {
+          "text": "I'm leaving now"
+        },
+        {
+          "text": "It was nice chatting with you"
+        },
+        {
+          "text": "Ok goodbye"
+        },
+        {
+          "text": "See you later"
+        },
+        {
+          "text": "See you"
+        },
+        {
+          "text": "Stop doing this"
+        },
+        {
+          "text": "Stop talking to me"
+        },
+        {
+          "text": "Thank you for your time"
+        },
+        {
+          "text": "Thanks, bye!"
+        },
+        {
+          "text": "Thanks very much, bye!"
+        },
+        {
+          "text": "That is all"
+        },
+        {
+          "text": "That's everything"
+        },
+        {
+          "text": "Time to go"
+        }
+      ],
+      "description": "End the conversation."
+    },
+    {
+      "intent": "Bot_Control_Approve_Response",
+      "examples": [
+        {
+          "text": "That's exactly what I want"
+        },
+        {
+          "text": "This is alright"
+        },
+        {
+          "text": "Very well. Let's do it."
+        },
+        {
+          "text": "Yeah, that's it!"
+        },
+        {
+          "text": "Yes"
+        },
+        {
+          "text": "You read my mind"
+        },
+        {
+          "text": "I like that"
+        },
+        {
+          "text": "I agree"
+        },
+        {
+          "text": "Great"
+        },
+        {
+          "text": "Got it"
+        },
+        {
+          "text": "For sure!"
+        },
+        {
+          "text": "Correct"
+        },
+        {
+          "text": "All right"
+        },
+        {
+          "text": "Affirmative. That's what I'm looking for."
+        },
+        {
+          "text": "Indeed!"
+        },
+        {
+          "text": "That is right"
+        },
+        {
+          "text": "That is precisely what I was looking for"
+        },
+        {
+          "text": "Sweet"
+        },
+        {
+          "text": "Sure thing!"
+        },
+        {
+          "text": "That is the proper response."
+        },
+        {
+          "text": "That is what I need"
+        }
+      ],
+      "description": "Acknowledge that the response satisfies a question."
+    },
+    {
+      "intent": "Bot_Control_Standby",
+      "examples": [
+        {
+          "text": "Just a sec"
+        },
+        {
+          "text": "Keep holding"
+        },
+        {
+          "text": "Let me see"
+        },
+        {
+          "text": "Need a minute here"
+        },
+        {
+          "text": "Out for a break"
+        },
+        {
+          "text": "Hold on"
+        },
+        {
+          "text": "Give me a second"
+        },
+        {
+          "text": "Give me a moment"
+        },
+        {
+          "text": "Give me a few minutes to get together"
+        },
+        {
+          "text": "Can you wait for me?"
+        },
+        {
+          "text": "Can you give me a moment?"
+        },
+        {
+          "text": "Be patient with me"
+        },
+        {
+          "text": "Be back later"
+        },
+        {
+          "text": "Back again soon"
+        },
+        {
+          "text": "I want stop a moment"
+        },
+        {
+          "text": "I will be back"
+        },
+        {
+          "text": "Wait"
+        },
+        {
+          "text": "I would like to put you on hold"
+        },
+        {
+          "text": "In a moment"
+        },
+        {
+          "text": "Just hold on"
+        }
+      ],
+      "description": "Indicate a delay in providing input to the bot."
+    },
+    {
+      "intent": "Bot_Control_Ignore_Undo",
+      "examples": [
+        {
+          "text": "I did not mean that?"
+        },
+        {
+          "text": "I didn't mean to do that actually, let's go back"
+        },
+        {
+          "text": "Ignore this"
+        },
+        {
+          "text": "It's not what I mean"
+        },
+        {
+          "text": "Let us redo that again!"
+        },
+        {
+          "text": "Never mind"
+        },
+        {
+          "text": "Never"
+        },
+        {
+          "text": "Not yet"
+        },
+        {
+          "text": "Nothing"
+        },
+        {
+          "text": "Wait! Let's back up few steps and do that again"
+        },
+        {
+          "text": "I change my mind."
+        },
+        {
+          "text": "Hold on! I think I want to do it differently."
+        },
+        {
+          "text": "Cancel"
+        },
+        {
+          "text": "Actually, I take that back"
+        }
+      ],
+      "description": "Ask the bot to take one step back."
+    },
+    {
+      "intent": "General_Jokes",
+      "examples": [
+        {
+          "text": "Are there jokes?"
+        },
+        {
+          "text": "Can you tell a joke?"
+        },
+        {
+          "text": "Can you tell me a joke?"
+        },
+        {
+          "text": "Do you have a joke?"
+        },
+        {
+          "text": "Do you have humor?"
+        },
+        {
+          "text": "What is your favorite joke?"
+        },
+        {
+          "text": "What do you do for fun?"
+        },
+        {
+          "text": "Tell me something funny"
+        },
+        {
+          "text": "Tell me a joke"
+        },
+        {
+          "text": "Surprise me with something hilarious"
+        },
+        {
+          "text": "One more joke"
+        },
+        {
+          "text": "I'm bored"
+        },
+        {
+          "text": "I want a joke"
+        },
+        {
+          "text": "I am getting bored"
+        },
+        {
+          "text": "Do you like humor?"
+        },
+        {
+          "text": "Do you like fun?"
+        },
+        {
+          "text": "Another joke"
+        }
+      ],
+      "description": "Request a joke."
+    },
+    {
+      "intent": "Bot_Control_Start_Over",
+      "examples": [
+        {
+          "text": "Please start a new chat"
+        },
+        {
+          "text": "Restart"
+        },
+        {
+          "text": "Start over"
+        },
+        {
+          "text": "We need a do-over"
+        },
+        {
+          "text": "We will need to begin again"
+        },
+        {
+          "text": "Back to the beginning"
+        },
+        {
+          "text": "Actually, let's start over"
+        },
+        {
+          "text": "Back to the top"
+        },
+        {
+          "text": "Begin over!"
+        },
+        {
+          "text": "Can we please start over?"
+        },
+        {
+          "text": "How can I start over?"
+        },
+        {
+          "text": "I need to reset."
+        },
+        {
+          "text": "I want start from the beginning"
+        },
+        {
+          "text": "I would like to start all over"
+        },
+        {
+          "text": "Let us reopen this again."
+        },
+        {
+          "text": "Let's go back to square one"
+        },
+        {
+          "text": "Let's pick this up from the top again."
+        },
+        {
+          "text": "One more time from the beginning"
+        },
+        {
+          "text": "Please initiate from the beginning"
+        },
+        {
+          "text": "Please reset"
+        }
+      ],
+      "description": "Restart bot or current flow."
+    },
+    {
+      "intent": "Bot_Control_Reject_Response",
+      "examples": [
+        {
+          "text": "That was not my intent"
+        },
+        {
+          "text": "That sounds like the wrong response"
+        },
+        {
+          "text": "That answer is incorrect"
+        },
+        {
+          "text": "You're misunderstanding me"
+        },
+        {
+          "text": "You didn't understand me"
+        },
+        {
+          "text": "You did not understand what I said"
+        },
+        {
+          "text": "You did not understand what I asked"
+        },
+        {
+          "text": "Wrong response"
+        },
+        {
+          "text": "I wasn't looking for that"
+        },
+        {
+          "text": "It is not what I want"
+        },
+        {
+          "text": "No I'm fine thanks"
+        },
+        {
+          "text": "No"
+        },
+        {
+          "text": "I do not think it is the answer?"
+        },
+        {
+          "text": "I disagree"
+        },
+        {
+          "text": "Bad response"
+        },
+        {
+          "text": "I don't need that"
+        },
+        {
+          "text": "It is not what I was looking for"
+        },
+        {
+          "text": "I don't want that"
+        },
+        {
+          "text": "That is not true"
+        },
+        {
+          "text": "Not the right response"
+        },
+        {
+          "text": "That was wrong, try again"
+        }
+      ],
+      "description": "Indicate the bot's response does not address a question."
+    },
+    {
+      "intent": "General_About_You",
+      "examples": [
+        {
+          "text": "Tell me about your life"
+        },
+        {
+          "text": "About you"
+        },
+        {
+          "text": "Can I use another language?"
+        },
+        {
+          "text": "Describe your self"
+        },
+        {
+          "text": "Do you have a name?"
+        },
+        {
+          "text": "Do you know who you are?"
+        },
+        {
+          "text": "How can I configure you?"
+        },
+        {
+          "text": "How do you function?"
+        },
+        {
+          "text": "How old are you?"
+        },
+        {
+          "text": "I want to set up the chat bot for my shop"
+        },
+        {
+          "text": "Why are you here?"
+        },
+        {
+          "text": "What should I know about you?"
+        },
+        {
+          "text": "What languages do you speak?"
+        },
+        {
+          "text": "Tell me something about yourself"
+        },
+        {
+          "text": "Let us talk about you"
+        },
+        {
+          "text": "Introduce your self"
+        },
+        {
+          "text": "What's your name?"
+        },
+        {
+          "text": "Where are you from?"
+        },
+        {
+          "text": "Where were you born?"
+        },
+        {
+          "text": "Who are you?"
+        }
+      ],
+      "description": "Request generic personal attributes."
+    },
+    {
+      "intent": "read_result_names",
+      "examples": [
+        {
+          "text": "I'd like you to read the results to me"
+        },
+        {
+          "text": "list them"
+        },
+        {
+          "text": "read the first few"
+        },
+        {
+          "text": "read to me"
+        },
+        {
+          "text": "say them"
+        },
+        {
+          "text": "read results"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "categories",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Hygiene",
+          "synonyms": [
+            "Personal Hygiene",
+            "Personal Cleanliness",
+            "cleanliness",
+            "sterile",
+            "clean",
+            "shower essentials",
+            "personal care",
+            "hygeine",
+            "hygene"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-location",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "phone_number",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "fullUSphone",
+          "patterns": [
+            "/+(\\d{2})-(\\d{3})-(\\d{3})-(\\d{4})",
+            "/+(\\d{1})-(\\d{3})-(\\d{3})-(\\d{4})",
+            "(\\d{2})-(\\d{3})-(\\d{3})-(\\d{4})",
+            "(\\d{1})-(\\d{3})-(\\d{3})-(\\d{4})",
+            "(\\d{3})-(\\d{3})-(\\d{4})"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sf_neighborhoods",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chinatown",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Civic Center",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Dolores Park",
+          "synonyms": [
+            "Dolo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Embarcadero",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Excelsior",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Fillmore",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Fisherman's Wharf",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Golden Gate Park",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Haight-Ashbury",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Inner Sunset",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Land's End",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Mission",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Mission Bay",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Nob Hill",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Noe Valley",
+          "synonyms": [
+            "Noe"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Ocean Beach",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Outer Sunset",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Panhandle",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "SOMA",
+          "synonyms": [
+            "south of market",
+            "mission & sixth",
+            "mission & ninth"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Union Square",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "FiDi",
+          "synonyms": [
+            "Financial District",
+            "Barbary Coast"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Tenderloin",
+          "synonyms": [
+            "TL"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Dogpatch",
+          "synonyms": [
+            "Central Waterfront"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hayes",
+          "synonyms": [
+            "Hayes Valley"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Marina",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Presidio",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Hunter's Point",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Ingleside",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "The Richmond",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Glen Park",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "24th & Mission",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Korean Town",
+          "synonyms": [
+            "Koreatown"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Alamo Square",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "South Mission",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "16th & Mission",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Powel",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Yerba Buena",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Park Merced",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Portola",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Potrero Hill",
+          "synonyms": [
+            "Potrero"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NOPA",
+          "synonyms": [
+            "North of Panhandle"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Mid-Market",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Downtown",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Cow Hollow",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Inner Mission",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Buena Vista Park",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Bernal Heights",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "North Beach",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "South Beach",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Visitation Valley",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Bayview",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Oceanview",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Japantown",
+          "synonyms": [
+            "Japan Town"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Duboce Triangle",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "West Portal",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Cole Valley",
+          "synonyms": [
+            "Parnassus Heights",
+            "Parnassus",
+            "Cole"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Anza Vista",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Design District",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Sunset",
+          "synonyms": [
+            "the sunset",
+            "inner sunset",
+            "outer sunset",
+            "middle sunset"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Treasure Island",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Golden Gate Heights",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Castro",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "webhooks": [
+    {
+      "url": "http://d8d076e3.ngrok.io/api/watson_webhook",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't quite catch that. You can say: Read Results, or, New Services Search."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Anything else",
+      "conditions": "$algolia_results",
+      "dialog_node": "response_4_1583577181506",
+      "previous_sibling": "response_9_1583577140457"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't understand. If you'd like, you can say: Search Services."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Anything else",
+      "conditions": "anything_else",
+      "dialog_node": "response_8_1583577224691",
+      "previous_sibling": "response_4_1583577181506"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I missed something. You can say: Text Results, Read Results, or, New Services Search."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Anything else",
+      "conditions": "$algolia_results && $result_number",
+      "dialog_node": "response_9_1583577140457"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1583470189752",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1583470189771",
+      "previous_sibling": "handler_6_1583470189771"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1583470189752",
+      "context": {
+        "UUID": "#UUID"
+      },
+      "conditions": "#UUID",
+      "event_name": "input",
+      "dialog_node": "handler_6_1583470189771"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I found these services in $neighborhood. $formattedNameList.string . Which number would you like more info about?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1583162202336",
+      "conditions": "$formattedNameList",
+      "dialog_node": "response_6_1583163338790",
+      "previous_sibling": "node_7_1583346117996"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1583162202336",
+      "variable": "$readable_phone",
+      "dialog_node": "slot_1_1583573731625",
+      "previous_sibling": "slot_6_1583576279836"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "oops! string not working."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1583162202336",
+      "conditions": "anything_else",
+      "dialog_node": "response_10_1583163339659",
+      "previous_sibling": "response_6_1583163338790"
+    },
+    {
+      "type": "frame",
+      "title": "5a. Chose result 'n': GET_DETAILS",
+      "parent": "node_10_1583162202336",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": "get_details",
+            "callUUID": "$callUUID",
+            "caller_phone": "$caller_phone",
+            "result_number": "$result_number",
+            "algolia_results": "$algolia_results"
+          },
+          "result_variable": "details"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@sys-number<7",
+      "dialog_node": "node_8_1583320960767",
+      "previous_sibling": "slot_9_1583540680694"
+    },
+    {
+      "type": "standard",
+      "title": "5b. catchall & repeat options",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I'm sorry, that is not an option. Please select from the given option numbers."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 1000,
+            "typing": true,
+            "response_type": "pause"
+          }
+        ]
+      },
+      "parent": "node_10_1583162202336",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_10_1583162202336"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_7_1583346117996",
+      "previous_sibling": "node_8_1583320960767"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1583162202336",
+      "variable": "$caller_phone",
+      "dialog_node": "slot_9_1583540680694",
+      "previous_sibling": "slot_1_1583573731625"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_10_1583162202336",
+      "variable": "$algolia_results",
+      "conditions": "",
+      "dialog_node": "slot_6_1583576279836"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1583497832868",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1583497832880",
+      "previous_sibling": "handler_9_1583497832880"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1583497832868",
+      "context": {
+        "neighborhood": "@sf_neighborhoods"
+      },
+      "conditions": "@sf_neighborhoods",
+      "event_name": "input",
+      "dialog_node": "handler_9_1583497832880"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please complete a search first."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_2_1583196150709",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1583196150769",
+      "previous_sibling": "handler_5_1583196150769"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1583196150709",
+      "context": {
+        "result_number": "$result_number"
+      },
+      "conditions": "$result_number",
+      "event_name": "input",
+      "dialog_node": "handler_5_1583196150769"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1583575472330",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1583575472342",
+      "previous_sibling": "handler_2_1583575472342"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1583575472330",
+      "context": {
+        "phone_to_text": "@phone_number.literal"
+      },
+      "conditions": "@phone_number.literal",
+      "event_name": "input",
+      "dialog_node": "handler_2_1583575472342"
+    },
+    {
+      "type": "standard",
+      "title": "catchall & repeat",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't recognize that number. If you'd like to try again, say: yes. Otherwise, you can say: Read Results, or, Search Services to start again. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1583466707777",
+      "conditions": "anything_else",
+      "dialog_node": "node_9_1583575568158",
+      "previous_sibling": "node_5_1583575410488"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please say the number one digit at a time starting with the area code."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1583466707777",
+      "disabled": true,
+      "dialog_node": "response_10_1583575381995",
+      "previous_sibling": "node_9_1583575568158"
+    },
+    {
+      "type": "frame",
+      "title": "9c. Verify Phone",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I heard $phone_to_text, is that correct?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1583466707777",
+      "conditions": "@phone_number",
+      "dialog_node": "node_5_1583575410488"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1583575186517",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1583575186529",
+      "previous_sibling": "handler_7_1583575186529"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1583575186517",
+      "context": {
+        "phone_to_text": "$caller_phone"
+      },
+      "conditions": "$caller_phone",
+      "event_name": "input",
+      "dialog_node": "handler_7_1583575186529"
+    },
+    {
+      "type": "standard",
+      "title": "User says no.",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sorry, that's all I can help with for now. I recommend browsing the SF Service Guide website or calling 211. If that's something you would like, please visit www.sfserviceguide.org or hang up and dial 2-1-1."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "Welcome"
+      },
+      "conditions": "#Bot_Control_Reject_Response",
+      "dialog_node": "node_9_1582236387712",
+      "previous_sibling": "slot_2_1583470189752"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": []
+      },
+      "parent": "Welcome",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Welcome"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_5_1583544416627",
+      "previous_sibling": "node_9_1582238078982"
+    },
+    {
+      "type": "standard",
+      "title": "1. \"yes, search hygiene in SF\"",
+      "output": {
+        "generic": []
+      },
+      "parent": "Welcome",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_10_1583496742068"
+      },
+      "conditions": "#Bot_Control_Approve_Response",
+      "dialog_node": "node_9_1582238078982",
+      "previous_sibling": "node_9_1582236387712"
+    },
+    {
+      "type": "slot",
+      "parent": "Welcome",
+      "variable": "$UUID",
+      "dialog_node": "slot_2_1583470189752"
+    },
+    {
+      "type": "standard",
+      "title": "catchall & repeat (for neighborhoods)",
+      "parent": "node_10_1583496742068",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_10_1583496742068"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_1_1583346650930",
+      "previous_sibling": "node_1_1583057939068"
+    },
+    {
+      "type": "frame",
+      "title": "3. Got neighborhood: SEARCH (with neighborhood & category)",
+      "parent": "node_10_1583496742068",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": "search",
+            "callUUID": "$callUUID",
+            "category": "hygiene",
+            "caller_phone": "$caller_phone",
+            "neighborhood": "$neighborhood"
+          },
+          "result_variable": "algolia_results"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_10_1583162202336"
+      },
+      "conditions": "@sf_neighborhoods",
+      "dialog_node": "node_1_1583057939068"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please first complete a search."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_1_1583475310133",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1583475310139",
+      "previous_sibling": "handler_2_1583475310139"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1583475310133",
+      "context": {
+        "algolia_results": "$algolia_results"
+      },
+      "conditions": "$algolia_results",
+      "event_name": "input",
+      "dialog_node": "handler_2_1583475310139"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1583057939068",
+      "variable": "$neighborhood",
+      "dialog_node": "slot_10_1583497832868",
+      "previous_sibling": "handler_1_1583058280741"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_1_1583057939068",
+      "disabled": true,
+      "event_name": "focus",
+      "dialog_node": "handler_1_1583058280741"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sent! To continue you can say: Read Results, or, New Services Search."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1583474831195",
+      "disabled": true,
+      "conditions": "$SMS_result.sent",
+      "dialog_node": "response_7_1583475220059",
+      "previous_sibling": "slot_10_1583575186517"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Weird webhook response. To try again say: Text Results. To pick a new result say: Read Results. Otherwise say: New Services Search."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1583474831195",
+      "disabled": true,
+      "conditions": "anything_else",
+      "dialog_node": "response_7_1583475220968",
+      "previous_sibling": "response_3_1583574161264"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "There was an error sending a text to that number, sorry. To try again say: Text Results. To pick a new result say: Read Results. Otherwise say: New Services Search."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1583474831195",
+      "disabled": true,
+      "conditions": "$SMS_result.error",
+      "dialog_node": "response_3_1583574161264",
+      "previous_sibling": "response_7_1583475220059"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1583474831195",
+      "variable": "$phone_to_text",
+      "dialog_node": "slot_10_1583575186517"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Do you want me to text the number you're calling from?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583191809227",
+      "disabled": true,
+      "conditions": "#text_results",
+      "dialog_node": "response_2_1583191809280",
+      "previous_sibling": "slot_2_1583196150709"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1583191809227",
+      "variable": "$algolia_results",
+      "dialog_node": "slot_1_1583475310133",
+      "previous_sibling": "node_3_1583466707777"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1583191809227",
+      "variable": "$result_number",
+      "dialog_node": "slot_2_1583196150709",
+      "previous_sibling": "slot_1_1583475310133"
+    },
+    {
+      "type": "standard",
+      "title": "8b. \"No,\" Ask for Number to Text",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please say the number one digit at a time starting with the area code."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583191809227",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#Bot_Control_Reject_Response",
+      "dialog_node": "node_3_1583466707777",
+      "previous_sibling": "node_4_1583196509728"
+    },
+    {
+      "type": "standard",
+      "title": "8a. Confirm Current Number",
+      "output": {
+        "text": {
+          "values": [
+            "Just to confirm, it's $readable_phone right?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1583191809227",
+      "metadata": {
+        "callout": {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": "retrieve_current_num"
+          },
+          "result_variable": "webhook_result_1"
+        },
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#Bot_Control_Approve_Response",
+      "dialog_node": "node_4_1583196509728"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "We need to do a search first, say: Search Services"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_6_1583576279836",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1583576279841",
+      "previous_sibling": "handler_8_1583576279841"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1583576279836",
+      "context": {
+        "algolia_results": "$algolia_results"
+      },
+      "conditions": "$algolia_results",
+      "event_name": "input",
+      "dialog_node": "handler_8_1583576279841"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1583575410488",
+      "variable": "$phone_to_text",
+      "dialog_node": "slot_4_1583575472330",
+      "previous_sibling": "node_3_1583594699280"
+    },
+    {
+      "type": "standard",
+      "title": "No, Spoken Phone Number wasn't right",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_5_1583575410488",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1583466707777"
+      },
+      "conditions": "#Bot_Control_Reject_Response",
+      "dialog_node": "node_3_1583594699280",
+      "previous_sibling": "node_8_1583593978012"
+    },
+    {
+      "type": "standard",
+      "title": "Phone Number Spoken is Correct",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_5_1583575410488",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_1_1583575024502"
+      },
+      "conditions": "#Bot_Control_Approve_Response",
+      "dialog_node": "node_8_1583593978012"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1583321568113",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1583321568127",
+      "previous_sibling": "handler_3_1583321568127"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1583321568113",
+      "context": {
+        "result_number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_3_1583321568127"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1583540680694",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1583540680711",
+      "previous_sibling": "handler_2_1583540680711"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1583540680694",
+      "context": {
+        "caller_phone": "$algolia_results.debug_phone"
+      },
+      "conditions": "$algolia_results.debug_phone",
+      "event_name": "input",
+      "dialog_node": "handler_2_1583540680711"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I'm not sure if that is in San Francisco, can you try again?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583346650930",
+      "conditions": "anything_else",
+      "dialog_node": "response_5_1583352950653"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1583196509728",
+      "disabled": true,
+      "conditions": "anything_else",
+      "dialog_node": "response_1_1583467082572",
+      "previous_sibling": "response_10_1583467082323"
+    },
+    {
+      "type": "standard",
+      "title": "9b. No, incorrect number",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_4_1583196509728",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_3_1583466707777"
+      },
+      "conditions": "#Bot_Control_Reject_Response",
+      "dialog_node": "node_2_1583475815426",
+      "previous_sibling": "node_6_1583474831195"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1583196509728",
+      "disabled": true,
+      "conditions": "$webhook_result_1",
+      "dialog_node": "response_10_1583467082323",
+      "previous_sibling": "node_2_1583475815426"
+    },
+    {
+      "type": "frame",
+      "title": "9a. Yes, current number correct: SEND_SMS_TEXT",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_4_1583196509728",
+      "metadata": {
+        "callout": {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": "send_SMS_text",
+            "callUUID": "$callUUID",
+            "phone_to_text": "$caller_phone",
+            "result_number": "$result_number",
+            "algolia_results": "$algolia_results"
+          },
+          "result_variable": "SMS_result"
+        },
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_1_1583575024502"
+      },
+      "conditions": "#Bot_Control_Approve_Response",
+      "dialog_node": "node_6_1583474831195"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "There was an error sending a text to that number, sorry. To try again say: Text Results. To pick a new result say: Read Results. Otherwise say: New Services Search."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1583575024502",
+      "conditions": "$SMS_result.error",
+      "dialog_node": "response_3_1583575024510",
+      "previous_sibling": "response_2_1583575024510"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Weird webhook response. To try again say: Text Results. To pick a new result say: Read Results. Otherwise say: New Services Search."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1583575024502",
+      "conditions": "anything_else",
+      "dialog_node": "response_4_1583575024510",
+      "previous_sibling": "response_3_1583575024510"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sent! To get more you can say: Read Results, or, New Services Search."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583575024502",
+      "conditions": "$SMS_result.sent",
+      "dialog_node": "response_2_1583575024510"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1583320960767",
+      "variable": "$result_number",
+      "dialog_node": "slot_4_1583321568113",
+      "previous_sibling": "node_7_1583457410246"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "$details.string . Would you like me to text you more details?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1583320960767",
+      "conditions": "$details",
+      "dialog_node": "response_10_1583321363569",
+      "previous_sibling": "slot_4_1583321568113"
+    },
+    {
+      "type": "standard",
+      "title": "6. Yes text",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_8_1583320960767",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1583191809227"
+      },
+      "conditions": "#Bot_Control_Approve_Response",
+      "dialog_node": "node_7_1583457410246",
+      "previous_sibling": "node_5_1583457688490"
+    },
+    {
+      "type": "standard",
+      "title": "6b. No don't text ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay, say another neighborhood to start a new search, otherwise, you may end the call. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1583320960767",
+      "conditions": "#Bot_Control_Reject_Response",
+      "dialog_node": "node_5_1583457688490"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1583573731625",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1583573731631",
+      "previous_sibling": "handler_1_1583573731631"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1583573731625",
+      "context": {
+        "readable_phone": "$algolia_results.readable_phone"
+      },
+      "conditions": "$algolia_results.readable_phone",
+      "event_name": "input",
+      "dialog_node": "handler_1_1583573731631"
+    },
+    {
+      "type": "standard",
+      "title": "Yes, repeat giving phone number",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1583575568158",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1583466707777"
+      },
+      "conditions": "#Bot_Control_Approve_Response",
+      "dialog_node": "node_2_1583594803106"
+    },
+    {
+      "type": "frame",
+      "title": "7. Text me more details",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Do you want me to text the number you're calling from?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "callout": {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": ""
+          },
+          "result_variable": "first_result_name"
+        },
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#text_results",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1583191809227",
+      "previous_sibling": "node_10_1583162202336"
+    },
+    {
+      "type": "standard",
+      "title": "2. Search Services - Collect Neighborhood",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Great! What SF Neighborhood are you in?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#services_search",
+      "dialog_node": "node_10_1583496742068",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "frame",
+      "title": "4. Read services found: READ_LIST & get option number",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": "read_list",
+            "callUUID": "$callUUID",
+            "caller_phone": "$caller_phone",
+            "algolia_results": "$algolia_results"
+          },
+          "result_variable": "formattedNameList"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "$algolia_results || #read_result_names",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_10_1583162202336",
+      "previous_sibling": "node_10_1583496742068"
+    },
+    {
+      "type": "standard",
+      "title": "10. SEND_SMS_TEXT",
+      "output": {},
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "intent": "send_SMS_text",
+            "details": "$details",
+            "callUUID": "$callUUID",
+            "neighborhood": "$neighborhood",
+            "phone_to_text": "$phone_to_text",
+            "result_number": "$result_number",
+            "algolia_results": "$algolia_results"
+          },
+          "result_variable": "SMS_result"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "$phone_to_text",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1583575024502",
+      "previous_sibling": "node_1_1583191809227"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "anything_else",
+      "digress_in": "not_available",
+      "dialog_node": "Anything else",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_7_1582670623114",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok I'll wait"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 5000,
+            "typing": true,
+            "response_type": "pause"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "Welcome"
+      },
+      "conditions": "#Bot_Control_Standby",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_7_1582670623114",
+      "previous_sibling": "node_1_1583575024502"
+    },
+    {
+      "type": "standard",
+      "title": "0. Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi, I'm Darcie. I can help you find showers and restrooms in San Francisco. Is that something you would like?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome || #General_Greetings",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
