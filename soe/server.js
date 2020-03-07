@@ -14,23 +14,12 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 const Nexmo = require('nexmo');
 const { Readable } = require('stream'); // I think this isn't used yet
 
-const index = algoliasearch(
-  process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_KEY
-).initIndex(process.env.ALGOLIA_INDEX);
 const assistant = new AssistantV2({
   version: '2020-02-05',
   authenticator: new IamAuthenticator({ apikey: process.env.WA_APIKEY })
 });
 const gSTTclient = new gSpeech.SpeechClient(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-const nexmo = new Nexmo({
-  apiKey: process.env.NEXMO_API_KEY,
-  apiSecret: process.env.NEXMO_API_SECRET,
-  applicationId: process.env.NEXMO_APP_ID,
-  privateKey: process.env.PRIVATE_KEY || './private.key'
-});
-let calls = nexmo.calls; // this is because nexmo wasn't returning nexmo.calls.talk.start immedietely,
-let talk = calls.talk;   // was throwing async error.
-let gSTTparams = { // static parameters google speech-to-text needs.
+const gSTTparams = { // static parameters google speech-to-text needs.
   config: {
     encoding: 'LINEAR16',
     sampleRateHertz: 16000,
@@ -38,9 +27,19 @@ let gSTTparams = { // static parameters google speech-to-text needs.
   },
   interimResults: false
 };
+const index = algoliasearch(
+  process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_KEY
+).initIndex(process.env.ALGOLIA_INDEX);
+const nexmo = new Nexmo({
+  apiKey: process.env.NEXMO_API_KEY,
+  apiSecret: process.env.NEXMO_API_SECRET,
+  applicationId: process.env.NEXMO_APP_ID,
+  privateKey: process.env.PRIVATE_KEY || './private.key'
+});
+const voiceName = 'Eric';
 let caller = null;   // caller's phone number.
 let callUUID = null; // unique ID of this phone call session.
-let voiceName = 'Eric';
+
 
 app.use(bodyParser.json());
 
@@ -62,14 +61,14 @@ app.post('/event', (req, res) => { // whenever something happends on the Nexmo s
     callUUID = req.body.uuid;
   }
   console.log('EVENT from', caller, 'to', req.body.to, req.body.status, `<${callUUID}>`);
-  // console.log('EVENT LOG::', req.body);
   res.status(204).end();
 });
 
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
+
+  console.log('DEBUG-WATSON_WEBHOOK-REQUEST:', req.body);
   let num; let chosenResult;
-  console.log(req.body); // debug statement to see what params Watson is sending
 
   switch (req.body.intent) {
 
@@ -93,15 +92,15 @@ app.post('/api/watson_webhook', async (req, res) => {
         });
         // if there's no caller phone number, we are debugging, so text Max
         if (!req.body.caller_phone) {
-          res.json({ hits, debug_phone: 5109935073 });
-        } else {
-          res.json({ hits });
+          res.json({ hits, debug_phone: 5109935073, readable_phone: '5-1-0-9-9-3-5-0-7-3' });
+        } else { // makes a readable phone number seperated by dashes
+          res.json({ hits, readable_phone: req.body.caller_phone.split('').join('-') });
         }
       });
       break;
 
     case 'read_list': // formats the service names in the algolia_results for reading to the caller
-      let algoliaResults = await req.body.hits.hits;
+      let algoliaResults = await req.body.algolia_results.hits;
       let formattedNameList = '';
       let i = 1;
       algoliaResults.forEach(singleResult => {
@@ -207,20 +206,20 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
         'skills': {
           'main skill': {
             'user_defined': {
-              'caller_phone': caller,
+              'caller_phone': caller.toString(),
               'callUUID': callUUID
             }
           }
         }
       }
     }).then(res => {
-      console.log(JSON.stringify(res, null, 2));
+      // console.log(JSON.stringify(res, null, 2));
       console.log('Darcel:', res.result.output.generic[0].text);
-      // talk.start is a Nexmo function that takes text & plays it into the call as audio
-      talk.start(callUUID, {
+      // Nexmo TTS function that takes text & plays it into the call as audio
+      nexmo.calls.talk.start(callUUID, {
         text: res.result.output.generic[0].text,
         voice_name: voiceName
-      }, (err => { console.log(err); }));
+      }, (err => { if (err) console.log(err); }));
     }).catch(err => { console.log(err); });
   }).catch(err => { console.log(err); });
 
@@ -234,15 +233,18 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
         assistantId: process.env.WA_ID,
         sessionId: wSessionID,
         input: { 'text': data.results[0].alternatives[0].transcript }
-      }).then(res => { // res is result from Watson.
+      }).then(async res => { // res is result from Watson.
+        // console.log('DEBUG-WATSON-RESPONSE-OBJ:', res.result);
         console.log('Darcel:', res.result.output.generic[0].text);
-        talk.start(callUUID, { // and send to Nexmo TTS
+        await nexmo.calls.talk.start(callUUID, { // and send to Nexmo TTS
           text: res.result.output.generic[0].text,
           voice_name: voiceName
-        }, (err => { console.log(err); }));
+        }, (err => { if (err) console.log(err); })
+        );
       }).catch(err => { console.log(err); });
     });
 
+  // when an audio message is heard, execute the google STT object and its callback chain returning Watson dialog to Nexmo
   ws.on('message', (msg) => {
     if (typeof msg === "string") {
       let config = JSON.parse(msg);
