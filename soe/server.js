@@ -61,33 +61,46 @@ app.post('/event', (req, res) => { // whenever something happends on the Nexmo s
     caller = req.body.from;
     callUUID = req.body.uuid;
   }
-  console.log('EVENT from', caller, 'to', req.body.to, req.body.status);
+  console.log('EVENT from', caller, 'to', req.body.to, req.body.status, `<${callUUID}>`);
   // console.log('EVENT LOG::', req.body);
   res.status(204).end();
 });
 
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
+
   console.log(req.body); // debug statement to see what params Watson is sending
+
   switch (req.body.intent) {
+
     case 'search': // takes a SF neighborhood & a category and does a search in the Algolia index
       const body = await got(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.neighborhood}%20San%20Francisco&key=${process.env.GOOGLE_API_KEY}`
       ).json();
       const lat_lng = body.results[0].geometry.location;
-      index.search(req.body.category, { // Algolia search
+
+      // Algolia search the given category and location
+      await index.search(req.body.category, {
         aroundLatLng: `${lat_lng.lat}, ${lat_lng.lng}`,
         hitsPerPage: 6,
         attributesToHighlight: [],
         attributesToRetrieve: ['name', '_geoloc', 'schedule', 'resource_schedule']
       }).then(({ hits }) => {
+        // merge schedules, if the entry is a resource then use the resource_schedule, then delete resource_schedule field
         hits.forEach(entry => {
           if (entry.schedule.length === 0) { entry.schedule = entry.resource_schedule; }
           delete entry['resource_schedule'];
         });
-        res.json({ hits });
       });
+
+      // if there's no caller phone number, we are debugging, so text Max
+      if (req.body.caller_phone.length === 0) {
+        res.json({ hits, debug_phone: '5109935073' });
+      } else {
+        res.json({ hits });
+      }
       break;
+
     case 'read_list': // formats the service names in the algolia_results for reading to the caller
       let algoliaResults = await req.body.hits.hits;
       let formattedNameList = '';
@@ -98,6 +111,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       });
       res.json({ string: formattedNameList });
       break;
+
     case 'get_details': // takes a result_number and the algolia_results, then gets and formats more details on the numbered Service
       let num = await req.body.result_number;
       let chosenResult = await req.body.algolia_results.hits[num - 1];
@@ -140,7 +154,9 @@ app.post('/api/watson_webhook', async (req, res) => {
       }
       res.json({ string: formattedDetails });
       break;
-    // case 'text': text the user at the phone number they gave
+
+    // case 'send_SMS_text': // text the user at the phone number they gave
+
     default:
       console.error("case not found, please include a valid value for the 'intent' key in the json parameters");
       res.status(404).json({ error: e });
