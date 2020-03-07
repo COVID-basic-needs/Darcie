@@ -170,16 +170,30 @@ ${tmrw}: closed`;
       let sender = process.env.NEXMO_PHONE;
       let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
       let options = { type: 'unicode' };
-      let servicePhone = null, googleMapsLink = null, sfServiceGuideLink = null;
-      // *** TO-DO:
-      // *** call AskDarcel API for servicePhone
-      if (chosenResult._geoloc.lat || req.body.details.place_id) { // form google maps search link
-        googleMapsLink = `https://google.com/maps/search/?api=1&query=${chosenResult._geoloc.lat}%2C${chosenResult._geoloc.lng}&query_place_id=${req.body.details.place_id}`;
-      }
-      if (chosenResult.objectID.split('_')[0] === 'resource') { // form sfServiceGuide link
-        sfServiceGuideLink = `https://sfserviceguide.org/organizations/${chosenResult.objectID.split('_')[1]}`;
+      let servicePhone = null, googleMapsLink = null, sfServiceGuideLink = null, object = null;
+      let objectID = chosenResult.objectID.split('_');
+
+      if (objectID[0] === 'resource') { // call AskDarcel API for servicePhone
+        object = await got(`https://askdarcel.org/api/resources/${objectID[1]}`).json();
+        servicePhone = await object.resource.phones[0].number;
       } else {
-        sfServiceGuideLink = `https://sfserviceguide.org/services/${chosenResult.objectID.split('_')[1]}`;
+        object = await got(`https://askdarcel.org/api/services/${objectID[1]}`).json();
+        servicePhone = await object.service.resource.phones[0].number;
+      }
+
+      if (chosenResult._geoloc.lat) { // form google maps search link
+        googleMapsLink = `https://google.com/maps/search/?api=1&query=${chosenResult._geoloc.lat}%2C${chosenResult._geoloc.lng}`;
+        if (req.body.details.place_id) {
+          googleMapsLink += `&query_place_id=${req.body.details.place_id}`;
+        }
+      } else if (req.body.details.place_id) {
+        googleMapsLink = `https://google.com/maps/search/?api=1&query=null&query_place_id=${req.body.details.place_id}`;
+      }
+
+      if (objectID[0] === 'resource') { // form sfServiceGuide link
+        sfServiceGuideLink = `https://sfserviceguide.org/organizations/${objectID[1]}`;
+      } else {
+        sfServiceGuideLink = `https://sfserviceguide.org/services/${objectID[1]}`;
       }
 
       let message = `Search: Hygiene near ${req.body.neighborhood}
