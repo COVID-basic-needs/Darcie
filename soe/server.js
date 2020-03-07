@@ -30,6 +30,8 @@ const nexmo = new Nexmo({
 });
 let calls = nexmo.calls; // this is because nexmo wasn't returning nexmo.calls.talk.start immedietely,
 let talk = calls.talk;   // was throwing async error.
+let messy = nexmo.message;
+let sendSMS = messy.sendSms;
 let gSTTparams = { // static parameters google speech-to-text needs.
   config: {
     encoding: 'LINEAR16',
@@ -68,7 +70,7 @@ app.post('/event', (req, res) => { // whenever something happends on the Nexmo s
 
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
-
+  let num; let chosenResult;
   console.log(req.body); // debug statement to see what params Watson is sending
 
   switch (req.body.intent) {
@@ -91,14 +93,13 @@ app.post('/api/watson_webhook', async (req, res) => {
           if (entry.schedule.length === 0) { entry.schedule = entry.resource_schedule; }
           delete entry['resource_schedule'];
         });
+        // if there's no caller phone number, we are debugging, so text Max
+        if (!req.body.caller_phone) {
+          res.json({ hits, debug_phone: 5109935073 });
+        } else {
+          res.json({ hits });
+        }
       });
-
-      // if there's no caller phone number, we are debugging, so text Max
-      if (req.body.caller_phone.length === 0) {
-        res.json({ hits, debug_phone: '5109935073' });
-      } else {
-        res.json({ hits });
-      }
       break;
 
     case 'read_list': // formats the service names in the algolia_results for reading to the caller
@@ -113,8 +114,8 @@ app.post('/api/watson_webhook', async (req, res) => {
       break;
 
     case 'get_details': // takes a result_number and the algolia_results, then gets and formats more details on the numbered Service
-      let num = await req.body.result_number;
-      let chosenResult = await req.body.algolia_results.hits[num - 1];
+      num = await req.body.result_number;
+      chosenResult = await req.body.algolia_results.hits[num - 1];
       let todayRaw = new Date();
       let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       let today = weekday[todayRaw.getDay()];
@@ -155,7 +156,29 @@ app.post('/api/watson_webhook', async (req, res) => {
       res.json({ string: formattedDetails });
       break;
 
-    // case 'send_SMS_text': // text the user at the phone number they gave
+    case 'send_SMS_text': // text the user at the phone number they gave
+      console.log(req.body);
+      num = await req.body.result_number;
+      chosenResult = await req.body.algolia_results.hits[num - 1];
+      let phoneToText = req.body.phone_to_text.toString();
+      let sender = process.env.NEXMO_PHONE;
+      let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
+      let message = chosenResult.name;
+      let options = { type: 'unicode' };
+      nexmo.message.sendSms(sender, recipient, message, options, (err, responseData) => {
+        if (err) {
+          console.log(err);
+        } else {
+          if (responseData.messages[0]['status'] === "0") {
+            console.log("Message sent successfully.");
+            res.json({ sent: true });
+          } else {
+            console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+            res.json({ error: true });
+          }
+        }
+      });
+      break;
 
     default:
       console.error("case not found, please include a valid value for the 'intent' key in the json parameters");
