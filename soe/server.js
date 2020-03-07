@@ -30,8 +30,6 @@ const nexmo = new Nexmo({
 });
 let calls = nexmo.calls; // this is because nexmo wasn't returning nexmo.calls.talk.start immedietely,
 let talk = calls.talk;   // was throwing async error.
-let messy = nexmo.message;
-let sendSMS = messy.sendSms;
 let gSTTparams = { // static parameters google speech-to-text needs.
   config: {
     encoding: 'LINEAR16',
