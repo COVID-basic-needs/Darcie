@@ -171,7 +171,7 @@ ${tmrw}: closed`;
       let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
       let options = { type: 'unicode' };
       let servicePhone = null, googleMapsLink = null, sfServiceGuideLink = null;
-      //  *** TO-DO:
+      // *** TO-DO:
       // *** call AskDarcel API for servicePhone
       if (chosenResult._geoloc.lat || req.body.details.place_id) { // form google maps search link
         googleMapsLink = `https://google.com/maps/search/?api=1&query=${chosenResult._geoloc.lat}%2C${chosenResult._geoloc.lng}&query_place_id=${req.body.details.place_id}`;
@@ -186,13 +186,15 @@ ${tmrw}: closed`;
 ${num}. ${chosenResult.name}`;
       if (req.body.details.address) message += `
 ${req.body.details.address}`;
-      if (req.body.details.hours) message += `
-${req.body.details.hours}`;
       if (servicePhone) message += `
 ${servicePhone}`;
+      if (req.body.details.hours) message += `
+${req.body.details.hours}`;
       message += `
+
 ${googleMapsLink}
-Get more details on the SF Service Guide:
+
+More details on the SF Service Guide:
 ${sfServiceGuideLink}
  - Darcie @ ShelterTech`;
 
@@ -201,11 +203,11 @@ ${sfServiceGuideLink}
           console.log(err);
         } else {
           if (responseData.messages[0]['status'] === "0") {
-            console.log(`SMS sent to ${recipient}:
+            console.log(`SMS SENT TO ${recipient}:
 ${message}`);
             res.json({ sent: true });
           } else {
-            console.log(`Error on SMS attempt to ${recipient}: ${responseData.messages[0]['error-text']}`);
+            console.log(`ERROR ON SMS ATTEMPT TO ${recipient}: ${responseData.messages[0]['error-text']}`);
             res.json({ error: true });
           }
         }
@@ -213,7 +215,7 @@ ${message}`);
       break;
 
     default:
-      console.error("case not found, please include a valid value for the 'intent' key in the json parameters");
+      console.error("ERROR: case not found, please include a valid value for the 'intent' key in the json parameters");
       res.status(404).json({ error: e });
       break;
   }
