@@ -14,23 +14,12 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 const Nexmo = require('nexmo');
 const { Readable } = require('stream'); // I think this isn't used yet
 
-const index = algoliasearch(
-  process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_KEY
-).initIndex(process.env.ALGOLIA_INDEX);
 const assistant = new AssistantV2({
   version: '2020-02-05',
   authenticator: new IamAuthenticator({ apikey: process.env.WA_APIKEY })
 });
 const gSTTclient = new gSpeech.SpeechClient(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-const nexmo = new Nexmo({
-  apiKey: process.env.NEXMO_API_KEY,
-  apiSecret: process.env.NEXMO_API_SECRET,
-  applicationId: process.env.NEXMO_APP_ID,
-  privateKey: process.env.PRIVATE_KEY || './private.key'
-});
-let calls = nexmo.calls; // this is because nexmo wasn't returning nexmo.calls.talk.start immedietely,
-let talk = calls.talk;   // was throwing async error.
-let gSTTparams = { // static parameters google speech-to-text needs.
+const gSTTparams = { // static parameters google speech-to-text needs.
   config: {
     encoding: 'LINEAR16',
     sampleRateHertz: 16000,
@@ -38,9 +27,19 @@ let gSTTparams = { // static parameters google speech-to-text needs.
   },
   interimResults: false
 };
+const index = algoliasearch(
+  process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_KEY
+).initIndex(process.env.ALGOLIA_INDEX);
+const nexmo = new Nexmo({
+  apiKey: process.env.NEXMO_API_KEY,
+  apiSecret: process.env.NEXMO_API_SECRET,
+  applicationId: process.env.NEXMO_APP_ID,
+  privateKey: process.env.PRIVATE_KEY || './private.key'
+});
+const voiceName = 'Eric';
 let caller = null;   // caller's phone number.
 let callUUID = null; // unique ID of this phone call session.
-let voiceName = 'Eric';
+
 
 app.use(bodyParser.json());
 
@@ -62,14 +61,14 @@ app.post('/event', (req, res) => { // whenever something happends on the Nexmo s
     callUUID = req.body.uuid;
   }
   console.log('EVENT from', caller, 'to', req.body.to, req.body.status, `<${callUUID}>`);
-  // console.log('EVENT LOG::', req.body);
   res.status(204).end();
 });
 
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
+
+  console.log('DEBUG-WATSON_WEBHOOK-REQUEST:', req.body);
   let num; let chosenResult;
-  console.log(req.body); // debug statement to see what params Watson is sending
 
   switch (req.body.intent) {
 
@@ -93,15 +92,15 @@ app.post('/api/watson_webhook', async (req, res) => {
         });
         // if there's no caller phone number, we are debugging, so text Max
         if (!req.body.caller_phone) {
-          res.json({ hits, debug_phone: 5109935073 });
-        } else {
-          res.json({ hits });
+          res.json({ hits, debug_phone: 5109935073, readable_phone: '5-1-0-9-9-3-5-0-7-3' });
+        } else { // makes a readable phone number seperated by dashes
+          res.json({ hits, readable_phone: req.body.caller_phone.split('').join('-') });
         }
       });
       break;
 
     case 'read_list': // formats the service names in the algolia_results for reading to the caller
-      let algoliaResults = await req.body.hits.hits;
+      let algoliaResults = await req.body.algolia_results.hits;
       let formattedNameList = '';
       let i = 1;
       algoliaResults.forEach(singleResult => {
@@ -118,7 +117,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       let today = weekday[todayRaw.getDay()];
       let tmrw = weekday[addDays(todayRaw, 1).getDay()];
-      let formattedDetails = '';
+      let formattedDetails = null, formattedHours = null, address = null, place_id = null;
       // find if has schedule, i.e. check if there's any open hours on any schedule
       if (chosenResult.schedule.length === 0) {
         formattedDetails = `${num}. ${chosenResult.name} does not have any in-person hours. `;
@@ -129,19 +128,26 @@ app.post('/api/watson_webhook', async (req, res) => {
           if (scheduleDay.day === today) { scheduleToday = scheduleDay; };
           if (scheduleDay.day === tmrw) { scheduleTmrw = scheduleDay; };
         });
-        // format first part of string based on hours
+        // format first part of strings based on hours
         formattedDetails = `${num}. ${chosenResult.name} `;
         if (scheduleToday && scheduleTmrw) {
-          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at} . Tomorrow, ${tmrw}, they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at} . `;
+          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at}. Tomorrow, ${tmrw}, they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}. `;
+          formattedHours = `${today}: ${scheduleToday.opens_at} to ${scheduleToday.closes_at}
+${tmrw}: ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}`;
         } else if (!scheduleToday && scheduleTmrw) { // closed today, open tmrw
           formattedDetails += `is closed today, but tomorrow, ${tmrw} , they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at} . `;
+          formattedHours = `${today}: closed
+${tmrw}: ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}`;
         } else if (scheduleToday && !scheduleTmrw) { // closed tmrw, open today
-          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at} . They're closed tomorrow, ${tmrw} . `;
+          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at}. They're closed tomorrow, ${tmrw}. `;
+          formattedHours = `${today}: ${scheduleToday.opens_at} to ${scheduleToday.closes_at}
+${tmrw}: closed`;
         } else {
           formattedDetails += `has hours, but is closed today and tomorrow. `;
+          formattedHours = `closed ${today} and ${tmrw}`;
         } // Optionally, add later:
-        // } else if ( open today but not open tomorrow ) so list 2nd day as after skipped ones
-        // } else if ( no hours today or tomorrow ) so say next open after weekend or other skipped day
+        // } else if ( open today but not open tomorrow ) list 2nd day as after skipped ones
+        // } else if ( no hours today or tomorrow ) say 'next open' after skipped days
       }
       // query google API for address from lat_lng & add to string if exists.
       // OPTIONALLY, INSTEAD, PULL THE FULL ADDRESS FROM ALGOLIA OR ASKDARCEL - it might be more accurate
@@ -149,29 +155,73 @@ app.post('/api/watson_webhook', async (req, res) => {
         const body = await got(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`
         ).json();
-        formattedDetails += `Their address is ${body.results[0].formatted_address}`;
+        place_id = body.results[0].place_id;
+        address = body.results[0].formatted_address.split(',').slice(0, 2).join(',');
+        formattedDetails += `Their address is ${address}`;
       }
-      res.json({ string: formattedDetails });
+      res.json({ string: formattedDetails, hours: formattedHours, address: address, place_id: place_id });
       break;
 
     case 'send_SMS_text': // text the user at the phone number they gave
-      console.log(req.body);
+      console.log(req.body); // debugger
       num = await req.body.result_number;
       chosenResult = await req.body.algolia_results.hits[num - 1];
-      let phoneToText = req.body.phone_to_text.toString();
+      let phoneToText = await req.body.phone_to_text.toString();
       let sender = process.env.NEXMO_PHONE;
       let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
-      let message = chosenResult.name;
       let options = { type: 'unicode' };
+      let servicePhone = null, googleMapsLink = null, sfServiceGuideLink = null, object = null;
+      let objectID = chosenResult.objectID.split('_');
+
+      if (objectID[0] === 'resource') { // call AskDarcel API for servicePhone
+        object = await got(`https://askdarcel.org/api/resources/${objectID[1]}`).json();
+        servicePhone = await object.resource.phones[0].number;
+      } else {
+        object = await got(`https://askdarcel.org/api/services/${objectID[1]}`).json();
+        servicePhone = await object.service.resource.phones[0].number;
+      }
+
+      if (chosenResult._geoloc.lat) { // form google maps search link
+        googleMapsLink = `https://google.com/maps/search/?api=1&query=${chosenResult._geoloc.lat}%2C${chosenResult._geoloc.lng}`;
+        if (req.body.details.place_id) {
+          googleMapsLink += `&query_place_id=${req.body.details.place_id}`;
+        }
+      } else if (req.body.details.place_id) {
+        googleMapsLink = `https://google.com/maps/search/?api=1&query=null&query_place_id=${req.body.details.place_id}`;
+      }
+
+      if (objectID[0] === 'resource') { // form sfServiceGuide link
+        sfServiceGuideLink = `https://sfserviceguide.org/organizations/${objectID[1]}`;
+      } else {
+        sfServiceGuideLink = `https://sfserviceguide.org/services/${objectID[1]}`;
+      }
+
+      let message = `Search: Hygiene near ${req.body.neighborhood}
+${num}. ${chosenResult.name}`;
+      if (req.body.details.address) message += `
+${req.body.details.address}`;
+      if (servicePhone) message += `
+${servicePhone}`;
+      if (req.body.details.hours) message += `
+${req.body.details.hours}`;
+      message += `
+
+${googleMapsLink}
+
+More details on the SF Service Guide:
+${sfServiceGuideLink}
+ - Darcie @ ShelterTech`;
+
       nexmo.message.sendSms(sender, recipient, message, options, (err, responseData) => {
         if (err) {
           console.log(err);
         } else {
           if (responseData.messages[0]['status'] === "0") {
-            console.log("Message sent successfully.");
+            console.log(`SMS SENT TO ${recipient}:
+${message}`);
             res.json({ sent: true });
           } else {
-            console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+            console.log(`ERROR ON SMS ATTEMPT TO ${recipient}: ${responseData.messages[0]['error-text']}`);
             res.json({ error: true });
           }
         }
@@ -179,7 +229,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       break;
 
     default:
-      console.error("case not found, please include a valid value for the 'intent' key in the json parameters");
+      console.error("ERROR: case not found, please include a valid value for the 'intent' key in the json parameters");
       res.status(404).json({ error: e });
       break;
   }
@@ -207,20 +257,20 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
         'skills': {
           'main skill': {
             'user_defined': {
-              'caller_phone': caller,
+              'caller_phone': caller.toString(),
               'callUUID': callUUID
             }
           }
         }
       }
     }).then(res => {
-      console.log(JSON.stringify(res, null, 2));
+      // console.log(JSON.stringify(res, null, 2));
       console.log('Darcel:', res.result.output.generic[0].text);
-      // talk.start is a Nexmo function that takes text & plays it into the call as audio
-      talk.start(callUUID, {
+      // Nexmo TTS function that takes text & plays it into the call as audio
+      nexmo.calls.talk.start(callUUID, {
         text: res.result.output.generic[0].text,
         voice_name: voiceName
-      }, (err => { console.log(err); }));
+      }, (err => { if (err) console.log(err); }));
     }).catch(err => { console.log(err); });
   }).catch(err => { console.log(err); });
 
@@ -234,15 +284,18 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
         assistantId: process.env.WA_ID,
         sessionId: wSessionID,
         input: { 'text': data.results[0].alternatives[0].transcript }
-      }).then(res => { // res is result from Watson.
+      }).then(async res => { // res is result from Watson.
+        // console.log('DEBUG-WATSON-RESPONSE-OBJ:', res.result);
         console.log('Darcel:', res.result.output.generic[0].text);
-        talk.start(callUUID, { // and send to Nexmo TTS
+        await nexmo.calls.talk.start(callUUID, { // and send to Nexmo TTS
           text: res.result.output.generic[0].text,
           voice_name: voiceName
-        }, (err => { console.log(err); }));
+        }, (err => { if (err) console.log(err); })
+        );
       }).catch(err => { console.log(err); });
     });
 
+  // when an audio message is heard, execute the google STT object and its callback chain returning Watson dialog to Nexmo
   ws.on('message', (msg) => {
     if (typeof msg === "string") {
       let config = JSON.parse(msg);
