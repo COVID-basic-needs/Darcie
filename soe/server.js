@@ -117,7 +117,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       let today = weekday[todayRaw.getDay()];
       let tmrw = weekday[addDays(todayRaw, 1).getDay()];
-      let formattedDetails = '';
+      let formattedDetails = null, formattedHours = null, address = null, place_id = null;
       // find if has schedule, i.e. check if there's any open hours on any schedule
       if (chosenResult.schedule.length === 0) {
         formattedDetails = `${num}. ${chosenResult.name} does not have any in-person hours. `;
@@ -128,19 +128,26 @@ app.post('/api/watson_webhook', async (req, res) => {
           if (scheduleDay.day === today) { scheduleToday = scheduleDay; };
           if (scheduleDay.day === tmrw) { scheduleTmrw = scheduleDay; };
         });
-        // format first part of string based on hours
+        // format first part of strings based on hours
         formattedDetails = `${num}. ${chosenResult.name} `;
         if (scheduleToday && scheduleTmrw) {
-          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at} . Tomorrow, ${tmrw}, they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at} . `;
+          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at}. Tomorrow, ${tmrw}, they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}. `;
+          formattedHours = `${today}: ${scheduleToday.opens_at} to ${scheduleToday.closes_at}
+${tmrw}: ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}`;
         } else if (!scheduleToday && scheduleTmrw) { // closed today, open tmrw
           formattedDetails += `is closed today, but tomorrow, ${tmrw} , they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at} . `;
+          formattedHours = `${today}: closed
+${tmrw}: ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}`;
         } else if (scheduleToday && !scheduleTmrw) { // closed tmrw, open today
-          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at} . They're closed tomorrow, ${tmrw} . `;
+          formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at}. They're closed tomorrow, ${tmrw}. `;
+          formattedHours = `${today}: ${scheduleToday.opens_at} to ${scheduleToday.closes_at}
+${tmrw}: closed`;
         } else {
           formattedDetails += `has hours, but is closed today and tomorrow. `;
+          formattedHours = `closed ${today} and ${tmrw}`;
         } // Optionally, add later:
-        // } else if ( open today but not open tomorrow ) so list 2nd day as after skipped ones
-        // } else if ( no hours today or tomorrow ) so say next open after weekend or other skipped day
+        // } else if ( open today but not open tomorrow ) list 2nd day as after skipped ones
+        // } else if ( no hours today or tomorrow ) say 'next open' after skipped days
       }
       // query google API for address from lat_lng & add to string if exists.
       // OPTIONALLY, INSTEAD, PULL THE FULL ADDRESS FROM ALGOLIA OR ASKDARCEL - it might be more accurate
@@ -148,29 +155,57 @@ app.post('/api/watson_webhook', async (req, res) => {
         const body = await got(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`
         ).json();
-        formattedDetails += `Their address is ${body.results[0].formatted_address}`;
+        place_id = body.results[0].place_id;
+        address = body.results[0].formatted_address.split(',').slice(0, 2).join(',');
+        formattedDetails += `Their address is ${address}`;
       }
-      res.json({ string: formattedDetails });
+      res.json({ string: formattedDetails, hours: formattedHours, address: address, place_id: place_id });
       break;
 
     case 'send_SMS_text': // text the user at the phone number they gave
-      console.log(req.body);
+      console.log(req.body); // debugger
       num = await req.body.result_number;
       chosenResult = await req.body.algolia_results.hits[num - 1];
-      let phoneToText = req.body.phone_to_text.toString();
+      let phoneToText = await req.body.phone_to_text.toString();
       let sender = process.env.NEXMO_PHONE;
       let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
-      let message = chosenResult.name;
       let options = { type: 'unicode' };
+      let servicePhone = null, googleMapsLink = null, sfServiceGuideLink = null;
+      //  *** TO-DO:
+      // *** call AskDarcel API for servicePhone
+      if (chosenResult._geoloc.lat || req.body.details.place_id) { // form google maps search link
+        googleMapsLink = `https://google.com/maps/search/?api=1&query=${chosenResult._geoloc.lat}%2C${chosenResult._geoloc.lng}&query_place_id=${req.body.details.place_id}`;
+      }
+      if (chosenResult.objectID.split('_')[0] === 'resource') { // form sfServiceGuide link
+        sfServiceGuideLink = `https://sfserviceguide.org/organizations/${chosenResult.objectID.split('_')[1]}`;
+      } else {
+        sfServiceGuideLink = `https://sfserviceguide.org/services/${chosenResult.objectID.split('_')[1]}`;
+      }
+
+      let message = `Search: Hygiene near ${req.body.neighborhood}
+${num}. ${chosenResult.name}`;
+      if (req.body.details.address) message += `
+${req.body.details.address}`;
+      if (req.body.details.hours) message += `
+${req.body.details.hours}`;
+      if (servicePhone) message += `
+${servicePhone}`;
+      message += `
+${googleMapsLink}
+Get more details on the SF Service Guide:
+${sfServiceGuideLink}
+ - Darcie @ ShelterTech`;
+
       nexmo.message.sendSms(sender, recipient, message, options, (err, responseData) => {
         if (err) {
           console.log(err);
         } else {
           if (responseData.messages[0]['status'] === "0") {
-            console.log("Message sent successfully.");
+            console.log(`SMS sent to ${recipient}:
+${message}`);
             res.json({ sent: true });
           } else {
-            console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+            console.log(`Error on SMS attempt to ${recipient}: ${responseData.messages[0]['error-text']}`);
             res.json({ error: true });
           }
         }
