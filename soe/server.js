@@ -67,7 +67,6 @@ app.post('/event', (req, res) => { // whenever something happends on the Nexmo s
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
 
-  console.log('DEBUG-WATSON_WEBHOOK-REQUEST:', req.body);
   let num; let chosenResult;
 
   switch (req.body.intent) {
@@ -163,7 +162,6 @@ ${tmrw}: closed`;
       break;
 
     case 'send_SMS_text': // text the user at the phone number they gave
-      console.log(req.body); // debugger
       num = await req.body.result_number;
       chosenResult = await req.body.algolia_results.hits[num - 1];
       let phoneToText = await req.body.phone_to_text.toString().replace(/\D/g, '');
@@ -265,7 +263,7 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
       }
     }).then(res => {
       // console.log(JSON.stringify(res, null, 2));
-      console.log('Darcel:', res.result.output.generic[0].text);
+      console.log('Darcie:', res.result.output.generic[0].text);
       // Nexmo TTS function that takes text & plays it into the call as audio
       nexmo.calls.talk.start(callUUID, {
         text: res.result.output.generic[0].text,
@@ -286,7 +284,7 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
         input: { 'text': data.results[0].alternatives[0].transcript }
       }).then(async res => { // res is result from Watson.
         // console.log('DEBUG-WATSON-RESPONSE-OBJ:', res.result);
-        console.log('Darcel:', res.result.output.generic[0].text);
+        console.log('Darcie:', res.result.output.generic[0].text);
         await nexmo.calls.talk.start(callUUID, { // and send to Nexmo TTS
           text: res.result.output.generic[0].text,
           voice_name: voiceName
