@@ -67,6 +67,7 @@ app.post('/event', (req, res) => { // whenever something happends on the Nexmo s
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 app.post('/api/watson_webhook', async (req, res) => {
 
+  // console.log(req.body); // DEBUGGER
   let num; let chosenResult;
 
   switch (req.body.intent) {
@@ -151,12 +152,16 @@ ${tmrw}: closed`;
       // query google API for address from lat_lng & add to string if exists.
       // OPTIONALLY, INSTEAD, PULL THE FULL ADDRESS FROM ALGOLIA OR ASKDARCEL - it might be more accurate
       if (chosenResult._geoloc.lat) {
-        const body = await got(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`
-        ).json();
-        place_id = body.results[0].place_id;
-        address = body.results[0].formatted_address.split(',').slice(0, 2).join(',');
-        formattedDetails += `Their address is ${address}`;
+        try {
+          const apiRes = await got(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`).json();
+          console.log(apiRes); // DEBUGGER
+          if (await apiRes.status === 'OK') {
+            const firstRes = await apiRes.results[0];
+            place_id = await firstRes.place_id;
+            address = await firstRes.formatted_address.split(',').slice(0, 2).join(',');
+            formattedDetails += `Their address is ${address}`;
+          } else { console.log('No Google Maps API results.'); }
+        } catch (err) { console.log('GOOGLE MAPS API ERROR:', err); }
       }
       res.json({ string: formattedDetails, hours: formattedHours, address: address, place_id: place_id });
       break;
@@ -164,7 +169,9 @@ ${tmrw}: closed`;
     case 'send_SMS_text': // text the user at the phone number they gave
       num = await req.body.result_number;
       chosenResult = await req.body.algolia_results.hits[num - 1];
+      // console.log('phone_to_text:', req.body.phone_to_text); // DEBUGGER
       let phoneToText = await req.body.phone_to_text.toString().replace(/\D/g, '');
+      // console.log('phoneToText:', phoneToText); // DEBUGGER
       let sender = process.env.NEXMO_PHONE;
       let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
       let options = { type: 'unicode' };
@@ -209,7 +216,7 @@ ${googleMapsLink}
 More details on the SF Service Guide:
 ${sfServiceGuideLink}
  - Darcie @ ShelterTech`;
-
+      // console.log('nexmo.message.sendSms(sender, recipient, message, options:', sender, recipient, message, options); // DEBUGGER
       nexmo.message.sendSms(sender, recipient, message, options, (err, responseData) => {
         if (err) {
           console.log(err);
