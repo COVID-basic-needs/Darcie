@@ -38,8 +38,8 @@
 
 .pricing-table {
 	padding: 12px 24px;
-	width: 350px;
-	max-width: 350px;
+	width: 302px;
+	max-width: 302px;
 	flex-grow: 1;
 }
 
@@ -67,31 +67,6 @@
 		mix-blend-mode: multiply;
 	}
 }
-
-// .pricing-table-header {
-// 	@include divider(after);
-// }
-
-// .pricing-table-features {
-// 	color: color(typography, 3);
-
-// 	li {
-// 		display: flex;
-// 		align-items: center;
-// 		margin-bottom: 14px;
-
-// 		.list-icon {
-// 			display: inline-flex;
-// 			width: 16px;
-// 			height: 12px;
-// 			margin-right: 12px;
-// 		}
-// 	}
-// }
-
-// .pricing-table-cta {
-// 	align-self: flex-end;
-// }
 
 @include media('>medium') {
 
