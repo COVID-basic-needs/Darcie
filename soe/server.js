@@ -1,5 +1,5 @@
 'use strict';
-require('dotenv').config();
+// require('dotenv').config(); // ** UNCOMMENT FOR LOCAL DEVELOPMENT **
 
 const gSpeech = require('@google-cloud/speech');
 const algoliasearch = require("algoliasearch");
@@ -49,7 +49,7 @@ app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data n
     "endpoint": [{
       "type": "websocket",
       "content-type": "audio/l16;rate=16000",
-      "uri": `ws://${process.env.WEBSITE_URL}/socket`
+      "uri": `wss://${process.env.WEBSITE_URL}/socket`
     }]
   }];
   res.status(200).json(nccoResponse);

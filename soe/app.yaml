@@ -1,1 +1,16 @@
-runtime: nodejs10
+runtime: nodejs12
+
+env_variables:
+    ALGOLIA_APP_ID: "J8TVT53HPZ"
+    ALGOLIA_INDEX: "maxastuart_services_search"
+    ALGOLIA_SEARCH_KEY: "981beefd23fe4df6a58e171df0e03aa1"
+    GOOGLE_API_KEY: "AIzaSyB5bA37UmmnyvSpvrX3t9mhuUkVTn84Rlg"
+    GOOGLE_APPLICATION_CREDENTIALS: "./google_creds.json"
+    NEXMO_API_KEY: "7bb8ed21"
+    NEXMO_API_SECRET: "Bq2z1qwDgpscLPki"
+    NEXMO_APP_ID: "6a6f5715-c139-488f-a63f-cc53e6d873ac"
+    WA_APIKEY: "ccuQK8vU3fecdIFxZy_7x46L0k4D_hv-1J2N7WmymJbr"
+    WA_ID: "46af9d56-b33b-41ac-b272-53b417af36c1"
+    LANG_CODE: "en-US"
+    WEBSITE_URL: "vacs-1581499154312.appspot.com"
+    NEXMO_PHONE: "16812387069"
