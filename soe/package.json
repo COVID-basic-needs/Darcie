@@ -32,7 +32,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "node server.js 2>&1 | rtail --id 'vacs-soe' -h 'landingpage' -p '9191'",
+    "start": "node server.js 2>&1 | rtail --id 'vacs-soe' -h '35.212.204.81' -p '9191'",
     "test": "jest",
     "test:watch": "npm test --watch"
   }
