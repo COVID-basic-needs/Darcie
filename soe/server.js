@@ -119,7 +119,7 @@ app.post('/api/watson_webhook', async (req, res) => {
       let tmrw = weekday[addDays(todayRaw, 1).getDay()];
       let formattedDetails = null, formattedHours = null, address = null, place_id = null;
       // find if has schedule, i.e. check if there's any open hours on any schedule
-      if (chosenResult.schedule.length === 0) {
+      if (!chosenResult || !chosenResult.schedule || chosenResult.schedule.length === 0) {
         formattedDetails = `${num}. ${chosenResult.name} does not have any in-person hours. `;
       } else {
         // find if open today & tomorrow
