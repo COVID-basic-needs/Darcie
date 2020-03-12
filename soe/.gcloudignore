@@ -1,8 +1,7 @@
-Dockerfile
-.dockerignore
-example.app.yaml
-Los_Angeles
+**/.env
+**/example.app.yaml
 **/*README.md
-__tests__
+**/__tests__
 **/*node_modules
 **/package-lock.json
+**/example.env
