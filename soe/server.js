@@ -154,7 +154,7 @@ ${tmrw}: closed`;
       if (chosenResult._geoloc.lat) {
         try {
           const apiRes = await got(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`).json();
-          console.log(apiRes); // DEBUGGER
+          // console.log(apiRes); // DEBUGGER
           if (await apiRes.status === 'OK') {
             const firstRes = await apiRes.results[0];
             place_id = await firstRes.place_id;
