@@ -4,6 +4,7 @@
 const gSpeech = require('@google-cloud/speech');
 const algoliasearch = require("algoliasearch");
 const addDays = require('date-fns/addDays');
+const utcToZonedTime = require('date-fns-tz/utcToZonedTime');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
@@ -113,7 +114,7 @@ app.post('/api/watson_webhook', async (req, res) => {
     case 'get_details': // takes a result_number and the algolia_results, then gets and formats more details on the numbered Service
       num = await req.body.result_number;
       chosenResult = await req.body.algolia_results.hits[num - 1];
-      let todayRaw = new Date();
+      let todayRaw = utcToZonedTime(new Date(), 'America/Los_Angeles');
       let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       let today = weekday[todayRaw.getDay()];
       let tmrw = weekday[addDays(todayRaw, 1).getDay()];
