@@ -12,3 +12,4 @@ package-lock.json
 .DS_Store?
 nginx
 res*.json
+app.yaml

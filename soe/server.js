@@ -49,7 +49,7 @@ app.get('/ncco', (req, res) => { // ncco = Nexmo Call Control Object: the data n
     "endpoint": [{
       "type": "websocket",
       "content-type": "audio/l16;rate=16000",
-      "uri": `wss://${process.env.WEBSITE_URL}/socket`
+      "uri": `wss://${process.env.SOE_URL}/socket` // ** CHANGE TO ws:// FOR LOCAL DEVELOPMENT **
     }]
   }];
   res.status(200).json(nccoResponse);
