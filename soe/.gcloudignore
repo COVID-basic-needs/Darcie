@@ -1,4 +1,5 @@
-**/.env
+**/.gcloudignore
+**/*.env
 **/example.app.yaml
 **/*README.md
 **/__tests__

@@ -181,10 +181,14 @@ ${tmrw}: closed`;
 
       if (objectID[0] === 'resource') { // call AskDarcel API for servicePhone
         object = await got(`https://askdarcel.org/api/resources/${objectID[1]}`).json();
-        servicePhone = await object.resource.phones[0].number;
+        if (object.resource.phones[0]) {
+          servicePhone = await object.resource.phones[0].number;
+        }
       } else {
         object = await got(`https://askdarcel.org/api/services/${objectID[1]}`).json();
-        servicePhone = await object.service.resource.phones[0].number;
+        if (object.service.resource.phones[0]) {
+          servicePhone = await object.service.resource.phones[0].number;
+        }
       }
 
       if (chosenResult._geoloc.lat) { // form google maps search link
