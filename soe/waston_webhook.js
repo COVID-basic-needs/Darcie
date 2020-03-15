@@ -162,25 +162,27 @@ ${googleMapsLink}
 More details on the SF Service Guide:
 ${sfServiceGuideLink}
   - Darcie @ ShelterTech`;
-            got.post('https://vacs-1581499154312.appspot.com/text_sms', {
-                json: {
-                    sender,
-                    recipient,
-                    message,
-                    options
+
+            // sends the above parameters to the App Engine component, which
+            //   has the nexmo credentials to send the text & pipe to rTail.
+            smsStatus = await got.post(
+                'https://vacs-1581499154312.appspot.com/text_sms',
+                {
+                    json: {
+                        sender,
+                        recipient,
+                        message,
+                        options
+                    },
+                    responseType: 'json'
                 },
-                responseType: 'json'
-            }, (err, responseData) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    if (responseData.sent) {
-                        res.json({ sent: true });
-                    } else {
-                        res.json({ error: true });
-                    }
-                }
-            });
+                (err) => { if (err) console.log(err); }
+            ).json();
+            if (smsStatus.sent) {
+                res.json({ sent: true });
+            } else {
+                res.json({ error: true });
+            }
             break;
 
         default:
