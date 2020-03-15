@@ -1,10 +1,18 @@
-runtime: nodejs12
+runtime: nodejs
+env: flex
+
+network:
+    session_affinity: true
+
+automatic_scaling:
+    min_num_instances: 1
+
+resources:
+    cpu: 1
+    memory_gb: 0.5
+    disk_size_gb: 10
 
 env_variables:
-    ALGOLIA_APP_ID=12345ABCDE
-    ALGOLIA_INDEX=somebody_services_search
-    ALGOLIA_SEARCH_KEY=a1really2345long6789key0123goes456here
-    GOOGLE_API_KEY=AreallyLONGkeyWITHcapsANDnumbers1234567890
     GOOGLE_APPLICATION_CREDENTIALS="./google_creds.json"
     NEXMO_API_KEY=8short9key
     NEXMO_API_SECRET=1medium2key3here
@@ -12,5 +20,4 @@ env_variables:
     WA_APIKEY=someTHINGlongHERE_shortTHING_21-lAsTbItHeRe
     WA_ID="1234abcd-5ee5-66ff-77gg-88hh99ii00jj"
     LANG_CODE="en-US"
-    WEBSITE_URL=yourURLor1234.ngrok.com
     NEXMO_PHONE=15100101010
