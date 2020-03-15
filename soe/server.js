@@ -2,8 +2,10 @@
 if (process.env.NODE_ENV === 'development') {
     require('dotenv').config(); // For local, non-gcloud development, this pulls from .env - see example.env
 }                               // If using google app engine, add ENVs in the app.yaml - see soe/example.app.yaml
+const Firestore = require('@google-cloud/firestore');
 const gSpeech = require('@google-cloud/speech');
 const bodyParser = require('body-parser');
+const utcToZonedTime = require('date-fns-tz/utcToZonedTime');
 const express = require('express');
 const app = express();
 const expressWs = require('express-ws')(app); // This enables the websocket route: app.ws(, line 249
@@ -25,13 +27,17 @@ const gSTTparams = { // static parameters google speech-to-text needs.
     },
     interimResults: false
 };
+const db = new Firestore({
+    projectId: process.env.GOOGLE_PROJECT_ID,
+    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+  });
 const nexmo = new Nexmo({
     apiKey: process.env.NEXMO_API_KEY,
     apiSecret: process.env.NEXMO_API_SECRET,
     applicationId: process.env.NEXMO_APP_ID,
     privateKey: process.env.PRIVATE_KEY || './private.key'
 });
-const voiceName = 'Eric';
+const voiceName = process.env.VOICE_NAME || 'Eric';
 
 
 app.use(bodyParser.json());
@@ -39,6 +45,18 @@ app.use(bodyParser.json());
 app.post('/event', (req, res) => { // whenever something happends on the Nexmo side of the call it uses this to update us.
     let caller = null;   // caller's phone number.
     let callUUID = null; // unique ID of this phone call session.
+    console.log(' req.body:', req.body);
+    if (req.body.status === 'started'){
+
+        let data = {
+            uuid: req.body.uuid, 
+            phoneNumber: req.body.from,
+            numberCalled: req.body.to,
+            startTime: utcToZonedTime(new Date(), 'America/Los_Angeles')
+        };
+    
+        db.collection('calls').doc(req.body.uuid).set(data);
+    } 
     if (req.body.from !== 'Unknown') {
         caller = req.body.from;
         callUUID = req.body.uuid;
@@ -75,8 +93,6 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
     let wSessionID = null;
     let caller = null;   // caller's phone number.
     let callUUID = null; // unique ID of this phone call session.
-    // console.log('ws:', ws); // DIDN'T WORK
-    // console.log('ws_req_headers:', req.headers); // DIDN'T WORK
 
     // Definition for code to call when audio is heard - static but based on sessionId.
     const recognizeStream = gSTTclient
@@ -103,7 +119,7 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
     ws.on('message', (msg) => {
         if (typeof msg === "string") { // string msg is the initial connect, delivering custom headers from /ncco
             let config = JSON.parse(msg);
-            console.log('config:', config);
+            // console.log('config:', config);
             caller = config.caller;
             callUUID = config.uuid;
             assistant.createSession({ // initializes a watson assistant session
