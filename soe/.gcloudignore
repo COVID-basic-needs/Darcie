@@ -1,0 +1,6 @@
+**/*
+!app.yaml
+!server.js
+!google_creds.json
+!private.key
+!package.json
