@@ -1,8 +1,6 @@
-**/.gcloudignore
-**/*.env
-**/example.app.yaml
-**/*README.md
-**/__tests__
-**/*node_modules
-**/package-lock.json
-**/example.env
+**/*
+!app.yaml
+!server.js
+!google_creds.json
+!private.key
+!package.json

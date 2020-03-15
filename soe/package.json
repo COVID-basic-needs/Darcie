@@ -14,13 +14,9 @@
   "homepage": "https://github.com/ShelterTechSF/VACS-MVP#readme",
   "dependencies": {
     "@google-cloud/speech": "^2.3.0",
-    "algoliasearch": "^4.0.3",
     "body-parser": "^1.18.3",
-    "date-fns": "^2.10.0",
-    "date-fns-tz": "^1.0.10",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
-    "got": "^10.6.0",
     "ibm-watson": "^5.4.0",
     "nexmo": "^2.4.0",
     "rtail": "^0.2.1"
