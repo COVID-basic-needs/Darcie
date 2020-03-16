@@ -30,7 +30,7 @@ const gSTTparams = { // static parameters google speech-to-text needs.
 const db = new Firestore({
     projectId: process.env.GOOGLE_PROJECT_ID,
     keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-  });
+});
 const nexmo = new Nexmo({
     apiKey: process.env.NEXMO_API_KEY,
     apiSecret: process.env.NEXMO_API_SECRET,
@@ -43,25 +43,10 @@ const voiceName = process.env.VOICE_NAME || 'Eric';
 app.use(bodyParser.json());
 
 app.post('/event', (req, res) => { // whenever something happends on the Nexmo side of the call it uses this to update us.
-    let caller = null;   // caller's phone number.
-    let callUUID = null; // unique ID of this phone call session.
-    console.log(' req.body:', req.body);
-    if (req.body.status === 'started'){
-
-        let data = {
-            uuid: req.body.uuid, 
-            phoneNumber: req.body.from,
-            numberCalled: req.body.to,
-            startTime: utcToZonedTime(new Date(), 'America/Los_Angeles')
-        };
-    
-        db.collection('calls').doc(req.body.uuid).set(data);
-    } 
-    if (req.body.from !== 'Unknown') {
-        caller = req.body.from;
-        callUUID = req.body.uuid;
+    if (req.body.direction === 'inbound') {
+        db.collection('calls').doc(req.body.uuid).set(req.body, { merge: true });
+        console.log('EVENT from', req.body.from, 'to', req.body.to, req.body.status, `<${req.body.uuid}>`);
     }
-    console.log('EVENT from', caller, 'to', req.body.to, req.body.status, `<${callUUID}>`);
     res.status(204).end();
 });
 
@@ -93,22 +78,33 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
     let wSessionID = null;
     let caller = null;   // caller's phone number.
     let callUUID = null; // unique ID of this phone call session.
-
+    let tik = 0;
     // Definition for code to call when audio is heard - static but based on sessionId.
     const recognizeStream = gSTTclient
         .streamingRecognize(gSTTparams) // googleSTT function
         .on('error', console.error)
         .on('data', data => { // data is text returned from google
-            console.log(`${caller}: ${data.results[0].alternatives[0].transcript}`); // log for rTail
+            let userResponse = data.results[0].alternatives[0].transcript;
+            db.collection('calls').doc(callUUID).set({
+                dialog: { [`caller(${tik})`]: userResponse },
+                rawDialog: { [`caller(${tik})`]: data.results[0] }
+            }, { merge: true });
+            tik++;
+            console.log(`${caller}: ${userResponse}`); // log for rTail
             assistant.message({ // and send to watson assistant
                 assistantId: process.env.WA_ID,
                 sessionId: wSessionID,
-                input: { 'text': data.results[0].alternatives[0].transcript }
+                input: { 'text': userResponse }
             }).then(async res => { // res is result from Watson.
-                // console.log('DEBUG-WATSON-RESPONSE-OBJ:', res.result);
-                console.log('Darcie:', res.result.output.generic[0].text);
+                // console.log('DEBUG-WATSON-RESPONSE-OBJ:', JSON.stringify(res));
+                let watsonResponse = res.result.output.generic[0].text;
+                db.collection('calls').doc(callUUID).set({
+                    dialog: { [`watson(${tik})`]: watsonResponse },
+                    rawDialog: { [`watson(${tik})`]: res.result.output }
+                }, { merge: true });
+                console.log('Darcie:', watsonResponse);
                 await nexmo.calls.talk.start(callUUID, { // and send to Nexmo TTS
-                    text: res.result.output.generic[0].text,
+                    text: watsonResponse,
                     voice_name: voiceName
                 }, (err => { if (err) console.log(err); })
                 );
