@@ -67,8 +67,12 @@ exports.watson_webhook = async (req, res) => {
                 // find if open today & tomorrow
                 let scheduleToday = false; let scheduleTmrw = false;
                 chosenResult.schedule.forEach(scheduleDay => {
-                    if (scheduleDay.day === today) { scheduleToday = scheduleDay; };
-                    if (scheduleDay.day === tmrw) { scheduleTmrw = scheduleDay; };
+                    if (scheduleDay.day === today) { 
+                        scheduleToday = scheduleDay.slice(0,-2) + ':' + scheduleDay.slice(-2);
+                    };
+                    if (scheduleDay.day === tmrw) { 
+                        scheduleTmrw = scheduleDay.slice(0,-2) + ':' + scheduleDay.slice(-2); 
+                    };
                 });
                 // format first part of strings based on hours
                 formattedDetails = `${num}. ${chosenResult.name} `;
@@ -78,7 +82,7 @@ exports.watson_webhook = async (req, res) => {
 ${tmrw}: ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}`;
                 } else if (!scheduleToday && scheduleTmrw) { // closed today, open tmrw
                     formattedDetails += `is closed today, but tomorrow, ${tmrw} , they're open ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at} . `;
-                    formattedHours = `${today}: closed
+                     formattedHours = `${today}: closed
 ${tmrw}: ${scheduleTmrw.opens_at} to ${scheduleTmrw.closes_at}`;
                 } else if (scheduleToday && !scheduleTmrw) { // closed tmrw, open today
                     formattedDetails += `hours today, ${today}, are ${scheduleToday.opens_at} to ${scheduleToday.closes_at}. They're closed tomorrow, ${tmrw}. `;
