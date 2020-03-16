@@ -68,10 +68,14 @@ exports.watson_webhook = async (req, res) => {
                 let scheduleToday = false; let scheduleTmrw = false;
                 chosenResult.schedule.forEach(scheduleDay => {
                     if (scheduleDay.day === today) { 
-                        scheduleToday = scheduleDay.slice(0,-2) + ':' + scheduleDay.slice(-2);
+                        scheduleToday = scheduleDay;
+                        scheduleToday.opens_at = scheduleToday.opens_at.slice(0,-2) + ':' + scheduleToday.opens_at.slice(-2);
+                        scheduleToday.closes_at = scheduleToday.closes_at.slice(0,-2) + ':' + scheduleToday.closes_at.slice(-2);
                     };
                     if (scheduleDay.day === tmrw) { 
-                        scheduleTmrw = scheduleDay.slice(0,-2) + ':' + scheduleDay.slice(-2); 
+                        scheduleTmrw = scheduleDay;
+                        scheduleTmrw.opens_at = scheduleTmrw.opens_at.slice(0,-2) + ':' + scheduleTmrw.opens_at.slice(-2);
+                        scheduleTmrw.closes_at = scheduleTmrw.closes_at.slice(0,-2) + ':' + scheduleTmrw.closes_at.slice(-2); 
                     };
                 });
                 // format first part of strings based on hours
