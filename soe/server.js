@@ -43,9 +43,41 @@ const voiceName = process.env.VOICE_NAME || 'Eric';
 app.use(bodyParser.json());
 
 app.post('/event', (req, res) => { // whenever something happends on the Nexmo side of the call it uses this to update us.
+    let docRef = db.collection('calls').doc(req.body.conversation_uuid);
+    if (req.body.status === 'started' && req.body.direction === 'inbound') {
+        docRef.set(
+            {
+                'started': req.body.timestamp,
+                'from': req.body.from
+            },
+            {
+                merge: true
+            }
+        );
+    } else if (req.body.status === 'completed' && req.body.direction === 'inbound') {
+        docRef.set(
+            {
+                'duration': req.body.duration,
+                'price': req.body.price
+            },
+            {
+                merge: true
+            }
+        );
+    } else if (req.body.recording_url) {
+        docRef.set(
+            {
+                'recording_size': req.body.size,
+                'recording_url': req.body.recording_url
+            },
+            {
+                merge: true
+            }
+        );
+    }
+    docRef.collection('EVENTS').doc(req.body.timestamp).set(req.body);
     if (req.body.direction === 'inbound') {
-        db.collection('calls').doc(req.body.uuid).set(req.body, { merge: true });
-        console.log('EVENT from', req.body.from, 'to', req.body.to, req.body.status, `<${req.body.uuid}>`);
+        console.log(req.body.from, req.body.status, `<${req.body.conversation_uuid}>`);
     }
     res.status(204).end();
 });
@@ -61,6 +93,7 @@ app.post('/text_sms', (req, res) => {
                 console.log(err);
             } else {
                 if (responseData.messages[0]['status'] === "0") {
+
                     console.log(`SMS SENT TO ${req.body.recipient}:
 ${req.body.message}`);
                     res.json({ sent: true });
