@@ -1,4 +1,5 @@
 .container,
+.container-md,
 .container-sm {
 	width: 100%;
 	margin: 0 auto;
@@ -15,11 +16,21 @@
 	max-width: $container__width + ( get-content-padding(desktop) * 2 );
 }
 
+.container-md {
+	max-width: $container__width-md + ( get-content-padding(desktop) * 2 );
+}
+
 .container-sm {
 	max-width: $container__width-sm + ( get-content-padding(desktop) * 2 );
 }
 
 .container {
+
+	.container-md {
+		max-width: $container__width-md;
+        padding-left: 0;
+        padding-right: 0;
+	}
 
     .container-sm {
 		max-width: $container__width-sm;
