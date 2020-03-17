@@ -5,14 +5,13 @@ if (process.env.NODE_ENV === 'development') {
 const Firestore = require('@google-cloud/firestore');
 const gSpeech = require('@google-cloud/speech');
 const bodyParser = require('body-parser');
-const utcToZonedTime = require('date-fns-tz/utcToZonedTime');
 const express = require('express');
 const app = express();
-const expressWs = require('express-ws')(app); // This enables the websocket route: app.ws(, line 249
+const expressWs = require('express-ws')(app); // This enables the websocket route: app.ws(, line 108
 const AssistantV2 = require('ibm-watson/assistant/v2');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const Nexmo = require('nexmo');
-const { Readable } = require('stream'); // This enables the websocket route: app.ws(, line 249
+const { Readable } = require('stream'); // This enables the websocket route: app.ws(, line 108
 
 const assistant = new AssistantV2({
     version: '2020-02-05',
@@ -111,6 +110,7 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
     let wSessionID = null;
     let caller = null;   // caller's phone number.
     let callUUID = null; // unique ID of this phone call session.
+    let legUUID = null;  // unique ID of this leg of the phone call.
     let tik = 0;
     // Definition for code to call when audio is heard - static but based on sessionId.
     const recognizeStream = gSTTclient
@@ -129,14 +129,13 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
                 sessionId: wSessionID,
                 input: { 'text': userResponse }
             }).then(async res => { // res is result from Watson.
-                // console.log('DEBUG-WATSON-RESPONSE-OBJ:', JSON.stringify(res));
                 let watsonResponse = res.result.output.generic[0].text;
                 db.collection('calls').doc(callUUID).set({
                     dialog: { [`watson(${tik})`]: watsonResponse },
                     rawDialog: { [`watson(${tik})`]: res.result.output }
                 }, { merge: true });
                 console.log('Darcie:', watsonResponse);
-                await nexmo.calls.talk.start(callUUID, { // and send to Nexmo TTS
+                await nexmo.calls.talk.start(legUUID, { // and send to Nexmo TTS
                     text: watsonResponse,
                     voice_name: voiceName
                 }, (err => { if (err) console.log(err); })
@@ -148,9 +147,9 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
     ws.on('message', (msg) => {
         if (typeof msg === "string") { // string msg is the initial connect, delivering custom headers from /ncco
             let config = JSON.parse(msg);
-            // console.log('config:', config);
             caller = config.caller;
-            callUUID = config.uuid;
+            callUUID = config.conversation_uuid;
+            legUUID = config.uuid;
             assistant.createSession({ // initializes a watson assistant session
                 assistantId: process.env.WA_ID
             }).then(res => {
@@ -161,25 +160,21 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
                     sessionId: wSessionID,
                     input: { 'text': 'Hello' },
                     context: {
-                        'global': {
-                            'system': {
-                                'user_id': callUUID
-                            }
-                        },
+                        'global': { 'system': { 'user_id': callUUID } },
                         'skills': {
                             'main skill': {
                                 'user_defined': {
                                     'caller_phone': caller.toString(),
-                                    'callUUID': callUUID
+                                    'callUUID': callUUID,
+                                    'legUUID': legUUID
                                 }
                             }
                         }
                     }
                 }).then(res => {
-                    // console.log(JSON.stringify(res, null, 2));
                     console.log('Darcie:', res.result.output.generic[0].text);
                     // Nexmo TTS function that takes text & plays it into the call as audio
-                    nexmo.calls.talk.start(callUUID, {
+                    nexmo.calls.talk.start(legUUID, {
                         text: res.result.output.generic[0].text,
                         voice_name: voiceName
                     }, (err => { if (err) console.log(err); }));
