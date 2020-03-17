@@ -92,9 +92,9 @@ app.post('/text_sms', (req, res) => {
                 console.log(err);
             } else {
                 if (responseData.messages[0]['status'] === "0") {
-
                     console.log(`SMS SENT TO ${req.body.recipient}:
 ${req.body.message}`);
+                    db.collection('calls').doc(req.body.callUUID).set({ text_sent: true }, { merge: true });
                     res.json({ sent: true });
                 } else {
                     console.log(`ERROR ON SMS ATTEMPT TO ${req.body.recipient}: ${responseData.messages[0]['error-text']}`);

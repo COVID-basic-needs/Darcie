@@ -2,7 +2,7 @@
 **/ibm-credentials.env
 **/.env
 **/files/*
-**/private.key*
+**/*private.key*
 **/node_modules*
 **/package-lock.json
 **/__pycache__
