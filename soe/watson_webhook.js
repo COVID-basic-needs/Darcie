@@ -1,3 +1,9 @@
+// This is a backup of our Google Cloud Function deployed at:
+//   https://us-central1-vacs-1581499154312.cloudfunctions.net/waston-webhook
+//
+// To make edits, visit the console at:
+//   https://console.cloud.google.com/functions/list?project=vacs-1581499154312
+
 const algoliasearch = require("algoliasearch");
 const addDays = require('date-fns/addDays');
 const utcToZonedTime = require('date-fns-tz/utcToZonedTime');
@@ -67,8 +73,16 @@ exports.watson_webhook = async (req, res) => {
                 // find if open today & tomorrow
                 let scheduleToday = false; let scheduleTmrw = false;
                 chosenResult.schedule.forEach(scheduleDay => {
-                    if (scheduleDay.day === today) { scheduleToday = scheduleDay; };
-                    if (scheduleDay.day === tmrw) { scheduleTmrw = scheduleDay; };
+                    if (scheduleDay.day === today) {
+                        scheduleToday = scheduleDay;
+                        scheduleToday.opens_at = scheduleToday.opens_at.toString().slice(0, -2) + ':' + scheduleToday.opens_at.toString().slice(-2);
+                        scheduleToday.closes_at = scheduleToday.closes_at.toString().slice(0, -2) + ':' + scheduleToday.closes_at.toString().slice(-2);
+                    };
+                    if (scheduleDay.day === tmrw) {
+                        scheduleTmrw = scheduleDay;
+                        scheduleTmrw.opens_at = scheduleTmrw.opens_at.toString().slice(0, -2) + ':' + scheduleTmrw.opens_at.toString().slice(-2);
+                        scheduleTmrw.closes_at = scheduleTmrw.closes_at.toString().slice(0, -2) + ':' + scheduleTmrw.closes_at.toString().slice(-2);
+                    };
                 });
                 // format first part of strings based on hours
                 formattedDetails = `${num}. ${chosenResult.name} `;
@@ -172,7 +186,8 @@ ${sfServiceGuideLink}
                         sender,
                         recipient,
                         message,
-                        options
+                        options,
+                        'callUUID': req.body.callUUID
                     },
                     responseType: 'json'
                 },

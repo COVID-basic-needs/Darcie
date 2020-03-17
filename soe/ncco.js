@@ -7,22 +7,25 @@
 // ncco = Nexmo Call Control Object: the data needed to forward the call.
 
 exports.ncco = (req, res) => {
-
-    let nccoResponse = [{
-        "action": "connect",
-        "from": req.query.to, // the number responding to the call
-        "endpoint": [{
-            "type": "websocket",
-            "content-type": "audio/l16;rate=16000",
-            "uri": `wss://${process.env.SOE_URL}/socket`,
-            "headers": { // these are custom, they're for the wss:/SOE/socket and /event to have and pass to Watson
-                "uuid": req.query.uuid,
-                "to": req.query.to,
-                "caller": req.query.from
-            }
-        }]
-    }];
-
+    let nccoResponse = [
+        {  // data forwarding for websocket to answer call.
+            "action": "connect",
+            "from": req.query.to, // the number responding to the call
+            "endpoint": [{
+                "type": "websocket",
+                "content-type": "audio/l16;rate=16000",
+                "uri": `wss://${process.env.SOE_URL}/socket`,
+                "headers": { // these are custom, they're for the wss:/SOE/socket and /event to have and pass to Watson
+                    "conversation_uuid": req.query.conversation_uuid,
+                    "uuid": req.query.uuid,
+                    "to": req.query.to,
+                    "caller": req.query.from
+                }
+            }]
+        },
+        {
+            "action": "record"
+        }
+    ];
     res.status(200).json(nccoResponse);
-
 };

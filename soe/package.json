@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/ShelterTechSF/VACS-MVP#readme",
   "dependencies": {
+    "@google-cloud/firestore": "^3.7.0",
     "@google-cloud/speech": "^2.3.0",
     "body-parser": "^1.18.3",
     "express": "^4.17.1",
