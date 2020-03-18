@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Darcie - Virtual Assistant for City Services</title>
-	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i|PT+Serif:700" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i|PT+Serif:700">
 	<link rel="stylesheet" href="dist/css/style.css">
 
 	<!-- FAVICONS & ICONS -->
@@ -35,7 +35,7 @@
 
 <body class="is-boxed has-animations">
 	<div class="body-wrap boxed-container">
-		<header class="site-header">
+		<header id="header" class="site-header">
 			<div class="container">
 				<div class="site-header-inner">
 					<div class="brand header-brand">
@@ -310,7 +310,8 @@
 						<div class="features-extended-header text-center">
 							<div class="container-sm">
 								<h2 class="section-title mt-0">About</h2>
-								<p class="section-paragraph">TK: Embedded Medium article will go here</p>
+								<div id="content">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -344,7 +345,7 @@
 								</li>
 								<li>
 									<span class="screen-reader-text">Google Cloud</span>
-									<img src="dist/images/googleCloud.jpg">
+									<img src="dist/images/GoogleCloud.png">
 								</li>
 							</ul>
 						</div>
@@ -442,7 +443,7 @@
 						</li>
 					</ul>
 					<div class="brand footer-brand">
-						<a href="#livestream">
+						<a href="#header">
 							<img class="brand" src="dist/images/Darcie.png">
 						</a>
 					</div>
@@ -450,6 +451,7 @@
 			</div>
 		</footer>
 	</div>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script src="dist/js/main.min.js"></script>
 </body>
 
