@@ -1,5 +1,7 @@
 # Voice Automated City Services (VACS)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Akeem Seymens’ & Max Stuart’s 2020 Portfolio Project Proposal
 
 VACS is an automated phone line anyone can call to find human services near them, such as free food, legal assistance, non-emergency medical help, and more.
@@ -16,6 +18,7 @@ VACS is an automated phone line anyone can call to find human services near them
 #### Phone Connection, Speech-To-Text, & Text-To-Speech
 
 The the non-visual frontend component will:
+
 1. receive phone calls
 2. play a welcome message, ask the first question, listen to the spoken response
 3. convert the speech to text via google's api
