@@ -44,8 +44,10 @@ $(function () {
         if (response.status === 'ok') {
             let output = '';
             $.each(response.items, function (k, item) {
-                output += '<h2><a href="' + item.link + '" >' + item.title + '</h2></a>';
-                output += '<p>' + item.description + '</p>';
+                let temp = item.description.split('</figure>');
+                output += temp[0] + '</figure>';
+                output += '<h2 style="margin:16px 0px 16px"><a href="' + item.link + '" >' + item.title + '</h2></a>';
+                output += temp[1];
                 return k < 0;
             });
             $content.html(output);

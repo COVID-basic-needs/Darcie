@@ -15,7 +15,6 @@ const index = algoliasearch(
 // api for watson to call via webhook for retrieving results from Algolia, Google Maps, & AskDarcel, and prompting SMS.
 exports.watson_webhook = async (req, res) => {
 
-    // console.log(req.body); // DEBUGGER
     let num; let chosenResult;
 
     switch (req.body.intent) {
@@ -110,7 +109,6 @@ ${tmrw}: closed`;
             if (chosenResult._geoloc.lat) {
                 try {
                     const apiRes = await got(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${chosenResult._geoloc.lat},${chosenResult._geoloc.lng}&result_type=street_address&key=${process.env.GOOGLE_API_KEY}`).json();
-                    // console.log(apiRes); // DEBUGGER
                     if (await apiRes.status === 'OK') {
                         const firstRes = await apiRes.results[0];
                         place_id = await firstRes.place_id;
@@ -125,15 +123,12 @@ ${tmrw}: closed`;
         case 'send_SMS_text': // text the user at the phone number they gave
             num = await req.body.result_number;
             chosenResult = await req.body.algolia_results.hits[num - 1];
-            // console.log('phone_to_text:', req.body.phone_to_text); // DEBUGGER
             let phoneToText = await req.body.phone_to_text.toString().replace(/\D/g, '');
-            // console.log('phoneToText:', phoneToText); // DEBUGGER
             let sender = process.env.NEXMO_PHONE;
             let recipient = (phoneToText.length > 10) ? phoneToText : '1' + phoneToText;
             let options = { type: 'unicode' };
             let servicePhone = null, googleMapsLink = null, sfServiceGuideLink = null, object = null;
             let objectID = chosenResult.objectID.split('_');
-
             if (objectID[0] === 'resource') { // call AskDarcel API for servicePhone
                 object = await got(`https://askdarcel.org/api/resources/${objectID[1]}`).json();
                 if (object.resource.phones[0]) {
@@ -145,7 +140,6 @@ ${tmrw}: closed`;
                     servicePhone = await object.service.resource.phones[0].number;
                 }
             }
-
             if (chosenResult._geoloc.lat) { // form google maps search link
                 googleMapsLink = `https://google.com/maps/search/?api=1&query=${chosenResult._geoloc.lat}%2C${chosenResult._geoloc.lng}`;
                 if (req.body.details.place_id) {
@@ -154,13 +148,11 @@ ${tmrw}: closed`;
             } else if (req.body.details.place_id) {
                 googleMapsLink = `https://google.com/maps/search/?api=1&query=null&query_place_id=${req.body.details.place_id}`;
             }
-
             if (objectID[0] === 'resource') { // form sfServiceGuide link
                 sfServiceGuideLink = `https://sfserviceguide.org/organizations/${objectID[1]}`;
             } else {
                 sfServiceGuideLink = `https://sfserviceguide.org/services/${objectID[1]}`;
             }
-
             let message = `Search: Hygiene near ${req.body.neighborhood}
 ${num}. ${chosenResult.name}`;
             if (req.body.details.address) message += `
@@ -176,7 +168,6 @@ ${googleMapsLink}
 More details on the SF Service Guide:
 ${sfServiceGuideLink}
   - Darcie @ ShelterTech`;
-
             // sends the above parameters to the App Engine component, which
             //   has the nexmo credentials to send the text & pipe to rTail.
             smsStatus = await got.post(
