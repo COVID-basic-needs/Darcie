@@ -1,0 +1,936 @@
+{
+    "type": "FeatureCollection",
+    "name": "Pit Stops & Hand Washing Stations",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Eddy St. and Jones St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT01<br>Neighborhood: Tenderloin<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.7841238<br>Longitude: -122.4122697",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT01",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.7841238",
+                "Longitude": "-122.4122697"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4122697,
+                    37.7841238
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "16th St. and Mission St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT02<br>Neighborhood: Mission<br>Hours of Operation: Daily – 9 am to 8 pm <br>Latitude: 37.7649465<br>Longitude: -122.4200173",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT02",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm ",
+                "Latitude": "37.7649465",
+                "Longitude": "-122.4200173"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4200173,
+                    37.7649465
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Washington Square at Union St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT03<br>Neighborhood: North Beach<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.800472<br>Longitude: -122.409704",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT03",
+                "Neighborhood": "North Beach",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.800472",
+                "Longitude": "-122.409704"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.409704,
+                    37.800472
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Judah St. and La Playa St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT04<br>Neighborhood: Outer Sunset<br>Hours of Operation: Daily – 9 am to 4 pm<br>Latitude: 37.760274<br>Longitude: -122.5096",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT04",
+                "Neighborhood": "Outer Sunset",
+                "Hours_of_Operation": "Daily – 9 am to 4 pm",
+                "Latitude": "37.760274",
+                "Longitude": "-122.5096"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.5096,
+                    37.760274
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "U.N. Plaza:  Market St. and 7th St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT05<br>Neighborhood: Civic Center<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.7801432<br>Longitude: -122.4130822",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT05",
+                "Neighborhood": "Civic Center",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.7801432",
+                "Longitude": "-122.4130822"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4130822,
+                    37.7801432
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "388 Ellis St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT06<br>Neighborhood: Tenderloin<br>Hours of Operation: Mon-Fri – 9 am – 4 pm<br>Latitude: 37.784951<br>Longitude: -122.411812",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT06",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "Mon-Fri – 9 am – 4 pm",
+                "Latitude": "37.784951",
+                "Longitude": "-122.411812"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.411812,
+                    37.784951
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Hallidie Plaza: Market St. and 5th St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT07<br>Neighborhood: Downtown \/ Union Square<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.7844142<br>Longitude: -122.4077797",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT07",
+                "Neighborhood": "Downtown \/ Union Square",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.7844142",
+                "Longitude": "-122.4077797"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4077797,
+                    37.7844142
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Stanyan St. and Waller St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT08<br>Neighborhood: Golden Gate Park<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.7682426<br>Longitude: -122.4534175",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT08",
+                "Neighborhood": "Golden Gate Park",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.7682426",
+                "Longitude": "-122.4534175"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4534175,
+                    37.7682426
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "6th St. and Jessie St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT09<br>Neighborhood: South of Market<br>Hours of Operation: Mon-Fri – 1:00 pm to 7:00 pm<br>Latitude: 37.781509<br>Longitude: -122.4093246",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT09",
+                "Neighborhood": "South of Market",
+                "Hours_of_Operation": "Mon-Fri – 1:00 pm to 7:00 pm",
+                "Latitude": "37.781509",
+                "Longitude": "-122.4093246"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4093246,
+                    37.781509
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Market St. and Church St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT11<br>Neighborhood: Duboce Triangle<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.768541<br>Longitude: -122.42792",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT11",
+                "Neighborhood": "Duboce Triangle",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.768541",
+                "Longitude": "-122.42792"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.42792,
+                    37.768541
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "101 Hyde St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT12<br>Neighborhood: Tenderloin<br>Hours of Operation: Mon-Fri – 1:30 pm to 8:30 pm; Sat – 9:30 am to 4:30 pm<br>Latitude: 37.781775<br>Longitude: -122.415627",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT12",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "Mon-Fri – 1:30 pm to 8:30 pm; Sat – 9:30 am to 4:30 pm",
+                "Latitude": "37.781775",
+                "Longitude": "-122.415627"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.415627,
+                    37.781775
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Eddy St. and Larkin St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT13<br>Neighborhood: Tenderloin<br>Hours of Operation: Mon-Sat – 9:30 am - 4:30 pm<br>Latitude: 37.7833245<br>Longitude: -122.4173774",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT13",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "Mon-Sat – 9:30 am - 4:30 pm",
+                "Latitude": "37.7833245",
+                "Longitude": "-122.4173774"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4173774,
+                    37.7833245
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Mendell Plaza: 3rd St. and Mendell St.\/Palou Ave.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT14<br>Neighborhood: Bayview<br>Hours of Operation: Mon-Fri – 10 am to 5pm <br>Latitude: 37.7340389<br>Longitude: -122.3908134",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT14",
+                "Neighborhood": "Bayview",
+                "Hours_of_Operation": "Mon-Fri – 10 am to 5pm ",
+                "Latitude": "37.7340389",
+                "Longitude": "-122.3908134"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.3908134,
+                    37.7340389
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Haight St. and Buena Vista Ave. West",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT15<br>Neighborhood: Buena Vista<br>Hours of Operation: Mon-Fri – 12 pm to 7 pm <br>Latitude: 37.7708165<br>Longitude: -122.4404302",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT15",
+                "Neighborhood": "Buena Vista",
+                "Hours_of_Operation": "Mon-Fri – 12 pm to 7 pm ",
+                "Latitude": "37.7708165",
+                "Longitude": "-122.4404302"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4404302,
+                    37.7708165
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "16th St. and Capp St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT16<br>Neighborhood: Mission<br>Hours of Operation: Mon-Fri – 11 am to 6 pm <br>Latitude: 37.7651596<br>Longitude: -122.4187982",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT16",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "Mon-Fri – 11 am to 6 pm ",
+                "Latitude": "37.7651596",
+                "Longitude": "-122.4187982"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4187982,
+                    37.7651596
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "McCoppin Hub:  McCoppin St. and Valencia St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT17<br>Neighborhood: South of Market<br>Hours of Operation: Mon-Fri – 11:30 am to 6:30 pm <br>Latitude: 37.7714123<br>Longitude: -122.4225748",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT17",
+                "Neighborhood": "South of Market",
+                "Hours_of_Operation": "Mon-Fri – 11:30 am to 6:30 pm ",
+                "Latitude": "37.7714123",
+                "Longitude": "-122.4225748"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4225748,
+                    37.7714123
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Myrtle St. and Larkin St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT18<br>Neighborhood: Tenderloin<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.785563<br>Longitude: -122.418094",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT18",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.785563",
+                "Longitude": "-122.418094"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.418094,
+                    37.785563
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Grove St. and Larkin St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT19<br>Neighborhood: Civic Center<br>Hours of Operation: Daily - 9 am to 8 pm<br>Latitude: 37.7787168<br>Longitude: -122.4167517",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT19",
+                "Neighborhood": "Civic Center",
+                "Hours_of_Operation": "Daily - 9 am to 8 pm",
+                "Latitude": "37.7787168",
+                "Longitude": "-122.4167517"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4167517,
+                    37.7787168
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "133 Golden Gate Ave.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT20<br>Neighborhood: Tenderloin<br>Hours of Operation: Mon-Fri – 2 pm to 9 pm; Sat – 9 am to 4 pm<br>Latitude: 37.781952<br>Longitude: -122.412797",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT20",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "Mon-Fri – 2 pm to 9 pm; Sat – 9 am to 4 pm",
+                "Latitude": "37.781952",
+                "Longitude": "-122.412797"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.412797,
+                    37.781952
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "24th St. and Mission St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT21<br>Neighborhood: Mission<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.752152<br>Longitude: -122.418807",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT21",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.752152",
+                "Longitude": "-122.418807"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.418807,
+                    37.752152
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Embarcadero Plaza",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT22<br>Neighborhood: Financial District<br>Hours of Operation: Daily – 9 am to 8 pm<br>Latitude: 37.794809<br>Longitude: -122.394661",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT22",
+                "Neighborhood": "Financial District",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm",
+                "Latitude": "37.794809",
+                "Longitude": "-122.394661"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.394661,
+                    37.794809
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Market St. and Castro St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT23<br>Neighborhood: Castro<br>Hours of Operation: Daily – 9 am to 8 pm <br>Latitude: 37.7627732<br>Longitude: -122.4348053",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT23",
+                "Neighborhood": "Castro",
+                "Hours_of_Operation": "Daily – 9 am to 8 pm ",
+                "Latitude": "37.7627732",
+                "Longitude": "-122.4348053"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4348053,
+                    37.7627732
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Mission St. and Sycamore St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT24<br>Neighborhood: Mission<br>Hours of Operation: Mon-Fri – 12:30 pm to 7:30 pm<br>Latitude: 37.7627254<br>Longitude: -122.419517",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT24",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "Mon-Fri – 12:30 pm to 7:30 pm",
+                "Latitude": "37.7627254",
+                "Longitude": "-122.419517"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.419517,
+                    37.7627254
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Victoria Manalo Draves Park: Sherman St. between Folsom and Harrison St.",
+                "description": "Site Type: Pit Stop<br>Date Available: <br>Label: PT25<br>Neighborhood: South of Market<br>Hours of Operation: Mon-Fri – 8 am to 4 pm; Sat-Sun –  9 am to 5 pm<br>Latitude: 37.7767602<br>Longitude: -122.4060242",
+                "Site_Type": "Pit Stop",
+                "Date_Available": "",
+                "Label": "PT25",
+                "Neighborhood": "South of Market",
+                "Hours_of_Operation": "Mon-Fri – 8 am to 4 pm; Sat-Sun –  9 am to 5 pm",
+                "Latitude": "37.7767602",
+                "Longitude": "-122.4060242"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4060242,
+                    37.7767602
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Willow St. and Polk St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW01<br>Neighborhood: Tenderloin<br>Hours of Operation: 24\/7<br>Latitude: 37.783608<br>Longitude: -122.419146",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW01",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.783608",
+                "Longitude": "-122.419146"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.419146,
+                    37.783608
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Hemlock St. and Van Ness Ave.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW02<br>Neighborhood: Lower Nob Hill<br>Hours of Operation: 24\/7<br>Latitude: 37.787302<br>Longitude: -122.421611",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW02",
+                "Neighborhood": "Lower Nob Hill",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.787302",
+                "Longitude": "-122.421611"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.421611,
+                    37.787302
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "527 5th St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW03<br>Neighborhood: South of Market<br>Hours of Operation: 24\/7<br>Latitude: 37.777847<br>Longitude: -122.399892",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW03",
+                "Neighborhood": "South of Market",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.777847",
+                "Longitude": "-122.399892"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.399892,
+                    37.777847
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "UN Plaza: Leavenworth St. and McAllister St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW04<br>Neighborhood: Tenderloin<br>Hours of Operation: 24\/7<br>Latitude: 37.781119<br>Longitude: -122.413637",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW04",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.781119",
+                "Longitude": "-122.413637"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.413637,
+                    37.781119
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Ashbury St. and Haight St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW05<br>Neighborhood: Haight Ashbury<br>Hours of Operation: 24\/7<br>Latitude: 37.770096<br>Longitude: -122.447006",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW05",
+                "Neighborhood": "Haight Ashbury",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.770096",
+                "Longitude": "-122.447006"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.447006,
+                    37.770096
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Barneveld Ave. and Loomis St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW06<br>Neighborhood: Produce Market<br>Hours of Operation: 24\/7<br>Latitude: 37.743924<br>Longitude: -122.403311",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW06",
+                "Neighborhood": "Produce Market",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.743924",
+                "Longitude": "-122.403311"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.403311,
+                    37.743924
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Florida St. and 17th St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW07<br>Neighborhood: Mission<br>Hours of Operation: 24\/7<br>Latitude: 37.76424<br><br>Longitude: -122.411313<br>",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW07",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.76424\n",
+                "Longitude": "-122.411313\n"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.411313,
+                    37.76424
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "456 Winston Dr.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW08<br>Neighborhood: Stonestown<br>Hours of Operation: 24\/7<br>Latitude: 37.728937<br>Longitude: -122.479981",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW08",
+                "Neighborhood": "Stonestown",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.728937",
+                "Longitude": "-122.479981"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.479981,
+                    37.728937
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "3565 16th St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW09<br>Neighborhood: Castro<br>Hours of Operation: 24\/7<br>Latitude: 37.764535<br>Longitude: -122.432311",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW09",
+                "Neighborhood": "Castro",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.764535",
+                "Longitude": "-122.432311"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.432311,
+                    37.764535
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Market St. and Steuart St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/8\/2020<br>Label: HW10<br>Neighborhood: Financial District<br>Hours of Operation: 24\/7<br>Latitude: 37.794652<br>Longitude: -122.394837",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/8\/2020",
+                "Label": "HW10",
+                "Neighborhood": "Financial District",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.794652",
+                "Longitude": "-122.394837"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.394837,
+                    37.794652
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Ellis St. and Taylor St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW11<br>Neighborhood: Tenderloin<br>Hours of Operation: 24\/7<br>Latitude: 37.785096<br>Longitude: -122.4111285",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW11",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.785096",
+                "Longitude": "-122.4111285"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4111285,
+                    37.785096
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Turk St. and Leavenworth St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW12<br>Neighborhood: Tenderloin<br>Hours of Operation: 24\/7<br>Latitude: 37.782801<br>Longitude: -122.41404",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW12",
+                "Neighborhood": "Tenderloin",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.782801",
+                "Longitude": "-122.41404"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.41404,
+                    37.782801
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Mission St. and 9th St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW13<br>Neighborhood: South of Market<br>Hours of Operation: 24\/7<br>Latitude: 37.77624<br>Longitude: -122.4147195",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW13",
+                "Neighborhood": "South of Market",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.77624",
+                "Longitude": "-122.4147195"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4147195,
+                    37.77624
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Selby St. and Evans Ave.\n",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW14<br>Neighborhood: Central Waterfront<br>Hours of Operation: 24\/7<br>Latitude: 37.746267<br><br>Longitude: -122.394059<br>",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW14",
+                "Neighborhood": "Central Waterfront",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.746267\n",
+                "Longitude": "-122.394059\n"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.394059,
+                    37.746267
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "1550 Bryant St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW18<br>Neighborhood: Mission<br>Hours of Operation: 24\/7<br>Latitude: 37.76759853<br>Longitude: -122.4107024",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW18",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.76759853",
+                "Longitude": "-122.4107024"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.4107024,
+                    37.76759853
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Jackson St. and Powell St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW19<br>Neighborhood: Chinatown<br>Hours of Operation: 24\/7<br>Latitude: 37.795617<br>Longitude: -122.409882",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW19",
+                "Neighborhood": "Chinatown",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.795617",
+                "Longitude": "-122.409882"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.409882,
+                    37.795617
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Folsom St. and 23rd St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW20<br>Neighborhood: Mission<br>Hours of Operation: 24\/7<br>Latitude: 37.754129<br>Longitude: -122.414241",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW20",
+                "Neighborhood": "Mission",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.754129",
+                "Longitude": "-122.414241"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.414241,
+                    37.754129
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "1634 Armstrong Ave.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW15<br>Neighborhood: Bayview<br>Hours of Operation: 24\/7<br>Latitude: 37.72661926<br>Longitude: -122.3928714",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW15",
+                "Neighborhood": "Bayview",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.72661926",
+                "Longitude": "-122.3928714"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.3928714,
+                    37.72661926
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Thomas Ave. and Hawes St. ",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW16<br>Neighborhood: Hunters Point<br>Hours of Operation: 24\/7<br>Latitude: 37.726187<br>Longitude: -122.383823",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW16",
+                "Neighborhood": "Hunters Point",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.726187",
+                "Longitude": "-122.383823"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.383823,
+                    37.726187
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Carroll Ave. and Ingalls St.",
+                "description": "Site Type: Hand Washing Station<br>Date Available: 3\/12\/2020<br>Label: HW17<br>Neighborhood: Bayview<br>Hours of Operation: 24\/7<br>Latitude: 37.722861<br>Longitude: -122.389632",
+                "Site_Type": "Hand Washing Station",
+                "Date_Available": "3\/12\/2020",
+                "Label": "HW17",
+                "Neighborhood": "Bayview",
+                "Hours_of_Operation": "24\/7",
+                "Latitude": "37.722861",
+                "Longitude": "-122.389632"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.389632,
+                    37.722861
+                ]
+            }
+        }
+    ]
+}

@@ -61,7 +61,11 @@ img {
 }
 
 figure {
-	margin: 24px 0; /* Extra wide images within figure tags don't overflow the content area. */
+	margin: auto auto; /* Extra wide images within figure tags don't overflow the content area. */
+
+	img {
+		margin: auto auto;
+	}
 }
 
 figcaption {

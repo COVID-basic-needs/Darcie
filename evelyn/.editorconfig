@@ -14,7 +14,7 @@ tab_width = 4
 
 [*.{json,txt,js}]
 indent_style = space
-indent_size = 2
+indent_size = 4
 
 [*.txt]
 end_of_line = crlf
