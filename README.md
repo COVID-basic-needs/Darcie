@@ -2,16 +2,52 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Akeem Seymens’ & Max Stuart’s 2020 Portfolio Project Proposal
+## Akeem Seymens’ & Max Stuart’s 2020 Portfolio Project (Holberton School)
 
 VACS is an automated phone line anyone can call to find human services near them, such as free food, legal assistance, non-emergency medical help, and more.
 
-## SubComponents
+### Contributing, Branching, & Forking
 
-- Audio Frontend (NodeJS)
-- REST API (Python)
-- Visual Frontend Admin Dashboard (rTail + Express)
-- Database of State Management & History (Redis)
+While we actively accept help, as well as encourage you to fork this repo and build it out for your city, we do not take pull requests directly to this repo - please contact us before you plan to do so. Reach out to:
+
+max@sheltertech.org , akeem@sheltertech.org , or apply to be a core sheltertech volunteer at http://apply.sfsg.us/
+
+### SubComponents
+
+![Darcie-VACS Infrastructure Diagram (2020 March 20th)](misc/Darcie%20VACS%20Infrastructure.png)
+
+_(see below headers for more information on each)_
+
+1. Service Orchestration Engine on Google Cloud Platform (GCP) App Engine
+2. Extraneous routes on GCP Cloud Functions
+3. Nginx & rTail Docker containers running on a CGP Compute Engine VM
+4. Frontend Landing Page hosted on GCP Storage Bucket
+
+## 1. Service Orchestration Engine on Google Cloud Platform App Engine
+
+ * `soe/server.js` contains all the NodeJS code that runs on the App Engine Flexible Environment
+ * `soe/package.json` defines the Node environment for the App Engine
+ * `soe/app.yaml` defines the VM environment for the App Engine
+
+### `server.js` contains the routes:
+ * `/event`
+ * `wss://.../socket`
+ * `/text_sms`
+
+#### It is set up for GCP App Engine or local deployment, either of which require the environmental variables & secrets:
+ * `private.key` Nexmo Vonage API key (phone service)
+ * `google_creds.json` GCP account credentials
+ * `app.yaml` App Engine setup instructions (GCP App Engine DEPLOYMENT ONLY. Sample in `example.app.yaml`)
+ * `.env` NodeJS Environment Variables (LOCAL DEPLOYMENT ONLY. Sample in `example.env`)
+
+GCP App Engine deployment is done via console commands `gcloud app deploy` ...more info TK
+
+## 2. Extraneous routes on GCP Cloud Functions
+## 3. Nginx & rTail Docker containers running on a CGP Compute Engine VM
+## 4. Frontend Landing Page hosted on GCP Storage Bucket
+
+* Visual Frontend Admin Dashboard (rTail + Express)
+* Database of State Management & History (Firestore)
 
 ## Audio Frontend
 
