@@ -36,7 +36,7 @@ const nexmo = new Nexmo({
     applicationId: process.env.NEXMO_APP_ID,
     privateKey: process.env.PRIVATE_KEY || './private.key'
 });
-const voiceName = process.env.VOICE_NAME || 'Eric';
+const voiceName = process.env.VOICE_NAME || 'Salli';
 
 
 app.use(bodyParser.json());
