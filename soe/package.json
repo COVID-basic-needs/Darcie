@@ -23,9 +23,11 @@
     "rtail": "^0.2.1"
   },
   "devDependencies": {
+    "algoliasearch": "^4.1.0",
     "axios": "^0.19.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "got": "^10.6.0",
     "jest": "^25.1.0"
   },
   "engines": {
