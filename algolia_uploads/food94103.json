@@ -1,0 +1,205 @@
+[
+    {
+        "objectID": "Bessie Carmichael Transitional Pop-Up",
+        "category": "Food",
+        "address": "375 7th Street",
+        "service": "Food Pantry",
+        "hours": "Thursday 10:00 am to 1:00 pm"
+    },
+    {
+        "objectID": "City Life Church",
+        "category": "Food",
+        "address": "160 6th Street",
+        "service": "Food Pantry",
+        "hours": "Saturday 1:30pm to 2:30pm"
+    },
+    {
+        "objectID": "Bayanihan Equity Center",
+        "category": "Food",
+        "address": "1010 Mission Street",
+        "service": "Food Pantry",
+        "hours": "Thursday 1:00pm to 2:30pm"
+    },
+    {
+        "objectID": "Grace Fellowship Community Church",
+        "category": "Food",
+        "address": "3265 16th Street",
+        "service": "Food Pantry",
+        "hours": "Saturday 1:30pm to 2:30pm"
+    },
+    {
+        "objectID": "The Women's Building",
+        "category": "Food",
+        "address": "3543 18th Street",
+        "service": "Food Pantry",
+        "hours": "Monday 9:10am to 10:00am"
+    },
+    {
+        "objectID": "Mission High School Transitional Pop-Up",
+        "category": "Food",
+        "address": "3750 18th Street",
+        "service": "Food Pantry",
+        "hours": "Thursday 10:00am to 1:00pm"
+    },
+    {
+        "objectID": "Cesar Chavez Elementary Transitional Pop-Up",
+        "category": "Food",
+        "address": "825 Shotwell Street",
+        "service": "Food Pantry",
+        "hours": "Tuesday 10:00am to 1:00pm"
+    },
+    {
+        "objectID": "Rosa Parks Elementary School Transitional Pop-up",
+        "category": "Food",
+        "address": "1501 O'Farrell Street",
+        "service": "Food Pantry",
+        "hours": "Wednesday 10:00am to 1:00pm"
+    },
+    {
+        "objectID": "Bethel Christian Church",
+        "category": "Food",
+        "address": "1325 Valencia Street",
+        "service": "Food Pantry",
+        "hours": "Saturday 9:00am to 10:00am"
+    },
+    {
+        "objectID": "St. Agnes & St. Ignatius Community Food Pantry",
+        "category": "Food",
+        "address": "1025 Masonic Ave",
+        "service": "Food Pantry",
+        "hours": "Thursday 1:30pm to 3:00pm"
+    },
+    {
+        "objectID": "St. Andrew MB Church",
+        "category": "Food",
+        "address": "2565 Post Street",
+        "service": "Food Pantry",
+        "hours": "Wednesday 9:00am to 10:00am"
+    },
+    {
+        "objectID": "Francisco Middle School Transitional Pop-Up",
+        "category": "Food",
+        "address": "2190 Powell Street",
+        "service": "Food Pantry",
+        "hours": "Thursday 10:00am to 1:00pm"
+    },
+    {
+        "objectID": "New Life Lutheran Church",
+        "category": "Food",
+        "address": "395 Addison Street",
+        "service": "Food Pantry",
+        "hours": "Saturday 9:00am to 9:35am"
+    },
+    {
+        "objectID": "Bayview Opera House Transitional Pop-Up",
+        "category": "Food",
+        "address": "4705 Third Street",
+        "service": "Food Pantry",
+        "hours": "Monday 10:00am to 2:00pm"
+    },
+    {
+        "objectID": "Cornerstone Evangelical Baptist Church",
+        "category": "Food",
+        "address": "801 Silver Avenue",
+        "service": "Food Pantry",
+        "hours": "Saturday 10:15am to 11:35am"
+    },
+    {
+        "objectID": "Oakdale NGN",
+        "category": "Food",
+        "address": "1065 Oakdale Avenue",
+        "service": "Food Pantry",
+        "hours": "Friday 1:00pm to 2:00pm"
+    },
+    {
+        "objectID": "James Denman Middle School Transitional Pop-Up",
+        "category": "Food",
+        "address": "241 Oneida Street",
+        "service": "Food Pantry",
+        "hours": "Wednesday 10:00am to 1:00pm"
+    },
+    {
+        "objectID": "Vis Valley APA Fam. Transitional Pop-up",
+        "category": "Food",
+        "address": "50 Raymond Avenue",
+        "service": "Food Pantry",
+        "hours": "Friday 11:00am to 3:00pm"
+    },
+    {
+        "objectID": "Lincoln High School Transitional Pop-Up",
+        "category": "Food",
+        "address": "2162 24th Avenue",
+        "service": "Food Pantry",
+        "hours": "Friday 10:00am to 1:00pm"
+    },
+    {
+        "objectID": "SF Community Fellowship",
+        "category": "Food",
+        "address": "1195 Geneva Avenue",
+        "service": "Food Pantry",
+        "hours": "Saturday 11:00am to 12:40pm"
+    },
+    {
+        "objectID": "Holy Trinity Greek Orthodox Church",
+        "category": "Food",
+        "address": "999 Brotherhood Way",
+        "service": "Food Pantry",
+        "hours": "Saturday 11:30am to 12:30pm"
+    },
+    {
+        "objectID": "The Father's House",
+        "category": "Food",
+        "address": "269 Herbst Road",
+        "service": "Food Pantry",
+        "hours": "Thursday 5:00pm to 6:00pm"
+    },
+    {
+        "objectID": "Central Tenderloin Neighborhood Pantry",
+        "category": "Food",
+        "address": "210 Golden Gate Avenue",
+        "service": "Food Pantry",
+        "hours": "Thursday 1:15pm to 2:15pm"
+    },
+    {
+        "objectID": "El Mercadito de la Voz",
+        "category": "Food",
+        "address": "456 Ellis Street",
+        "service": "Food Pantry",
+        "hours": "Monday 3:00pm to 4:30pm"
+    },
+    {
+        "objectID": "Southeast Asian Community Center",
+        "category": "Food",
+        "address": "875 O'Farrell Street",
+        "service": "Food Pantry",
+        "hours": "Friday 8:30am to 11:00am"
+    },
+    {
+        "objectID": "Iglesia Presbiteriana de la Mision",
+        "category": "Food",
+        "address": "3261 23rd Street",
+        "service": "Food Pantry",
+        "hours": "Friday 8:10am to 9:10am"
+    },
+    {
+        "objectID": "Chinatown Community Pantry",
+        "category": "Food",
+        "address": "925 Stockton Street",
+        "service": "Food Pantry",
+        "hours": "Monday 1:50pm to 3:10pm"
+    },
+    {
+        "objectID": "True Sunshine Episcopal Church",
+        "category": "Food",
+        "address": "1430 Mason Street",
+        "service": "Food Pantry",
+        "hours": "Saturday 11:30am to 1:00pm"
+    },
+    {
+        "objectID": "Richmond District YMCA",
+        "category": "Food",
+        "address": "360 18th Avenue",
+        "service": "Food Pantry",
+        "hours": "Wednesday 10:45am to 11:45am"
+    }
+]
