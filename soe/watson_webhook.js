@@ -26,8 +26,7 @@ exports.watson_webhook = async (req, res) => {
             const lat_lng = body.results[0].geometry.location;
 
             // Algolia search the given category and location
-            await index.search('', {
-                filters: `category:${req.body.category}`,
+            await index.search(req.body.category, {
                 aroundLatLng: `${lat_lng.lat}, ${lat_lng.lng}`,
                 hitsPerPage: 6,
                 attributesToHighlight: [],
