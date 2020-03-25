@@ -5,8 +5,8 @@
 //   https://console.cloud.google.com/functions/list?project=vacs-1581499154312
 
 const algoliasearch = require("algoliasearch");
-const addDays = require('date-fns/addDays');
-const utcToZonedTime = require('date-fns-tz/utcToZonedTime');
+// const addDays = require('date-fns/addDays');
+// const utcToZonedTime = require('date-fns-tz/utcToZonedTime');
 const got = require('got');
 const index = algoliasearch(
     process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_KEY
@@ -27,29 +27,26 @@ exports.watson_webhook = async (req, res) => {
 
             // Algolia search the given category and location
             await index.search('', {
+                filters: `category:${req.body.category}`,
                 aroundLatLng: `${lat_lng.lat}, ${lat_lng.lng}`,
                 hitsPerPage: 6,
                 attributesToHighlight: [],
-                attributesToRetrieve: ['address', 'service', 'hours', '_geoloc']
+                attributesToRetrieve: ['*']
             }).then(({ hits }) => {
+                let formattedNameList = '';
+                let i = 1;
+                // formats the service names in the algolia_results for reading to the caller
+                hits.forEach(singleResult => {
+                    formattedNameList += ` ${i}. ` + singleResult.service + ' at ' + singleResult.address + ',';
+                    i++;
+                });
                 // if there's no caller phone number, we are debugging, so text Max
                 if (!req.body.caller_phone) {
-                    res.json({ hits, debug_phone: 5109935073, readable_phone: '5-1-0-9-9-3-5-0-7-3' });
+                    res.json({ hits, string: formattedNameList, debug_phone: 5109935073, readable_phone: '5-1-0-9-9-3-5-0-7-3' });
                 } else { // makes a readable phone number seperated by dashes
-                    res.json({ hits, readable_phone: req.body.caller_phone.split('').join('-') });
+                    res.json({ hits, string: formattedNameList, readable_phone: req.body.caller_phone.split('').join('-') });
                 }
             });
-            break;
-
-        case 'read_list': // formats the service names in the algolia_results for reading to the caller
-            let algoliaResults = await req.body.algolia_results.hits;
-            let formattedNameList = '';
-            let i = 1;
-            algoliaResults.forEach(singleResult => {
-                formattedNameList += ` ${i}. ` + singleResult.service + ' at ' + singleResult.address + ',';
-                i++;
-            });
-            res.json({ string: formattedNameList });
             break;
 
         case 'get_details': // takes a result_number and the algolia_results, then gets and formats more details on the numbered Service
