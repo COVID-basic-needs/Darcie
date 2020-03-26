@@ -36,7 +36,7 @@ const nexmo = new Nexmo({
     applicationId: process.env.NEXMO_APP_ID,
     privateKey: process.env.PRIVATE_KEY || './private.key'
 });
-const voiceName = process.env.VOICE_NAME || 'Eric';
+const voiceName = process.env.VOICE_NAME || 'Salli';
 
 
 app.use(bodyParser.json());
@@ -94,7 +94,9 @@ app.post('/text_sms', (req, res) => {
                 if (responseData.messages[0]['status'] === "0") {
                     console.log(`SMS SENT TO ${req.body.recipient}:
 ${req.body.message}`);
-                    db.collection('calls').doc(req.body.callUUID).set({ text_sent: true }, { merge: true });
+                    if (req.body.callUUID) {
+                        db.collection('calls').doc(req.body.callUUID).set({ text_sent: true }, { merge: true });
+                    }
                     res.json({ sent: true });
                 } else {
                     console.log(`ERROR ON SMS ATTEMPT TO ${req.body.recipient}: ${responseData.messages[0]['error-text']}`);

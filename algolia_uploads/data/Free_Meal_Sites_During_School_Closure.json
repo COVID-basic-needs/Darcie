@@ -1,0 +1,252 @@
+{
+    "type": "FeatureCollection",
+    "name": "Meal Service Locations",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "George Washington High School",
+                "description": "Address: 600 32nd Avenue , San Francisco, California 94121<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "600 32nd Avenue , San Francisco, California 94121",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Roosevelt Middle School",
+                "description": "Address: 460 Arguello Boulevard , San Francisco, California 94118<br>Start Date: 3\/18<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "460 Arguello Boulevard , San Francisco, California 94118",
+                "Start_Date": "3\/18",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Galileo Academy of Science & Technology",
+                "description": "Address: 1150 Francisco Street , San Francisco, California 94109<br>Start Date: 3\/18<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "1150 Francisco Street , San Francisco, California 94109",
+                "Start_Date": "3\/18",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Willie L. Brown Jr. Middle School",
+                "description": "Address: 2055 Silver Avenue , San Francisco, California 94124<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "2055 Silver Avenue , San Francisco, California 94124",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "June Jordan School for Equity",
+                "description": "Address: 325 La Grande Avenue , San Francisco, California 94112<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "325 La Grande Avenue , San Francisco, California 94112",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "James Denman Middle School",
+                "description": "Address: 241 Oneida Avenue , San Francisco, California 94112<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "241 Oneida Avenue , San Francisco, California 94112",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "A.P. Giannini Middle School",
+                "description": "Address: 3151 Ortega Street , San Francisco, California 94122<br>Start Date: 3\/18<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "3151 Ortega Street , San Francisco, California 94122",
+                "Start_Date": "3\/18",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Francisco Middle School",
+                "description": "Address: 2190 Powell Street , San Francisco, California 94133<br>Start Date: 3\/18<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "2190 Powell Street , San Francisco, California 94133",
+                "Start_Date": "3\/18",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Abraham Lincoln High School",
+                "description": "Address: 2162 24th Avenue , San Francisco, California 94116<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "2162 24th Avenue , San Francisco, California 94116",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Raoul Wallenberg Traditional High School",
+                "description": "Address: 40 Vega Street , San Francisco, California 94115<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "40 Vega Street , San Francisco, California 94115",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "San Francisco International High School",
+                "description": "Address: 655 De Haro Street , San Francisco, California 94107<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "655 De Haro Street , San Francisco, California 94107",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Mission High School",
+                "description": "Address: 3750 18th Street , San Francisco, California 94114<br>Start Date: 3\/17<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "3750 18th Street , San Francisco, California 94114",
+                "Start_Date": "3\/17",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "James Lick Middle School",
+                "description": "Address: 1220 Noe Street , San Francisco, California 94114<br>Start Date: 3\/18<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "1220 Noe Street , San Francisco, California 94114",
+                "Start_Date": "3\/18",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Dr. George Washington Carver Elementary School",
+                "description": "Address: 1360 Oakdale Avenue , San Francisco, California 94124<br>Start Date: 3\/19<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "1360 Oakdale Avenue , San Francisco, California 94124",
+                "Start_Date": "3\/19",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Bret Harte Elementary School",
+                "description": "Address: 1035 Gilman Avenue , San Francisco, California 94124<br>Start Date: 3\/18<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "1035 Gilman Avenue , San Francisco, California 94124",
+                "Start_Date": "3\/18",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Bessie Carmichael School PreK-8 Filipino Education Center (PreK-5 Campus)",
+                "description": "Address: 375 7th Street , San Francisco, California 94103<br>Start Date: 3\/19<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "375 7th Street , San Francisco, California 94103",
+                "Start_Date": "3\/19",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Gordon J. Lau Elementary School",
+                "description": "Address: 950 Clay Street , San Francisco, California 94108<br>Start Date: 3\/19<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "950 Clay Street , San Francisco, California 94108",
+                "Start_Date": "3\/19",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Cesar Chavez Elementary School",
+                "description": "Address: 825 Shotwell Street , San Francisco, California 94110<br>Start Date: 3\/19<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "825 Shotwell Street , San Francisco, California 94110",
+                "Start_Date": "3\/19",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Rosa Parks Elementary School",
+                "description": "Address: 1501 O'Farrell St, San Francisco, CA 94115<br>Start Date: 3\/19<br>Service Days: M-F<br>Service Hours: 9:00-10:00am",
+                "Address": "1501 O'Farrell St, San Francisco, CA 94115",
+                "Start_Date": "3\/19",
+                "Service_Days": "M-F",
+                "Service_Hours": "9:00-10:00am"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Name": "Ship Shape Community Center",
+                "description": "Address: 850 Ave I<br>Start Date: 3\/20<br>Service Days: Tues + Fri<br>Service Hours: 10:30-11:30am",
+                "Address": "850 Ave I",
+                "Start_Date": "3\/20",
+                "Service_Days": "Tues + Fri",
+                "Service_Hours": "10:30-11:30am"
+            },
+            "geometry": null
+        }
+    ]
+}

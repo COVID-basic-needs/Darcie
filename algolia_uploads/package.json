@@ -1,0 +1,23 @@
+{
+  "name": "algolia_uploads",
+  "version": "0.1.0",
+  "description": "node for uploading json to Algolia as the database for Darcie to search through",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShelterTechSF/VACS-MVP.git"
+  },
+  "author": "Akeem Seymens & Max Stuart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShelterTechSF/VACS-MVP/issues"
+  },
+  "homepage": "https://github.com/ShelterTechSF/VACS-MVP#readme",
+  "dependencies": {
+    "@google-cloud/firestore": "^3.7.0",
+    "algoliasearch": "^4.1.0",
+    "axios": "^0.19.2",
+    "body-parser": "^1.18.3",
+    "dotenv": "^8.2.0",
+    "got": "^10.6.0"
+  }
+}

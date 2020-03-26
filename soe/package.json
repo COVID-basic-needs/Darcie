@@ -15,6 +15,7 @@
   "dependencies": {
     "@google-cloud/firestore": "^3.7.0",
     "@google-cloud/speech": "^2.3.0",
+    "axios": "^0.19.2",
     "body-parser": "^1.18.3",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
@@ -23,9 +24,10 @@
     "rtail": "^0.2.1"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "algoliasearch": "^4.1.0",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "got": "^10.6.0",
     "jest": "^25.1.0"
   },
   "engines": {
