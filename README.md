@@ -10,7 +10,7 @@ Read more and watch a live stream of the conversations at [darcie.me](http://dar
 
 ### COVID-19 Update
 
-Darcie was intended to pull from all services listed in the [SF Service Guide](https://sfserviceguide.org), however in the current times the format of the data in that database (a.k.a. [AskDarcel on github](https://github.com/sheltertechsf/askdarcel-api)) made it hard to keep the information up to date considering everyone's hours and service offerings changing.
+Darcie was intended to pull from all services listed in the [SF Service Guide](https://sfserviceguide.org), however in the current times the format of the data in that database (a.k.a. [AskDarcel on github](https://github.com/sheltertechsf/askdarcel-api)) made it hard to keep the information up to date with service hours & offerings changing.
 
 We pivoted Darcie to pull from a seperate Algolia index which consists of all hygiene stations & places handing out food in SF. The dialog & webhook have been adopted accordingly.
 
@@ -40,7 +40,7 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 
 #### Phone Connection > Speech-To-Text > IBM Watson > Text-To-Speech > Phone Connection
 
-0. someone calls the Vonage Nexmo number
+0. Someone calls the Vonage Nexmo number
 1. the Nexmo API queries the `/ncco` watson_webhook Cloud Function for further instructions
 2. the App Engine receives the phone call via websocket
 3. the App Engine prompts IBM Watson to start a new conversation session
@@ -53,6 +53,12 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 9b. if called, the Watson Webhook queries the Algolia Index and Google Maps API for information
 10. IBM Watson sends response text to the App Engine
 11. the App Engine repeats step 5. and continues to listen & repeat the remaining steps until the user chooses to have a text SMS sent to them, after confirming or collecting the phone number IBM Watson queries the Watson Webhook to format the text message which sends the text to the App Engine for routing to Nexmo.
+
+### B. Landing Page
+
+#### Static Files & rTail Embed
+
+The landing page is currently set up to be generated on a local machine via 
 
 ## 1. GCP App Engine: Service Orchestration Engine
 
@@ -71,25 +77,55 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 
 We used the demo app as a base to get the transcription of a Nexmo phone call using Google Speech-to-Text API.
 
-An audio stream is sent via websocket connection to a server and then relayed to the Google streaming interface. Speech recognition is performed and the text returned to the server's console.
+An audio stream is sent via websocket connection to a server and then relayed to the Google streaming interface. Speech recognition is performed and the text returned to the .
 
 #### Setup for either GCP App Engine or local deployment requires environmental variables & secrets:
 
- * `private.key` Nexmo Vonage API key (phone service)
- * `google_creds.json` GCP account credentials
-   * You will need to set up a [Google Cloud project and service account](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
-   * Once these steps are completed, you will have a downloaded JSON file to set up the rest of the project.
-   * You will need this gcloud JSON file prior to running the app, so make sure it is saved in the project folder.
- * `app.yaml` App Engine setup instructions (GCP App Engine DEPLOYMENT ONLY. Sample in `example.app.yaml`)
- * `.env` NodeJS Environment Variables (LOCAL DEPLOYMENT ONLY. Sample in `example.env`)
+* `private.key` Vonage Nexmo API key (phone service)
+  * This is the key linking the Nexmo-cli to the nexmo app on their server, which recieves the calls
+  * visit https://dashboard.nexmo.com/sign-up and start a trial
+  * create a new Nexmo application to get a phone_number, app_id, api_secret, & api_key. if you do so via the dashboard, put the app's `answer_url` (`/ncco`) and `event_url` (`/events`) into the Nexmo dashboard for your application
+  * alternatively, if you can set it up via the CLI, [instructions here](https://github.com/nexmo-community/voice-google-speechtotext-js#linking-the-app-to-nexmo)
+* `google_creds.json` GCP account credentials
+  * You will need to set up a [Google Cloud project and service account](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
+  * Once these steps are completed, you will have a downloaded JSON file to set up the rest of the project.
+  * You will need this gcloud JSON file prior to running the app, so make sure it is saved in the project folder.
+* `app.yaml` App Engine setup instructions
+  * GCP App Engine DEPLOYMENT ONLY
+  * Sample in `example.app.yaml`
+* `.env` NodeJS Environment Variables
+  * LOCAL DEPLOYMENT ONLY
+  * Sample in `example.env`
 
-GCP App Engine deployment is done via console commands `gcloud app deploy` ...more info TK
+__GCP App Engine deployment__ is done via console commands. Ensure you have installed `gcloud` and are logged in as a member of the team with appropriate permissions. Then, from within `soe/`, run `gcloud app deploy`
+
+__Local testing/development deployment__ is done via `npm`. Ensure you have `node` and `npm` installed, then run
+```sh
+$ NODE_ENV=development npm install
+$ NODE_ENV=development npm start
+```
+
+Tools like [ngrok](https://ngrok.com/) are great for exposing ports on your local machine to the internet. If you haven't done this before, [check out Nexmo's ngrok guide](https://www.nexmo.com/blog/2017/07/04/local-development-nexmo-ngrok-tunnel-dr/). Then put that hostname in the corresponding routes in the Nexmo application.
 
 ## 2. GCP Cloud Functions: Extraneous Routes
 
 ## 3. CGP Compute Engine VM: Nginx & rTail Docker containers
 
 ## 4. GCP Storage Bucket: [darcie.me](http://darcie.me) Landing Page
+
+### Forked from Evelyn landing page template
+
+#### Getting started
+
+* First, ensure that node.js & npm are both installed. If not, choose your OS and installation method from [this page](https://nodejs.org/en/download/package-manager/) and follow the instructions.
+* Next, use your command line to enter your project directory.
+* This template comes with a ready-to-use package file called `package-sample.json`. You just need to rename it to `package.json`, then run `npm install` to install all of the dependencies into your project.
+
+You're ready to go! Run any task by typing `npm run task` (where "task" is the name of the task in the `"scripts"` object). The most useful task for rapid development is `watch`. It will start a new server, open up a browser and watch for any SCSS or JS changes in the `src` directory; once it compiles those changes, the browser will automatically inject the changed file(s)!
+
+#### Deploying for Darcie.me
+
+Once the updated files have been built locally, you can drag and drop `evelyn/index.html` and `evelyn/dist/` into the GCP Storage Bucket for the project
 
 ## 5. IBM Watson Dialog
 
@@ -99,71 +135,11 @@ Wishlist:
 * Visual Frontend Admin Dashboard (rTail + Express)
 * Database of State Management & History (Firestore)
 
-## Setting Up the App (w/ your unique Environmental Variables)
-
-In the project folder, you need to fill out:
-
-- `.env` (example provided in `example.env`)
-
-- `google_creds.json` (recieved from setting up the gcloud project & defined in `.env`)
-
-- `private.key` (the key linking your Nexmo-cli to the nexmo app on their server, which recieves the calls. We'll get this from the next step)
-
-### Linking the App to Nexmo
-
-You will need to create a new Nexmo application in order to work with this app:
-
-#### Create a Nexmo Application Using the Command Line Interface
-
-Install the CLI by following [these instructions](https://github.com/Nexmo/nexmo-cli#installation). Then create a new Nexmo application that also sets up your `answer_url` and `event_url` for the app running locally on your machine.
-
-```sh
-nexmo app:create google-speech-to-text http://<your_hostname>/ncco http://<your_hostname>/event
-```
-
-This will return an application ID. Make a note of it.
-
-Tools like [ngrok](https://ngrok.com/) are great for exposing ports on your local machine to the internet. If you haven't done this before, [check out this guide](https://www.nexmo.com/blog/2017/07/04/local-development-nexmo-ngrok-tunnel-dr/). Then put that hostname in the <your_hostname> parts of the code snippit above.
-
-#### Link the Virtual Number to the Application
-
-Finally, link your new number to the application you created by running:
-
-```sh
-nexmo link:app YOUR_NUMBER YOUR_APPLICATION_ID
-```
-
 ## Running the App
 
-### Using Docker (Recommended)
+### Connecting Necessary Components
 
-To run the app using Docker run the following command in your terminal from the project folder:
-
-```sh
-docker-compose up --build
-```
-
-This will create a new image with all the dependencies and run it at <http://localhost:8000.>
-
-If it worked, you won't see much, but you can double check if the container is running by entering `docker ps`
-
-### Alternative Local Install (using Node & NPM)
-
-To run this on your machine you'll need an up-to-date version of Node. Visit nodejs.org for version for your OS.
-
-First, install the dependencies by executing this from the project folder:
-
-```sh
-npm install
-```
-
-Then, start the server with:
-
-```sh
-node server.js
-```
-
-If it worked, you should see `Example app listening on port 8000!` printed to the console.
+Depending on what part you're testing/changing/developing, you may or may not need to connect everything - pick and choose from the setup instructions in the preceding numbered sections.
 
 ### Call it
 
