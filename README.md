@@ -26,13 +26,13 @@ max@sheltertech.org , akeem@sheltertech.org , or apply to be a core sheltertech 
 
 _(see below headers for more information on each. GCP = Google Cloud Platform)_
 
-0. Overall Information Flow
-1. GCP App Engine: Service Orchestration Engine
-2. GCP Cloud Functions: Extraneous Routes
-3. CGP Compute Engine VM: Nginx & rTail Docker containers
-4. GCP Storage Bucket: [darcie.me](http://darcie.me) Landing Page
-5. IBM Watson Dialog
-6. Algolia Index (Temporary COVID-19 Database)
+0. [Overall Information Flow](#0-overall-information-flow)
+1. [GCP App Engine: Service Orchestration Engine](#1-gcp-app-engine-service-orchestration-engine)
+2. [GCP Cloud Functions: Extraneous Routes](#2-gcp-cloud-functions-extraneous-routes)
+3. [CGP Compute Engine VM: Nginx & rTail Docker containers](#3-gcp-compute-engine-vm-nginx-rtail-docker-containers)
+4. [GCP Storage Bucket: Darcie.me Landing Page](#4-gcp-storage-bucket-darcie-me-landing-page)
+5. [IBM Watson Dialog](#5-ibm-watson-dialog)
+6. [Algolia Index (Temporary COVID-19 Database)](#6-algolia-index-temporary-covid-19-database)
 
 ## 0. Overall Information Flow
 
