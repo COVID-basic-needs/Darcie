@@ -20,42 +20,21 @@ While we actively accept help, as well as encourage you to fork this repo and bu
 
 max@sheltertech.org , akeem@sheltertech.org , or apply to be a core sheltertech volunteer at [apply.sfsg.us](http://apply.sfsg.us)
 
-### SubComponents
+# SubComponents
 
 ![Darcie-VACS Infrastructure Diagram (2020 March 20th)](misc/Darcie%20VACS%20Infrastructure.png)
 
-_(see below headers for more information on each)_
+_(see below headers for more information on each. GCP = Google Cloud Platform)_
 
-1. Service Orchestration Engine on Google Cloud Platform (GCP) App Engine
-2. Extraneous routes on GCP Cloud Functions
-3. Nginx & rTail Docker containers running on a CGP Compute Engine VM
-4. Frontend Landing Page hosted on GCP Storage Bucket
+0. Overall Information Flow
+1. GCP App Engine: Service Orchestration Engine
+2. GCP Cloud Functions: Extraneous Routes
+3. CGP Compute Engine VM: Nginx & rTail Docker containers
+4. GCP Storage Bucket: [darcie.me](http://darcie.me) Landing Page
+5. IBM Watson Dialog
+6. Algolia Index (Temporary COVID-19 Database)
 
-## 1. Service Orchestration Engine on Google Cloud Platform App Engine
-
- * `soe/server.js` contains all the NodeJS code that runs on the App Engine Flexible Environment
- * `soe/package.json` defines the Node environment for the App Engine
- * `soe/app.yaml` defines the VM environment for the App Engine
-
-### `server.js` contains the routes:
- * `/event`
- * `wss://.../socket`
- * `/text_sms`
-
-#### It is set up for GCP App Engine or local deployment, either of which require the environmental variables & secrets:
- * `private.key` Nexmo Vonage API key (phone service)
- * `google_creds.json` GCP account credentials
- * `app.yaml` App Engine setup instructions (GCP App Engine DEPLOYMENT ONLY. Sample in `example.app.yaml`)
- * `.env` NodeJS Environment Variables (LOCAL DEPLOYMENT ONLY. Sample in `example.env`)
-
-GCP App Engine deployment is done via console commands `gcloud app deploy` ...more info TK
-
-## 2. Extraneous routes on GCP Cloud Functions
-## 3. Nginx & rTail Docker containers running on a CGP Compute Engine VM
-## 4. Frontend Landing Page hosted on GCP Storage Bucket
-
-* Visual Frontend Admin Dashboard (rTail + Express)
-* Database of State Management & History (Firestore)
+## 0. Overall Information Flow
 
 ## Audio Frontend
 
@@ -85,6 +64,39 @@ You will need to set up a [Google Cloud project and service account](https://clo
 Once these steps are completed, you will have a downloaded JSON file to set up the rest of the project.
 
 You will need this gcloud JSON file prior to running the app, so make sure it is saved in the project folder.
+
+## 1. GCP App Engine: Service Orchestration Engine
+
+ * `soe/server.js` contains all the NodeJS code that runs on the App Engine Flexible Environment
+ * `soe/package.json` defines the Node environment for the App Engine
+ * `soe/app.yaml` defines the VM environment for the App Engine
+
+### `server.js` contains the routes:
+ * `/event`
+ * `wss://.../socket`
+ * `/text_sms`
+
+#### It is set up for GCP App Engine or local deployment, either of which require the environmental variables & secrets:
+ * `private.key` Nexmo Vonage API key (phone service)
+ * `google_creds.json` GCP account credentials
+ * `app.yaml` App Engine setup instructions (GCP App Engine DEPLOYMENT ONLY. Sample in `example.app.yaml`)
+ * `.env` NodeJS Environment Variables (LOCAL DEPLOYMENT ONLY. Sample in `example.env`)
+
+GCP App Engine deployment is done via console commands `gcloud app deploy` ...more info TK
+
+## 2. GCP Cloud Functions: Extraneous Routes
+
+## 3. CGP Compute Engine VM: Nginx & rTail Docker containers
+
+## 4. GCP Storage Bucket: [darcie.me](http://darcie.me) Landing Page
+
+## 5. IBM Watson Dialog
+
+## 6. Algolia Index (Temporary COVID-19 Database)
+
+Wishlist:
+* Visual Frontend Admin Dashboard (rTail + Express)
+* Database of State Management & History (Firestore)
 
 ## Setting Up the App (w/ your unique Environmental Variables)
 
