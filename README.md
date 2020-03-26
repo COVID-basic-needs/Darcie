@@ -79,7 +79,7 @@ Output from live phone calls is displayed in the rTail web app embedded in that 
 
 We used the demo app as a base to get the transcription of a Nexmo phone call using Google Speech-to-Text API.
 
-An audio stream is sent via websocket connection to a server and then relayed to the Google streaming interface. Speech recognition is performed and the text returned to the .
+An audio stream is sent via websocket connection to the App Engine server and then relayed to the Google streaming interface. Speech recognition is performed and the text returned to the App Engine.
 
 #### Setup for either GCP App Engine or local deployment requires environmental variables & secrets:
 
@@ -101,7 +101,8 @@ An audio stream is sent via websocket connection to a server and then relayed to
 
 __GCP App Engine deployment__ is done via console commands. Ensure you have installed `gcloud` and are logged in as a member of the team with appropriate permissions. Then, from within `soe/`, run `gcloud app deploy`
 
-__Local testing/development deployment__ is done via `npm`. Ensure you have `node` and `npm` installed, then run
+__Local testing/development deployment__ is done via `npm`. Ensure you have `node` and `npm` installed, then run:
+
 ```sh
 $ NODE_ENV=development npm install
 $ NODE_ENV=development npm start
@@ -111,7 +112,23 @@ Tools like [ngrok](https://ngrok.com/) are great for exposing ports on your loca
 
 ## 2. GCP Cloud Functions: Extraneous Routes
 
+### `soe/ncco.js`
+
+see this file for more info
+
+### `soe/watson_webhook.js`
+
+see this file for more info
+
 ## 3. GCP Compute Engine VM: Nginx & rTail Docker containers
+
+Two Docker containers are on one Container-Optimized OS Virtual Machine where [darcel.rocks](https://darcel.rocks) is pointed.
+
+The Nginx Dockerfile is stock from [Docker Hub](https://hub.docker.io), its config is in `nginx.conf`.
+
+The rTail Dockerfile is in `rtail-server/Dockerfile`, its config is setup in the dockerfile.
+
+Contact [Max](mailto:max@sheltertech.org) if you need to know more or adjust that component.
 
 ## 4. GCP Storage Bucket: [Darcie.me](http://darcie.me) Landing Page
 
@@ -131,11 +148,22 @@ Once the updated files have been built locally, you can drag and drop `evelyn/in
 
 ## 5. IBM Watson Dialog
 
+Two Watson Assistants are on the Holberton School account, the [main one being here](https://us-south.assistant.watson.cloud.ibm.com/us-south/crn:v1:bluemix:public:conversation:us-south:a~2F4b9a11ac9e3a45bfb3895225fc9928bc:f5024ab3-c109-4054-991b-d6c099af72c2::/skills/04953d55-d382-443e-9bdf-7b14234fcc05/build/dialog)
+
+If forking and creating your own you can sign up at https://www.ibm.com/cloud/watson-assistant/
+
 ## 6. Algolia Index (Temporary COVID-19 Database)
 
-Wishlist:
-* Visual Frontend Admin Dashboard (rTail + Express)
-* Database of State Management & History (Firestore)
+We currently push JSON data gathered from APIs and web scraping San Francisco services still operating during COVID directly to an Algolia index for the project.
+
+If you'd like to help, contact [Max](mailto:max@sheltertech.org).
+
+If forking and creating your own you can sign up at https://www.algolia.com/users/sign_up
+
+## Wishlist:
+
+* API for pulling from the database of call history (Firestore)
+* Visual Frontend Admin Dashboard (GCP Monitoring & call history metrics)
 
 ## Running the App
 
