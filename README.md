@@ -49,10 +49,10 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 6. the App Engine listens to the spoken response
 7. the App Engine converts the speech to text via Google's STT API
 8. the App Engine sends the text to both IBM Watson for parsing as well as the rTail server for display
-9a. IBM Watson queries the Watson Webhook Cloud Function at appropriate stages in the conversation
-9b. if called, the Watson Webhook queries the Algolia Index and Google Maps API for information
-10. IBM Watson sends response text to the App Engine
-11. the App Engine repeats step 5. and continues to listen & repeat the remaining steps until the user chooses to have a text SMS sent to them, after confirming or collecting the phone number IBM Watson queries the Watson Webhook to format the text message which sends the text to the App Engine for routing to Nexmo.
+  a. IBM Watson queries the Watson Webhook Cloud Function at appropriate stages in the conversation
+  b. if called, the Watson Webhook queries the Algolia Index and Google Maps API for information
+9. IBM Watson sends response text to the App Engine
+10. the App Engine repeats step 5. and continues to listen & repeat the remaining steps until the user chooses to have a text SMS sent to them, after confirming or collecting the phone number IBM Watson queries the Watson Webhook to format the text message which sends the text to the App Engine for routing to Nexmo.
 
 ### B. Landing Page
 
