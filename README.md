@@ -20,19 +20,19 @@ While we actively accept help, as well as encourage you to fork this repo and bu
 
 max@sheltertech.org , akeem@sheltertech.org , or apply to be a core sheltertech volunteer at [apply.sfsg.us](http://apply.sfsg.us)
 
-# SubComponents
+# Components & Infrastructure
 
 ![Darcie-VACS Infrastructure Diagram (2020 March 20th)](misc/Darcie%20VACS%20Infrastructure.png)
-
-_(see below headers for more information on each. GCP = Google Cloud Platform)_
 
 0. [Overall Information Flow](#0-overall-information-flow)
 1. [GCP App Engine: Service Orchestration Engine](#1-gcp-app-engine-service-orchestration-engine)
 2. [GCP Cloud Functions: Extraneous Routes](#2-gcp-cloud-functions-extraneous-routes)
-3. [CGP Compute Engine VM: Nginx & rTail Docker containers](#3-gcp-compute-engine-vm-nginx-rtail-docker-containers)
-4. [GCP Storage Bucket: Darcie.me Landing Page](#4-gcp-storage-bucket-darcie-me-landing-page)
+3. [GCP Compute Engine VM: Nginx & rTail Docker containers](#3-gcp-compute-engine-vm-nginx--rtail-docker-containers)
+4. [GCP Storage Bucket: Darcie.me Landing Page](#4-gcp-storage-bucket-darcieme-landing-page)
 5. [IBM Watson Dialog](#5-ibm-watson-dialog)
 6. [Algolia Index (Temporary COVID-19 Database)](#6-algolia-index-temporary-covid-19-database)
+
+_(GCP = Google Cloud Platform)_
 
 ## 0. Overall Information Flow
 
@@ -111,9 +111,9 @@ Tools like [ngrok](https://ngrok.com/) are great for exposing ports on your loca
 
 ## 2. GCP Cloud Functions: Extraneous Routes
 
-## 3. CGP Compute Engine VM: Nginx & rTail Docker containers
+## 3. GCP Compute Engine VM: Nginx & rTail Docker containers
 
-## 4. GCP Storage Bucket: [darcie.me](http://darcie.me) Landing Page
+## 4. GCP Storage Bucket: [Darcie.me](http://darcie.me) Landing Page
 
 ### Forked from Evelyn landing page template
 
