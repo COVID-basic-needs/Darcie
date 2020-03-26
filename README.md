@@ -36,34 +36,23 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 
 ## 0. Overall Information Flow
 
-## Audio Frontend
+### A. Audio Frontend
 
-#### Phone Connection, Speech-To-Text, & Text-To-Speech
+#### Phone Connection > Speech-To-Text > IBM Watson > Text-To-Speech > Phone Connection
 
-The the non-visual frontend component will:
-
-1. receive phone calls
-2. play a welcome message, ask the first question, listen to the spoken response
-3. convert the speech to text via google's api
-4. send the converted text to the VACS-engine for parsing as well as the VACS-landingpage for display
-5. receive text from VACS-engine to play as speech
-6. continue to listen and repeat steps 3. through 7.
-
-#### Forked from Nexmo + Google Cloud Speech Transcription Demo
-
-<https://github.com/nexmo-community/voice-google-speechtotext-js>
-
-We used this app as a base to get the transcription of a phone call using Google Speech-to-Text API.
-
-An audio stream is sent via websocket connection to a server and then relayed to the Google streaming interface. Speech recognition is performed and the text returned to the server's console.
-
-#### Google Speech to Text API
-
-You will need to set up a [Google Cloud project and service account](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
-
-Once these steps are completed, you will have a downloaded JSON file to set up the rest of the project.
-
-You will need this gcloud JSON file prior to running the app, so make sure it is saved in the project folder.
+0. someone calls the Vonage Nexmo number
+1. the Nexmo API queries the `/ncco` watson_webhook Cloud Function for further instructions
+2. the App Engine receives the phone call via websocket
+3. the App Engine prompts IBM Watson to start a new conversation session
+4. IBM Watson returns the welcome message which includes asking the first question
+5. the App Engine sends the text to the Nexmo API to play as speech
+6. the App Engine listens to the spoken response
+7. the App Engine converts the speech to text via Google's STT API
+8. the App Engine sends the text to both IBM Watson for parsing as well as the rTail server for display
+9a. IBM Watson queries the Watson Webhook Cloud Function at appropriate stages in the conversation
+9b. if called, the Watson Webhook queries the Algolia Index and Google Maps API for information
+10. IBM Watson sends response text to the App Engine
+11. the App Engine repeats step 5. and continues to listen & repeat the remaining steps until the user chooses to have a text SMS sent to them, after confirming or collecting the phone number IBM Watson queries the Watson Webhook to format the text message which sends the text to the App Engine for routing to Nexmo.
 
 ## 1. GCP App Engine: Service Orchestration Engine
 
@@ -76,9 +65,21 @@ You will need this gcloud JSON file prior to running the app, so make sure it is
  * `wss://.../socket`
  * `/text_sms`
 
-#### It is set up for GCP App Engine or local deployment, either of which require the environmental variables & secrets:
+#### Forked from Nexmo + Google Cloud Speech Transcription Demo
+
+<https://github.com/nexmo-community/voice-google-speechtotext-js>
+
+We used the demo app as a base to get the transcription of a Nexmo phone call using Google Speech-to-Text API.
+
+An audio stream is sent via websocket connection to a server and then relayed to the Google streaming interface. Speech recognition is performed and the text returned to the server's console.
+
+#### Setup for either GCP App Engine or local deployment requires environmental variables & secrets:
+
  * `private.key` Nexmo Vonage API key (phone service)
  * `google_creds.json` GCP account credentials
+   * You will need to set up a [Google Cloud project and service account](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
+   * Once these steps are completed, you will have a downloaded JSON file to set up the rest of the project.
+   * You will need this gcloud JSON file prior to running the app, so make sure it is saved in the project folder.
  * `app.yaml` App Engine setup instructions (GCP App Engine DEPLOYMENT ONLY. Sample in `example.app.yaml`)
  * `.env` NodeJS Environment Variables (LOCAL DEPLOYMENT ONLY. Sample in `example.env`)
 
