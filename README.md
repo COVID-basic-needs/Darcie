@@ -1,16 +1,24 @@
-# Voice Automated City Services (VACS)
+# Darcie: A Voice Assistant for City Services (VACS)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Akeem Seymens’ & Max Stuart’s 2020 Portfolio Project (Holberton School)
 
-VACS is an automated phone line anyone can call to find human services near them, such as free food, legal assistance, non-emergency medical help, and more.
+Darcie is an automated phone line anyone can call to find human services near them, such as free food, legal assistance, non-emergency medical help, and more.
+
+Read more and watch a live stream of the conversations at [darcie.me](http://darcie.me)
+
+### COVID-19 Update
+
+Darcie was intended to pull from all services listed in the [SF Service Guide](https://sfserviceguide.org), however in the current times the format of the data in that database (a.k.a. [AskDarcel on github](https://github.com/sheltertechsf/askdarcel-api)) made it hard to keep the information up to date considering everyone's hours and service offerings changing.
+
+We pivoted Darcie to pull from a seperate Algolia index which consists of all hygiene stations & places handing out food in SF. The dialog & webhook have been adopted accordingly.
 
 ### Contributing, Branching, & Forking
 
 While we actively accept help, as well as encourage you to fork this repo and build it out for your city, we do not take pull requests directly to this repo - please contact us before you plan to do so. Reach out to:
 
-max@sheltertech.org , akeem@sheltertech.org , or apply to be a core sheltertech volunteer at http://apply.sfsg.us/
+max@sheltertech.org , akeem@sheltertech.org , or apply to be a core sheltertech volunteer at [apply.sfsg.us](http://apply.sfsg.us)
 
 ### SubComponents
 
