@@ -49,8 +49,8 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 6. the App Engine listens to the spoken response
 7. the App Engine converts the speech to text via Google's STT API
 8. the App Engine sends the text to both IBM Watson for parsing as well as the rTail server for display
-  a. IBM Watson queries the Watson Webhook Cloud Function at appropriate stages in the conversation
-  b. if called, the Watson Webhook queries the Algolia Index and Google Maps API for information
+  * IBM Watson queries the Watson Webhook Cloud Function at appropriate stages in the conversation
+  * if called, the Watson Webhook queries the Algolia Index and Google Maps API for information
 9. IBM Watson sends response text to the App Engine
 10. the App Engine repeats step 5. and continues to listen & repeat the remaining steps until the user chooses to have a text SMS sent to them, after confirming or collecting the phone number IBM Watson queries the Watson Webhook to format the text message which sends the text to the App Engine for routing to Nexmo.
 
@@ -58,7 +58,9 @@ _(see below headers for more information on each. GCP = Google Cloud Platform)_
 
 #### Static Files & rTail Embed
 
-The landing page is currently set up to be generated on a local machine via 
+When a user visits [darcie.me](http://darcie.me) the GCP DNS & Load Balancer serve the static content from the Cloud Storage Bucket.
+
+Output from live phone calls is displayed in the rTail web app embedded in that darcie landingpage. The complete rTail web app is viewable at [darcel.rocks](https://darcel.rocks) - the server running it is containerized on a GCP Compute Engine VM along with Nginx to allow for SSL & appropriate routing.
 
 ## 1. GCP App Engine: Service Orchestration Engine
 
