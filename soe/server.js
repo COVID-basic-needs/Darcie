@@ -139,16 +139,20 @@ app.ws('/socket', (ws, req) => { // Nexmo Websocket Handler.
         // TODO: parse watson response for DTMF request, send 'input' action to Nexmo in that case
 
         const watsonResponse = res.result.output.generic[0].text;
-        db.collection('calls').doc(callUUID).set({
-          dialog: { [`watson(${tik})`]: watsonResponse },
-          rawDialog: { [`watson(${tik})`]: res.result.output }
-        }, { merge: true });
-        console.log('Darcie:', watsonResponse);
-        await nexmo.calls.talk.start(legUUID, { // and send to Nexmo TTS
-          text: watsonResponse,
-          voice_name: voiceName
-        }, err => { if (err) console.log(err); }
-        );
+        if (watsonResponse === 'DTMF') {
+          
+        } else {
+          db.collection('calls').doc(callUUID).set({
+            dialog: { [`watson(${tik})`]: watsonResponse },
+            rawDialog: { [`watson(${tik})`]: res.result.output }
+          }, { merge: true });
+          console.log('Darcie:', watsonResponse);
+          await nexmo.calls.talk.start(legUUID, { // and send to Nexmo TTS
+            text: watsonResponse,
+            voice_name: voiceName
+          }, err => { if (err) console.log(err); }
+          );
+        }
       }).catch(err => { console.log(err); });
     });
 
